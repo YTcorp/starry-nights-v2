@@ -1,0 +1,7 @@
+.Footer {
+  background-color: $white;
+
+  .Footer-Sections {
+    margin-left: 4em;
+  }
+}

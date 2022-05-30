@@ -1,0 +1,114 @@
+@define-mixin container {
+  max-width: calc(100% - 1rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@define-mixin paragraph {
+  color: var(--color-lilac-2);
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  padding: 3rem;
+  line-height: 1.4rem;
+}
+
+@define-mixin glass-effect {
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(107, 85, 185, 0.299);
+  border-bottom: 1px solid rgb(144 134 181 / 18%);
+  box-shadow: 2px 8px 25px 0 rgba(17, 2, 42, 0.843);
+}
+
+@define-mixin card {
+  @include container;
+  @include glass-effect;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 60rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  border-radius: 20px;
+}
+
+@define-mixin input {
+  color: var(--color-violet);
+  background-color: var(--color-lilac);
+  border: none;
+  border-radius: 99rem;
+  padding: 0.75rem;
+  margin: 0.125rem;
+
+  &::placeholder {
+    font-style: italic;
+    color: var(--color-violet-light);
+  }
+
+  &:focus {
+    color: var(--color-violet);
+    background-color: var(--color-lilac-light);
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+@define-mixin button {
+  @include input;
+  background-color: var(--color-violet-light);
+  font-weight: 600;
+  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) background-color;
+
+  &:hover {
+    color: var(--color-violet);
+    background-color: var(--color-lilac-2);
+  }
+}
+
+@define-mixin title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4.7rem;
+  font-weight: 500;
+  color: var(--color-lilac-2);
+  letter-spacing: 0.12rem;
+  text-shadow: var(--color-lilac-2) 1px 0.5px 4px;
+  text-align: center;
+}
+
+@define-mixin subtitle {
+  @include title;
+  font-size: 3.5rem;
+  font-weight: 400;
+}
+
+@define-mixin subtitle-2 {
+  @include title;
+  text-shadow: unset;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-lilac-transp-2);
+  border-radius: 20px;
+}
+
+@define-mixin link {
+  transition: text-shadow 0.6s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-lilac);
+    text-shadow: var(--color-lilac) 1px 0.5px 4px;
+  }
+}
+
+@define-mixin svg {
+  transition: filter 0.5s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 0.2rem var(--color-lilac));
+  }
+}

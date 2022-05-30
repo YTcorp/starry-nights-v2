@@ -1,0 +1,42 @@
+.Arrow {
+  display: inline-flex;
+
+  &.Down {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 65px;
+
+    polygon {
+      fill: rgba(255, 255, 255, 0.247);
+      transition: all 0.2s ease-out;
+
+      &.arrow-middle {
+        opacity: 0.75;
+      }
+
+      &.arrow-top {
+        opacity: 0.5;
+      }
+    }
+
+    &:hover {
+      polygon {
+        fill: #ad98eb77;
+        transition: all 0.2s ease-out;
+
+        &.arrow-bottom {
+          transform: translateY(-18px);
+        }
+
+        &.arrow-top {
+          transform: translateY(18px);
+        }
+      }
+    }
+  }
+}

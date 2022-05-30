@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Starry Nights",
+  "name": "Trouvez les constellations juste au-dessus de votre localisation !",
   "icons": [
     {
       "src": "favicon.ico",
