@@ -1,0 +1,8 @@
+.Header {
+  &-Logo {
+    @mixin svg;
+    fill: $lilac;
+    max-width: 10rem;
+    height: 90%;
+  }
+}

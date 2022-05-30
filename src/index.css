@@ -1,15 +1,130 @@
 @import "./App.css";
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body,
+html {
+  max-width: 100vw;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: linear-gradient($background-1, $background-2);
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
+
+.Container {
+  @mixin container;
+}
+
+.Main {
+  @mixin container;
+  min-height: calc(100vh - 20rem);
+}
+
+.Block {
+  @mixin card;
+
+  &--small {
+    max-width: 24rem;
+  }
+}
+
+.Section {
+  position: relative;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  height: calc(100vh - 3rem);
+
+  &-Title {
+    @mixin subtitle;
+  }
+}
+
+.Page-Title {
+  margin: 4rem 0 2rem 0;
+}
+
+.Input {
+  @mixin input;
+
+  &--dark {
+    color-scheme: dark;
+    color: $lilac;
+    background-color: $grey-blue;
+
+    &:focus {
+      color: $lilac-2;
+      background-color: $violet;
+    }
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
+.Button {
+  @mixin button;
+
+  &--dark {
+    color: $lilac-li;
+    background-color: $violet-deep;
+    color-scheme: dark;
+  }
+}
+
+.Title {
+  @mixin title;
+
+  &--small {
+    font-size: 2rem;
+    text-shadow: $lilac-2 2px 1px 4px;
+  }
+}
+
+.Subtitle {
+  @mixin title;
+
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.Form {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .Fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .Button,
+  .Input {
+    width: 100%;
+  }
+
+  .Label {
+    margin: 0.25rem;
+    font-weight: 600;
+    color: $lilac-2;
+  }
+}
+
+.Error {
+  color: #f47174;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }

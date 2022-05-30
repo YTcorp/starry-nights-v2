@@ -1,0 +1,63 @@
+.Header-Right {
+  justify-content: flex-end;
+  flex: 1;
+}
+
+&-Nav {
+  @mixin link;
+  display: flex;
+  align-items: center;
+
+  a {
+    margin: 0 1rem;
+  }
+}
+
+&-Menu {
+  &-Toggle {
+    @mixin svg;
+    display: block;
+    margin-right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .Connected {
+    transform: filter 0.5s ease;
+    filter: drop-shadow(0 0 0.2rem $lilac);
+
+    &:hover {
+      filter: drop-shadow(0 0 0 $lilac);
+    }
+  }
+
+  &-Container {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    right: 0;
+    top: 70px;
+    background-color: $background-3;
+    padding: 1rem;
+    min-width: 160px;
+    border-radius: 0 0 0 1rem;
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+    transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
+      0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform;
+
+    &--opened {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+  }
+
+  &-Item {
+    @mixin link;
+    margin: 0.75rem 0;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

@@ -1,8 +1,8 @@
-/* root */
-@import "../index.css";
-
 /* styles */
 @import "./index.css";
 
-/* components */
+/* root */
+@import "../index.css";
+
+/* Components */
 @import "../Components/index.css";

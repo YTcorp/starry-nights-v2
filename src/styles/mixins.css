@@ -5,7 +5,7 @@
 }
 
 @define-mixin paragraph {
-  color: var(--color-lilac-2);
+  color: $lilac-2;
   font-weight: bold;
   letter-spacing: 0.05rem;
   padding: 3rem;
@@ -27,17 +27,13 @@
   flex-direction: column;
   justify-content: center;
   max-width: 60rem;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(180deg, $gradient-1, $gradient-2;);
   border-radius: 20px;
 }
 
 @define-mixin input {
-  color: var(--color-violet);
-  background-color: var(--color-lilac);
+  color: $violet;
+  background-color: $lilac;
   border: none;
   border-radius: 99rem;
   padding: 0.75rem;
@@ -45,12 +41,12 @@
 
   &::placeholder {
     font-style: italic;
-    color: var(--color-violet-light);
+    color: $violet-li;
   }
 
   &:focus {
-    color: var(--color-violet);
-    background-color: var(--color-lilac-light);
+    color: $violet;
+    background-color: $lilac-li;
 
     &::placeholder {
       color: transparent;
@@ -60,13 +56,13 @@
 
 @define-mixin button {
   @include input;
-  background-color: var(--color-violet-light);
+  background-color: $violet-li;
   font-weight: 600;
-  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) background-color;
+  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) $background-1;
 
   &:hover {
-    color: var(--color-violet);
-    background-color: var(--color-lilac-2);
+    color: $violet;
+    background-color: $lilac-2;
   }
 }
 
@@ -74,9 +70,9 @@
   font-family: "Montserrat", sans-serif;
   font-size: 4.7rem;
   font-weight: 500;
-  color: var(--color-lilac-2);
+  color: $lilac-2;
   letter-spacing: 0.12rem;
-  text-shadow: var(--color-lilac-2) 1px 0.5px 4px;
+  text-shadow: $lilac-2 1px 0.5px 4px;
   text-align: center;
 }
 
@@ -91,7 +87,7 @@
   text-shadow: unset;
   font-size: 1.3rem;
   font-weight: 400;
-  color: var(--color-lilac-transp-2);
+  color: $lilac-transp-2;
   border-radius: 20px;
 }
 
@@ -100,8 +96,8 @@
   cursor: pointer;
 
   &:hover {
-    color: var(--color-lilac);
-    text-shadow: var(--color-lilac) 1px 0.5px 4px;
+    color: $lilac;
+    text-shadow: $lilac 1px 0.5px 4px;
   }
 }
 
@@ -109,6 +105,6 @@
   transition: filter 0.5s ease;
 
   &:hover {
-    filter: drop-shadow(0 0 0.2rem var(--color-lilac));
+    filter: drop-shadow(0 0 0.2rem $lilac);
   }
 }

@@ -1,9 +1,13 @@
 /* atoms */
 @import "./atoms/ArrowDown/ArrowDown.css";
+@import "./atoms/LogoHeader/LogoHeader.css";
 
 /* molecules */
+@import "./molecules/HeaderLeft/HeaderLeft.css";
+@import "./molecules/HeaderRight/HeaderRight.css";
 
 /* organisms */
 @import "./organisms/Header/Header.css";
+@import "./organisms/SearchBar/SearchBar.css";
 
 /* templates */

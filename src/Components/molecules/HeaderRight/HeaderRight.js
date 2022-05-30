@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-// import { BiUserCircle as MenuLogoUser } from "react-icons/bi";
+import { BiUserCircle as MenuLogoUser } from "react-icons/bi";
 import LiElement from "../LiElement/LiElement";
 import menuConnected from "../../../assets/data/menuConnected.json";
 import menuNotConnected from "../../../assets/data/menuNotConnected.json";
@@ -28,12 +28,12 @@ export default function HeaderRight() {
             "Header-Menu-Container--opened": menuOpened,
           })}
         >
-          {/* <MenuLogoUser
+          <MenuLogoUser
             //   className={
             //     isConnected ? "Header-Menu-Toggle Connected" : "Header-Menu-Toggle"
             //   }
             onClick={toggleMenu}
-          /> */}
+          />
           {menuNotConnected.map((menu) => {
             return <LiElement key={menu.id} data={menu} />;
           })}
