@@ -1,8 +1,8 @@
+/* Header Logo */
 .Header {
   &-Logo {
     @mixin svg;
     fill: $lilac;
-    max-width: 10rem;
-    height: 90%;
+    max-height: 45px;
   }
 }

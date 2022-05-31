@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Anchor({ url, description }) {
-  return <a href={url}>{description}</a>;
+export default function Anchor({ url, content }) {
+  return <a href={url}>{content}</a>;
 }

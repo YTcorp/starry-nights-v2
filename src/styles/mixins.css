@@ -20,8 +20,8 @@
 }
 
 @define-mixin card {
-  @include container;
-  @include glass-effect;
+  @mixin container;
+  @mixin glass-effect;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -55,7 +55,7 @@
 }
 
 @define-mixin button {
-  @include input;
+  @mixin input;
   background-color: $violet-li;
   font-weight: 600;
   transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) $background-1;
@@ -77,13 +77,13 @@
 }
 
 @define-mixin subtitle {
-  @include title;
+  @mixin title;
   font-size: 3.5rem;
   font-weight: 400;
 }
 
 @define-mixin subtitle-2 {
-  @include title;
+  @mixin title;
   text-shadow: unset;
   font-size: 1.3rem;
   font-weight: 400;

@@ -6,12 +6,18 @@
   margin: 0;
   padding: 0;
 }
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
 /* COLORS */
 /* root */
 .App {
   height: 100vh;
   display: grid;
-  grid-template-rows: 100px 1fr auto; /* make as many rows as needed */
+  grid-template-rows: 70px 1fr auto;
   grid-template-columns: auto;
 }
 body,
@@ -42,8 +48,14 @@ body {
   min-height: calc(100vh - 20rem);
 }
 .Block {
-  @include container;
-  @include glass-effect;
+  max-width: calc(100% - 1rem);
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  border: 1px solid rgba(107, 85, 185, 0.299);
+  border-bottom: 1px solid rgb(144 134 181 / 18%);
+  box-shadow: 2px 8px 25px 0 rgba(17, 2, 42, 0.843);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -62,7 +74,13 @@ body {
   height: calc(100vh - 3rem);
 }
 .Section-Title {
-    @include title;
+    font-family: "Montserrat", sans-serif;
+    font-size: 4.7rem;
+    font-weight: 500;
+    color: #9f98ca;
+    letter-spacing: 0.12rem;
+    text-shadow: #9f98ca 1px 0.5px 4px;
+    text-align: center;
     font-size: 3.5rem;
     font-weight: 400;
   }
@@ -101,7 +119,25 @@ body {
       outline: none;
     }
 .Button {
-  @include input;
+  color: #2f1e61;
+  background-color: #c0b6dc;
+  border: none;
+  border-radius: 99rem;
+  padding: 0.75rem;
+  margin: 0.125rem;
+}
+.Button::placeholder {
+    font-style: italic;
+    color: #8479b9;
+  }
+.Button:focus {
+    color: #2f1e61;
+    background-color: #e5dff8;
+  }
+.Button:focus::placeholder {
+      color: transparent;
+    }
+.Button {
   background-color: #8479b9;
   font-weight: 600;
   transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) rgba(33, 34, 93, 0.944) 0%;
@@ -169,6 +205,142 @@ body {
   font-weight: 600;
 }
 /* Components */
+/* templates */
+/* organisms */
+.Header {
+  z-index: 10;
+  position: sticky;
+  padding: 0 0.5%;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #05092f;
+  opacity: 0.95;
+  filter: drop-shadow(0 3px 8px #05092f);
+}
+.Header * {
+    color: #c0b6dc;
+  }
+.Header .Container {
+    height: 100%;
+    padding: 0.3% 0;
+    display: grid;
+    grid-template-columns: minmax(50px, 8rem) 1fr 2fr 30px;
+    align-items: center;
+  }
+.Header .Container-strech {
+      grid-template-columns: minmax(50px, 8rem) 1fr 30px;
+    }
+.Header .Container > a,
+    .Header .Container -Menu {
+      display: flex;
+    }
+.Header-Nav {
+    transition: text-shadow 0.6s ease;
+    cursor: pointer;
+  }
+.Header-Nav:hover {
+    color: #c0b6dc;
+    text-shadow: #c0b6dc 1px 0.5px 4px;
+  }
+.Header-Nav ul {
+      display: flex;
+      justify-content: flex-end;
+      flex: 1;
+    }
+.Header-Nav a {
+      padding: 0 1rem;
+    }
+.Header-Menu {
+    justify-content: flex-end;
+  }
+.Header-Menu-Toggle {
+      transition: filter 0.5s ease;
+    }
+.Header-Menu-Toggle:hover {
+    filter: drop-shadow(0 0 0.2rem #c0b6dc);
+  }
+.Header-Menu-Toggle {
+      display: block;
+      font-size: 2rem;
+      cursor: pointer;
+}
+.Header-Menu .Connected {
+      transform: filter 0.5s ease;
+      filter: drop-shadow(0 0 0.2rem #c0b6dc);
+    }
+.Header-Menu .Connected:hover {
+        filter: drop-shadow(0 0 0 #c0b6dc);
+      }
+.Header-Menu-Container {
+      display: none;
+      position: fixed;
+      flex-direction: column;
+      right: 0;
+      top: 70px;
+      background-color: rgba(0, 0, 23, 0.35);
+      padding: 1rem;
+      min-width: 160px;
+      border-radius: 0 0 0 1rem;
+      opacity: 0;
+      transform: translateX(100%);
+      pointer-events: none;
+      transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
+        0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform;
+    }
+.Header-Menu-Container--opened {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: all;
+      }
+.Header-Menu-Item {
+      transition: text-shadow 0.6s ease;
+      cursor: pointer;
+    }
+.Header-Menu-Item:hover {
+    color: #c0b6dc;
+    text-shadow: #c0b6dc 1px 0.5px 4px;
+  }
+.Header-Menu-Item {
+      margin: 0.75rem 0;
+      font-weight: 600;
+      cursor: pointer;
+}
+.Header-Search {
+    justify-self: flex-start;
+  }
+.Header-Search-Options {
+      position: absolute;
+      opacity: 0;
+      bottom: 0;
+      left: 2rem;
+      width: calc(100% - 3rem);
+      transform: translateY(100%);
+      background: #000;
+      border-radius: 0 0 1rem 1rem;
+      transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity;
+      overflow: auto;
+      max-height: 10rem;
+    }
+.Header-Search-Option {
+      padding: 0.5rem 1rem;
+      margin: 0.125rem 0;
+      background: transparent;
+      transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) background;
+      cursor: pointer;
+    }
+.Header-Search-Option:hover {
+        background: rgba(#fff, 0.125);
+      }
+.Header-Search .Input {
+      margin: 0 1rem;
+      width: 240px;
+    }
+.Input:focus + .Header-Search-Options {
+      opacity: 1;
+    }
+/* molecules */
 /* atoms */
 .Arrow {
   display: inline-flex;
@@ -203,6 +375,7 @@ body {
 .Arrow.Down:hover polygon.arrow-top {
           transform: translateY(18px);
         }
+/* Header Logo */
 .Header-Logo {
     transition: filter 0.5s ease;
   }
@@ -211,150 +384,5 @@ body {
   }
 .Header-Logo {
     fill: #c0b6dc;
-    max-width: 10rem;
-    height: 90%;
+    max-height: 45px;
 }
-/* molecules */
-.Header-Left {
-    width: 45%;
-  }
-.Header-Left a {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      width: 30%;
-    }
-.Header-Right {
-  justify-content: flex-end;
-  flex: 1;
-}
-&-Nav {
-  transition: text-shadow 0.6s ease;
-  cursor: pointer;
-}
-&-Nav:hover {
-    color: #c0b6dc;
-    text-shadow: #c0b6dc 1px 0.5px 4px;
-  }
-&-Nav {
-  display: flex;
-  align-items: center;
-}
-&-Nav a {
-    margin: 0 1rem;
-  }
-&-Menu-Toggle {
-    transition: filter 0.5s ease;
-  }
-&-Menu-Toggle:hover {
-    filter: drop-shadow(0 0 0.2rem #c0b6dc);
-  }
-&-Menu-Toggle {
-    display: block;
-    margin-right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-}
-&-Menu .Connected {
-    transform: filter 0.5s ease;
-    filter: drop-shadow(0 0 0.2rem #c0b6dc);
-  }
-&-Menu .Connected:hover {
-      filter: drop-shadow(0 0 0 #c0b6dc);
-    }
-&-Menu-Container {
-    display: none;
-    position: fixed;
-    flex-direction: column;
-    right: 0;
-    top: 70px;
-    background-color: rgba(0, 0, 23, 0.35);
-    padding: 1rem;
-    min-width: 160px;
-    border-radius: 0 0 0 1rem;
-    opacity: 0;
-    transform: translateX(100%);
-    pointer-events: none;
-    transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
-      0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform;
-  }
-&-Menu-Container--opened {
-      display: flex;
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: all;
-    }
-&-Menu-Item {
-    transition: text-shadow 0.6s ease;
-    cursor: pointer;
-  }
-&-Menu-Item:hover {
-    color: #c0b6dc;
-    text-shadow: #c0b6dc 1px 0.5px 4px;
-  }
-&-Menu-Item {
-    margin: 0.75rem 0;
-    font-weight: 600;
-    cursor: pointer;
-}
-/* organisms */
-.Header {
-  z-index: 10;
-  position: sticky;
-  padding: 0 0.5%;
-  top: 0;
-  right: 0;
-  left: 0;
-  background: #05092f;
-  color: #c0b6dc;
-  opacity: 0.95;
-  filter: drop-shadow(0 3px 8px #05092f);
-}
-.Header .Container {
-    height: 100%;
-    padding: 0.3% 0;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-.Header-Left,
-  .Header-Right {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-.Header-Search {
-    position: relative;
-  }
-.Header-Search-Options {
-      position: absolute;
-      opacity: 0;
-      bottom: 0;
-      left: 2rem;
-      width: calc(100% - 3rem);
-      transform: translateY(100%);
-      background: #000;
-      border-radius: 0 0 1rem 1rem;
-      transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity;
-      overflow: auto;
-      max-height: 10rem;
-    }
-.Header-Search-Option {
-      padding: 0.5rem 1rem;
-      margin: 0.125rem 0;
-      background: transparent;
-      transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) background;
-      cursor: pointer;
-    }
-.Header-Search-Option:hover {
-        background: rgba(#fff, 0.125);
-      }
-.Header-Search .Input {
-      margin: 0 1rem 0 2rem;
-      width: 240px;
-    }
-.Input:focus + .Header-Search-Options {
-      opacity: 1;
-    }
-/* templates */

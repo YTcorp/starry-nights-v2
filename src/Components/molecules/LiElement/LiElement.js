@@ -5,7 +5,7 @@ export default function LiElement({ data }) {
   const { liclass, url, name } = data;
   return (
     <li className={liclass && liclass}>
-      <Anchor url={`/${url ? url : name.toLowerCase()}`} description={name} />
+      <Anchor url={`/${url ? url : name.toLowerCase()}`} content={name} />
     </li>
   );
 }

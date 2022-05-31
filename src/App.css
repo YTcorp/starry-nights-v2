@@ -1,6 +1,6 @@
 .App {
   height: 100vh;
   display: grid;
-  grid-template-rows: 100px 1fr auto; /* make as many rows as needed */
+  grid-template-rows: 70px 1fr auto;
   grid-template-columns: auto;
 }
