@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { filterName } from "../../../utils/filterName";
 
-export default function SearchBar() {
+export default function SearchBar({ placeholder, customClass, customStyle }) {
   const [searchValue, setSearchValue] = useState("");
   // const [searchOptions, setSearchOptions] = useState([]);
   // const [constellations, setConstellations] = useState([]);
@@ -39,9 +39,10 @@ export default function SearchBar() {
         <input
           autoComplete="off"
           title="Recherchez une constellation par son nom"
-          className="Input Input--dark"
+          className={customClass}
           id="header-search"
-          placeholder="Orion, andromède..."
+          placeholder={placeholder}
+          style={customStyle && customStyle}
           value={searchValue}
           onChange={({ target }) => setSearchValue(target.value)}
         />

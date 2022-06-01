@@ -337,6 +337,10 @@ body {
       margin: 0 1rem;
       width: 240px;
     }
+.Header-Search .Input.Strech {
+        width: 40px;
+        font-family: Arial, FontAwesome;
+      }
 .Input:focus + .Header-Search-Options {
       opacity: 1;
     }

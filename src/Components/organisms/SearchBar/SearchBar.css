@@ -30,6 +30,11 @@
     .Input {
       margin: 0 1rem;
       width: 240px;
+
+      &.Strech {
+        width: 40px;
+        font-family: Arial, FontAwesome;
+      }
     }
 
     .Input:focus + &-Options {

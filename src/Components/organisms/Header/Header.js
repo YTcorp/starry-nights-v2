@@ -49,7 +49,18 @@ export default function Header() {
         }
       >
         <Anchor url="/" content={<HeaderLogo />} />
-        <SearchBar />
+        {headerWidth < 500 ? (
+          <SearchBar
+            placeholder="&#xF002;"
+            customClass="Input Input--dark Strech"
+            customStyle={{ fontFamily: "Arial, FontAwesome" }}
+          />
+        ) : (
+          <SearchBar
+            placeholder="Orion, Andromède..."
+            customClass="Input Input--dark"
+          />
+        )}
 
         {headerWidth > 950 && (
           <nav className="Header-Nav">
