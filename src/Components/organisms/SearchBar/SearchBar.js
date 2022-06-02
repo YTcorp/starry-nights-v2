@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 // import { filterName } from "../../../utils/filterName";
 
-export default function SearchBar({ placeholder, customClass, customStyle }) {
+export default function SearchBar({
+  placeholder,
+  customClass,
+  customStyle,
+  funcSearchToggle,
+  funcSearchClose,
+}) {
   const [searchValue, setSearchValue] = useState("");
   // const [searchOptions, setSearchOptions] = useState([]);
   // const [constellations, setConstellations] = useState([]);
 
+  // const closeMenu = () => {
+  //   setMenuOpened(false);
+  // };
   const stopDefault = (event) => {
     event.preventDefault();
     // setSearchBarOpen(true);
@@ -45,6 +54,8 @@ export default function SearchBar({ placeholder, customClass, customStyle }) {
           style={customStyle && customStyle}
           value={searchValue}
           onChange={({ target }) => setSearchValue(target.value)}
+          onClick={funcSearchToggle && (() => funcSearchToggle())}
+          onBlur={funcSearchClose && (() => funcSearchClose())}
         />
         {searchValue.length > 0 && (
           <ul className="Header-Search-Options">

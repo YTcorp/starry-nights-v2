@@ -14,17 +14,9 @@ import menuHeaderNav from "../../../assets/data/menuHeaderNav.json";
 
 export default function Header() {
   //   const { isConnected, disconnectUser } = useContext(authContext);
-  const [menuOpened, setMenuOpened] = useState(false);
+  // je vais gerer ça avec des contexts ??????
+
   const [headerWidth, setheaderWidth] = useState(window.innerWidth);
-
-  const toggleMenu = () => {
-    setMenuOpened(!menuOpened);
-  };
-
-  // const closeMenu = () => {
-  //   setMenuOpened(false);
-  // };
-
   useEffect(() => {
     const changeWidth = () => {
       setheaderWidth(headerContainer.offsetWidth);
@@ -39,21 +31,48 @@ export default function Header() {
     };
   }, []);
 
-  console.log(headerWidth);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const toggleSearchOpen = () => {
+    setSearchOpen(!searchOpen);
+  };
+  const closeSearchOpen = () => {
+    setSearchOpen(false);
+  };
+
+  const [menuOpened, setMenuOpened] = useState(false);
+  const toggleMenu = () => {
+    console.log("toggeled", menuOpened);
+    setMenuOpened(!menuOpened);
+  };
+  const closeMenu = () => {
+    console.log("closed !", menuOpened);
+    setMenuOpened(false);
+  };
+
+  console.log(headerWidth, searchOpen, menuOpened);
+  // jai besoin de passer  onClick={closeMenu} a mes anchors non connectes ET connectes !!! ref ?
 
   return (
     <header className="Header">
       <div
-        className={
-          headerWidth < 950 ? "Container Container-strech" : "Container"
-        }
+        className={classnames("Container", {
+          "Container-strech": headerWidth < 950,
+        })}
       >
+        {/* A partir de 430, faire logo responsive */}
         <Anchor url="/" content={<HeaderLogo />} />
+
         {headerWidth < 500 ? (
           <SearchBar
             placeholder="&#xF002;"
-            customClass="Input Input--dark Strech"
-            customStyle={{ fontFamily: "Arial, FontAwesome" }}
+            customClass={classnames("Input Input--dark", {
+              "Strech-menu": !searchOpen,
+            })}
+            customStyle={{
+              fontFamily: "Arial, FontAwesome",
+            }}
+            funcSearchToggle={toggleSearchOpen}
+            funcSearchClose={closeSearchOpen}
           />
         ) : (
           <SearchBar
@@ -86,14 +105,33 @@ export default function Header() {
               "Header-Menu-Container--opened": menuOpened,
             })}
           >
-            {headerWidth < 950 && <LiElement data={menuHeaderNav[0]} />}
+            {headerWidth < 950 && (
+              <LiElement
+                data={menuHeaderNav[0]}
+                funcMenuClose={closeMenu}
+                customClass="Header-Menu-Item"
+              />
+            )}
 
             {menuNotConnected.map((menu) => {
-              return <LiElement key={menu.id} data={menu} />;
+              return (
+                <LiElement
+                  key={menu.id}
+                  data={menu}
+                  funcMenuClose={closeMenu}
+                />
+              );
             })}
 
+            {/* il me faut paser methode disconnectUser() au menu Se deconnecter */}
             {menuConnected.map((menu) => {
-              return <LiElement key={menu.id} data={menu} />;
+              return (
+                <LiElement
+                  key={menu.id}
+                  data={menu}
+                  funcMenuClose={closeMenu}
+                />
+              );
             })}
           </ul>
         </nav>
@@ -101,5 +139,3 @@ export default function Header() {
     </header>
   );
 }
-// jai besoin de passer  onClick={closeMenu} a mes anchors non connectes ET connectes !!! ref ?
-// il me faut paser methode disconnectUser() au menu Se deconnecter

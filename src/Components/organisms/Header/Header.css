@@ -17,17 +17,17 @@
     height: 100%;
     padding: 0.3% 0;
     display: grid;
-    grid-template-columns: minmax(50px, 8rem) 1fr 2fr 30px;
+    grid-template-columns: 80px 1fr 2fr 30px;
     align-items: center;
 
     &-strech {
-      grid-template-columns: minmax(50px, 8rem) 1fr 30px;
+      grid-template-columns: 80px 1fr 30px;
     }
-
-    & > a,
-    -Menu {
-      display: flex;
-    }
+  }
+  & > .Container a,
+  &-Menu,
+  &-Search {
+    display: flex;
   }
 
   &-Nav {

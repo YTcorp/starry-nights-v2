@@ -225,16 +225,17 @@ body {
     height: 100%;
     padding: 0.3% 0;
     display: grid;
-    grid-template-columns: minmax(50px, 8rem) 1fr 2fr 30px;
+    grid-template-columns: 80px 1fr 2fr 30px;
     align-items: center;
   }
 .Header .Container-strech {
-      grid-template-columns: minmax(50px, 8rem) 1fr 30px;
+      grid-template-columns: 80px 1fr 30px;
     }
-.Header .Container > a,
-    .Header .Container -Menu {
-      display: flex;
-    }
+.Header > .Container a,
+  .Header-Menu,
+  .Header-Search {
+    display: flex;
+  }
 .Header-Nav {
     transition: text-shadow 0.6s ease;
     cursor: pointer;
@@ -336,11 +337,20 @@ body {
 .Header-Search .Input {
       margin: 0 1rem;
       width: 240px;
+      transition: 0.2s ease-in-out width;
     }
-.Header-Search .Input.Strech {
+.Header-Search .Input.Strech-menu {
         width: 40px;
         font-family: Arial, FontAwesome;
       }
+.Header-Search .Input.Strech-menu::placeholder {
+          font-style: normal;
+          text-align: center;
+        }
+.Header-Search .Input.Strech-menu:hover {
+          filter: drop-shadow(0 0 0.2rem #c0b6dc);
+          cursor: pointer;
+        }
 .Input:focus + .Header-Search-Options {
       opacity: 1;
     }
