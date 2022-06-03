@@ -45,7 +45,7 @@ body {
   max-width: calc(100% - 1rem);
   margin-left: auto;
   margin-right: auto;
-  min-height: calc(100vh - 20rem);
+  padding: 0 1rem;
 }
 .Block {
   max-width: calc(100% - 1rem);
@@ -71,8 +71,8 @@ body {
   position: relative;
   padding-top: 6rem;
   padding-bottom: 6rem;
-  height: calc(100vh - 3rem);
 }
+/* height: calc(100vh - 3rem); */
 .Section-Title {
     font-family: "Montserrat", sans-serif;
     font-size: 4.7rem;
@@ -207,6 +207,12 @@ body {
 /* Components */
 /* templates */
 /* organisms */
+.Footer {
+  background-color: #c0b6dc;
+}
+.Footer .Footer-Sections {
+    margin-left: 4em;
+  }
 .Header {
   z-index: 10;
   position: sticky;

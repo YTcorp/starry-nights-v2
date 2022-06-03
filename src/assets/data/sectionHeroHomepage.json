@@ -1,0 +1,10 @@
+[
+    {
+        "tType": "h1",
+        "tClass": "Title Hero-Title",
+        "tData": "Starry Nights",
+        "content": "p",
+        "cClass": "Block Hero-Text",
+        "cData": "Trouvez les constellations visibles sur votre localisation et leur mythologie."
+    }
+]

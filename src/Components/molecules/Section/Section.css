@@ -1,0 +1,10 @@
+.Section {
+  position: relative;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  /* height: calc(100vh - 3rem); */
+
+  &-Title {
+    @mixin subtitle;
+  }
+}

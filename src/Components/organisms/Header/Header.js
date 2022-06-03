@@ -33,11 +33,9 @@ export default function Header() {
 
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
-    console.log("toggeled", menuOpened);
     setMenuOpened(!menuOpened);
   };
   const closeMenu = () => {
-    console.log("closed !", menuOpened);
     setMenuOpened(false);
   };
 

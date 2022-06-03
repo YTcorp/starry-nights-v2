@@ -1,10 +1,13 @@
 /* templates */
+@import "./templates/Homepage/Homepage.css";
 
 /* organisms */
+@import "./organisms/Footer/Footer.css";
 @import "./organisms/Header/Header.css";
 @import "./organisms/SearchBar/SearchBar.css";
 
 /* molecules */
+@import "./molecules/Section/Section.css";
 
 /* atoms */
 @import "./atoms/ArrowDown/ArrowDown.css";

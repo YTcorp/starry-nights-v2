@@ -42,9 +42,6 @@ export default function SearchBar({
   //     setOpenedConstellation(decoratedConstellation);
   //   };
 
-  console.log(customClass);
-  console.log(customClass.includes("Strech-menu"));
-
   return (
     <form onSubmit={stopDefault}>
       <label className="Header-Search" htmlFor="header-search">
