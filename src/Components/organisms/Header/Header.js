@@ -16,10 +16,10 @@ export default function Header() {
   //   const { isConnected, disconnectUser } = useContext(authContext);
   // je vais gerer ça avec des contexts ??????
 
-  const [headerWidth, setheaderWidth] = useState(window.innerWidth);
+  const [headerWidth, setHeaderWidth] = useState(window.innerWidth);
   useEffect(() => {
     const changeWidth = () => {
-      setheaderWidth(headerContainer.offsetWidth);
+      setHeaderWidth(headerContainer.offsetWidth);
     };
 
     let headerContainer = document.querySelector(".Header");
@@ -31,14 +31,6 @@ export default function Header() {
     };
   }, []);
 
-  const [searchOpen, setSearchOpen] = useState(false);
-  const toggleSearchOpen = () => {
-    setSearchOpen(!searchOpen);
-  };
-  const closeSearchOpen = () => {
-    setSearchOpen(false);
-  };
-
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
     console.log("toggeled", menuOpened);
@@ -49,7 +41,15 @@ export default function Header() {
     setMenuOpened(false);
   };
 
-  console.log(headerWidth, searchOpen, menuOpened);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const toggleSearchOpen = () => {
+    setSearchOpen(!searchOpen);
+  };
+  const closeSearchOpen = () => {
+    setSearchOpen(false);
+  };
+
+  // console.log(headerWidth, searchOpen, menuOpened);
   // jai besoin de passer  onClick={closeMenu} a mes anchors non connectes ET connectes !!! ref ?
 
   return (
@@ -71,7 +71,7 @@ export default function Header() {
             customStyle={{
               fontFamily: "Arial, FontAwesome",
             }}
-            funcSearchToggle={toggleSearchOpen}
+            funcSearchToggle={!searchOpen ? toggleSearchOpen : () => undefined}
             funcSearchClose={closeSearchOpen}
           />
         ) : (
