@@ -5,7 +5,11 @@ import sectionHeroHomepage from "../../../assets/data/sectionHeroHomepage.json";
 
 export default function HomeHero() {
   return (
-    <Section id="Hero" className={"Hero Section"} data={sectionHeroHomepage[0]}>
+    <Section
+      id="home-hero"
+      className={"Hero Section"}
+      data={sectionHeroHomepage[0]}
+    >
       <ArrowDown />
     </Section>
   );

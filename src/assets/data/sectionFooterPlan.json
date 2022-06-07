@@ -1,0 +1,29 @@
+[
+    {
+        "tType": "h3",
+        "tClass": "Footer-Sections-Section-Title",
+        "tData": "Plan du site",
+        "content": "li",
+        "cClass": "Footer-Sections-Section-Link",
+        "cData": [
+            {
+                "id": 1,
+                "liclass": "",
+                "url": "/",
+                "name": "accueil"
+            },
+            {
+                "id": 3,
+                "liclass": "",
+                "url": "#Map",
+                "name": "carte interactive"
+            },
+            {
+                "id": 2,
+                "liclass": "",
+                "url": "/constellations",
+                "name": "constellations"
+            }
+        ]
+    }
+]
