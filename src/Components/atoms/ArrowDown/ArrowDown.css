@@ -1,7 +1,7 @@
 .Arrow {
   display: inline-flex;
 
-  &.Down {
+  &Down {
     display: flex;
     position: absolute;
     align-items: center;

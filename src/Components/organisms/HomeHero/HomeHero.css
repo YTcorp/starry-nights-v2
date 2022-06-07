@@ -1,0 +1,15 @@
+.Hero {
+  display: grid;
+  grid-template-rows: minmax(180px, 1fr) 1fr 70px;
+  gap: 10px;
+
+  &-Title {
+    /* @mixin subtitle; */
+    /* font-size: 100%; */
+    align-self: center;
+  }
+
+  &-Text {
+    margin: 10% 0;
+  }
+}

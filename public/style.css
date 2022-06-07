@@ -135,7 +135,7 @@ li {
   height: 100vh;
   display: grid;
   grid-template-rows: 70px 1fr auto;
-  grid-template-columns: auto;
+  /* grid-template-columns: auto; */
 }
 body,
 html {
@@ -295,6 +295,19 @@ body {
       font-weight: 600;
       cursor: pointer;
 }
+.Hero {
+  display: grid;
+  grid-template-rows: minmax(180px, 1fr) 1fr 70px;
+  gap: 10px;
+}
+.Hero-Title {
+    /* @mixin subtitle; */
+    /* font-size: 100%; */
+    align-self: center;
+  }
+.Hero-Text {
+    margin: 10% 0;
+  }
 .Header-Search {
     justify-self: flex-start;
   }
@@ -344,26 +357,15 @@ body {
 /* molecules */
 .Section {
   position: relative;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 6vw;
+  padding-bottom: 6vw;
+  height: 100%;
 }
-/* height: calc(100vh - 3rem); */
-.Section-Title {
-    font-family: "Montserrat", sans-serif;
-    font-size: 4.7rem;
-    font-weight: 500;
-    color: #9f98ca;
-    letter-spacing: 0.12rem;
-    text-shadow: #9f98ca 1px 0.5px 4px;
-    text-align: center;
-    font-size: 3.5rem;
-    font-weight: 400;
-  }
 /* atoms */
 .Arrow {
   display: inline-flex;
 }
-.Arrow.Down {
+.ArrowDown {
     display: flex;
     position: absolute;
     align-items: center;
@@ -373,24 +375,24 @@ body {
     width: 75px;
     height: 65px;
   }
-.Arrow.Down polygon {
+.ArrowDown polygon {
       fill: rgba(255, 255, 255, 0.247);
       transition: all 0.2s ease-out;
     }
-.Arrow.Down polygon.arrow-middle {
+.ArrowDown polygon.arrow-middle {
         opacity: 0.75;
       }
-.Arrow.Down polygon.arrow-top {
+.ArrowDown polygon.arrow-top {
         opacity: 0.5;
       }
-.Arrow.Down:hover polygon {
+.ArrowDown:hover polygon {
         fill: #ad98eb77;
         transition: all 0.2s ease-out;
       }
-.Arrow.Down:hover polygon.arrow-bottom {
+.ArrowDown:hover polygon.arrow-bottom {
           transform: translateY(-18px);
         }
-.Arrow.Down:hover polygon.arrow-top {
+.ArrowDown:hover polygon.arrow-top {
           transform: translateY(18px);
         }
 /* Header Logo */
