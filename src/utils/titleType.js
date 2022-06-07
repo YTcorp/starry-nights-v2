@@ -1,6 +1,6 @@
 import Title from "../Components/atoms/Title/Title";
 
-export const titleType = (tType, tClass, tData) => {
+const titleType = (tType, tClass, tData) => {
   switch (tType) {
     case "h1":
       return <Title type="h1" tClass={tClass} tData={tData} />;

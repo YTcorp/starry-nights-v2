@@ -3,7 +3,6 @@ import titleType from "../../../utils/titleType";
 import contentType from "../../../utils/contentType";
 
 export default function Section(props) {
-  console.log(props);
   const { id, className, data, children } = props;
   const { tType, tClass, tData, content, cClass, cData } = data;
 

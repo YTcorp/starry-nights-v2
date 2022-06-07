@@ -1,4 +1,4 @@
-export const filterName = (name) => {
+const filterName = (name) => {
   return name
     .toLowerCase()
     .normalize("NFD")

@@ -16,10 +16,34 @@ export default function Header() {
   //   const { isConnected, disconnectUser } = useContext(authContext);
   // je vais gerer ça avec des contexts ??????
 
-  const [headerWidth, setHeaderWidth] = useState(window.innerWidth);
+  const [mediumLarge, setMediumLarge] = useState(false);
+  const [miniLarge, setMiniLarge] = useState(false);
   useEffect(() => {
+    if (window.innerWidth > 950) {
+      setMediumLarge(false);
+      setMiniLarge(false);
+    } else if (window.innerWidth <= 950 && window.innerWidth > 500) {
+      setMediumLarge(true);
+      setMiniLarge(false);
+    } else if (window.innerWidth <= 500) {
+      setMediumLarge(false);
+      setMiniLarge(true);
+    }
+
     const changeWidth = () => {
-      setHeaderWidth(headerContainer.offsetWidth);
+      if (headerContainer.offsetWidth > 950) {
+        setMediumLarge(false);
+        setMiniLarge(false);
+      } else if (
+        headerContainer.offsetWidth <= 950 &&
+        headerContainer.offsetWidth > 500
+      ) {
+        setMediumLarge(true);
+        setMiniLarge(false);
+      } else if (headerContainer.offsetWidth <= 500) {
+        setMediumLarge(false);
+        setMiniLarge(true);
+      }
     };
 
     let headerContainer = document.querySelector(".Header");
@@ -46,21 +70,18 @@ export default function Header() {
   const closeSearchOpen = () => {
     setSearchOpen(false);
   };
-
-  // console.log(headerWidth, searchOpen, menuOpened);
-  // jai besoin de passer  onClick={closeMenu} a mes anchors non connectes ET connectes !!! ref ?
+  // jai besoin de passer onClick={closeMenu} a mes anchors non connectes ET connectes !!! ref ?
 
   return (
     <header className="Header">
       <div
         className={classnames("Container", {
-          "Container-strech": headerWidth < 950,
+          "Container-strech": mediumLarge || miniLarge,
         })}
       >
-        {/* A partir de 430, faire logo responsive */}
         <Anchor url="/" content={<HeaderLogo />} />
 
-        {headerWidth < 500 ? (
+        {miniLarge ? (
           <SearchBar
             placeholder="&#xF002;"
             customClass={classnames("Input Input--dark", {
@@ -79,14 +100,14 @@ export default function Header() {
           />
         )}
 
-        {headerWidth > 950 && (
+        {!mediumLarge && !miniLarge && (
           <nav className="Header-Nav">
             <ul>{<LiElement data={menuHeaderNav[0]} />}</ul>
           </nav>
         )}
 
         <nav className="Header-Menu">
-          {headerWidth < 950 ? (
+          {mediumLarge || miniLarge ? (
             <MenuMobile onClick={toggleMenu} className="Header-Menu-Toggle" />
           ) : (
             <MenuLogoUser
@@ -103,7 +124,7 @@ export default function Header() {
               "Header-Menu-Container--opened": menuOpened,
             })}
           >
-            {headerWidth < 950 && (
+            {mediumLarge && (
               <LiElement
                 data={menuHeaderNav[0]}
                 funcMenuClose={closeMenu}

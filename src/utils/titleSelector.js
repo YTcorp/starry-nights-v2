@@ -1,4 +1,4 @@
-export const titleSelector = (type, tClass, tData) => {
+const titleSelector = (type, tClass, tData) => {
   switch (type) {
     case "h1":
       return <h1 className={tClass}>{tData}</h1>;
