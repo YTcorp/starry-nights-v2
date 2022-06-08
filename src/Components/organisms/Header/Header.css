@@ -40,6 +40,10 @@
       flex: 1;
     }
 
+    li {
+      padding-right: 1rem;
+    }
+
     a {
       padding: 0 1rem;
     }

@@ -1,3 +1,15 @@
+.Page-Title {
+  margin: 4rem 0 2rem 0;
+}
+
+.Block {
+  @mixin card;
+
+  &--small {
+    max-width: 24rem;
+  }
+}
+
 .Input {
   @mixin input;
 

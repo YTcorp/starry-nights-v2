@@ -2,12 +2,10 @@
   display: inline-flex;
 
   &Down {
+    align-self: end;
     display: flex;
-    position: absolute;
-    align-items: center;
-    left: 50%;
+    margin: 0 auto;
     bottom: 2rem;
-    transform: translateX(-50%);
     width: 75px;
     height: 65px;
 
