@@ -8,6 +8,7 @@
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 li {
   list-style: none;
@@ -183,11 +184,76 @@ body {
 }
 /* organisms */
 .Footer {
-  background-color: #c0b6dc;
+  color: #9f98ca;
+  position: relative;
+  border-top: 1.3px solid #ad98eb77;
+  font-weight: 400;
 }
-.Footer .Footer-Sections {
-    margin-left: 4em;
+.Footer-Sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 3rem 6rem;
   }
+.Footer-Sections-Section {
+      line-height: 1.5rem;
+    }
+.Footer-Sections-Section-Title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 4.7rem;
+        font-weight: 500;
+        color: #9f98ca;
+        letter-spacing: 0.12rem;
+        text-shadow: #9f98ca 1px 0.5px 4px;
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 400;
+        text-align: left;
+        font-size: 1.3rem;
+        padding-bottom: 0.4rem;
+        margin-bottom: 0.4rem;
+      }
+.Footer-Sections-Section-Content {
+        text-align: justify;
+      }
+.Footer-Sections-Section-Link {
+        transition: text-shadow 0.6s ease;
+        cursor: pointer;
+      }
+.Footer-Sections-Section-Link:hover {
+    color: #c0b6dc;
+    text-shadow: #c0b6dc 1px 0.5px 4px;
+  }
+.Footer-Sections-Section-Link {
+        padding-left: 0.5rem;
+}
+.Footer-Sections .Plan * {
+        text-align: left;
+      }
+.Footer-Bottom {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #8479b9;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 0;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.8rem;
+  }
+.Footer-Bottom a {
+      transition: text-shadow 0.6s ease;
+      cursor: pointer;
+    }
+.Footer-Bottom a:hover {
+    color: #c0b6dc;
+    text-shadow: #c0b6dc 1px 0.5px 4px;
+  }
+.Footer-Bottom a {
+      color: #9f98ca;
+}
 .Header {
   z-index: 10;
   position: sticky;
