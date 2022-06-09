@@ -9,7 +9,7 @@
   }
 
   &-Text {
-    margin: 10% 0;
+    margin: 10% auto;
     color: $lilac-2;
     letter-spacing: 0.05rem;
     width: 100%;

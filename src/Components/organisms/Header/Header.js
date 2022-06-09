@@ -25,7 +25,7 @@ export default function Header() {
     } else if (window.innerWidth <= 950 && window.innerWidth > 500) {
       setMediumLarge(true);
       setMiniLarge(false);
-    } else if (window.innerWidth <= 500) {
+    } else if (window.innerWidth <= 550) {
       setMediumLarge(false);
       setMiniLarge(true);
     }
@@ -36,11 +36,11 @@ export default function Header() {
         setMiniLarge(false);
       } else if (
         headerContainer.offsetWidth <= 950 &&
-        headerContainer.offsetWidth > 500
+        headerContainer.offsetWidth > 550
       ) {
         setMediumLarge(true);
         setMiniLarge(false);
-      } else if (headerContainer.offsetWidth <= 500) {
+      } else if (headerContainer.offsetWidth <= 550) {
         setMediumLarge(false);
         setMiniLarge(true);
       }
