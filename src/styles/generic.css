@@ -22,9 +22,6 @@
       color: $lilac-2;
       background-color: $violet;
     }
-    &:focus-visible {
-      outline: none;
-    }
   }
 }
 
@@ -67,6 +64,7 @@
     align-items: center;
     margin-bottom: 1rem;
     width: 100%;
+    border: none;
   }
 
   .Button,

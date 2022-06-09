@@ -13,6 +13,13 @@ a {
 li {
   list-style: none;
 }
+:focus-visible {
+  outline: 0 dashed black;
+}
+:focus:not(:focus-visible) {
+  outline: 4px solid red;
+  box-shadow: 1px 1px 5px rgba(1, 1, 0, 0.7);
+}
 /* COLORS */
 .Page-Title {
   margin: 4rem 0 2rem 0;
@@ -65,9 +72,6 @@ li {
 .Input--dark:focus {
       color: #9f98ca;
       background-color: #2f1e61;
-    }
-.Input--dark:focus-visible {
-      outline: none;
     }
 .Button {
   color: #2f1e61;
@@ -140,6 +144,7 @@ li {
     align-items: center;
     margin-bottom: 1rem;
     width: 100%;
+    border: none;
   }
 .Form .Button,
   .Form .Input {

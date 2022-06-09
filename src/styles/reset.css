@@ -14,3 +14,12 @@ a {
 li {
   list-style: none;
 }
+
+:focus-visible {
+  outline: 0 dashed black;
+}
+
+:focus:not(:focus-visible) {
+  outline: 4px solid red;
+  box-shadow: 1px 1px 5px rgba(1, 1, 0, 0.7);
+}
