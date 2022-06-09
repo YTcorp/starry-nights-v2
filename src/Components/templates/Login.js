@@ -1,16 +1,22 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import getLoginData from "../../store/features/login/getLoginData";
+// import loginSlice from "../../store/features/login/getLoginData";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const dispatch = useDispatch();
+  const stored = useSelector((state) => state.login);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrorMessage("");
-    getLoginData(email, password);
-    console.log(getLoginData(email, password));
+    dispatch(getLoginData({ email: email, password: password }));
+    console.log("submited");
+    console.log(JSON.stringify(stored));
   };
 
   return (
@@ -24,7 +30,7 @@ export default function Login() {
             Adresse email
           </label>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className="Input"
             id="email"
             value={email}
@@ -40,7 +46,7 @@ export default function Login() {
             Mot de passe
           </label>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className="Input"
             id="password"
             value={password}

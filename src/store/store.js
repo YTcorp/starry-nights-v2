@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import widthReducer from "./reducers/widthReducer";
+import loginSlice from "./features/login/loginSlice";
 
 const store = configureStore({
-  reducer: { measure: widthReducer },
+  reducer: {
+    login: loginSlice.reducer,
+  },
 });
 
 export default store;
