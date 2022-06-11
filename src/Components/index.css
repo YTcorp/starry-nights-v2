@@ -1,7 +1,7 @@
 /* templates */
 @import "./templates/Homepage.css";
 @import "./templates/NotFound.css";
-@import "./templates/Login.css";
+@import "./templates/LoginSignup.css";
 
 /* organisms */
 @import "./organisms/Footer/Footer.css";

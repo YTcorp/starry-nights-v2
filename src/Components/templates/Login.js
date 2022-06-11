@@ -1,12 +1,12 @@
-import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../API/authService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -15,17 +15,18 @@ export default function Login() {
 
   const { loading, isConnected, errMssg } = useSelector((state) => state.login);
   useEffect(() => {
+    if (isConnected) {
+      navigate("/");
+    }
+  }, [isConnected, navigate]);
+
+  useEffect(() => {
     errMssg && setErrorMessage(errMssg);
   }, [errMssg]);
-  console.log(loading, isConnected, errorMessage);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(loginUser({ email: email, password: password }));
-
-    if (isConnected) {
-      return <Navigate to="/" />;
-    }
   };
 
   return (

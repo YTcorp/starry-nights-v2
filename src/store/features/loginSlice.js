@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "../../../API/authService";
-import { logoutUser } from "../../../API/userService";
+import { loginUser } from "../../API/authService";
+import { logoutUser } from "../../API/userService";
 
 const loginSlice = createSlice({
   name: "login",

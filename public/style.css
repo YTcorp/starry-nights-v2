@@ -235,10 +235,11 @@ body {
 .card404 strong {
     font-size: 4rem;
   }
-.Login .Form {
+.Login .Form,
+.Signup .Form {
   position: relative;
 }
-.Login .Form .Button:disabled {
+.Login .Form .Button:disabled, .Signup .Form .Button:disabled {
     background-color: rgb(52, 53, 94);
   }
 /* organisms */

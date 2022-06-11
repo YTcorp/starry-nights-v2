@@ -11,9 +11,8 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../organisms/Header/Header";
 import Homepage from "../templates/Homepage";
 import Login from "../templates/Login";
-// import Signup from "../../pages/Signup";
+import Signup from "../templates/Signup";
 // import Constellations from "../../pages/Constellations";
-// import Myths from "../../pages/Myths";
 import Footer from "../organisms/Footer/Footer";
 import NotFound from "../templates/NotFound";
 
@@ -25,15 +24,14 @@ const Routes = () => {
       <RoutesContainer>
         <Route path="/" element={<Homepage />} />
         {/* <Route path="/Constellations" element={<Constellations />} /> */}
-        {/* <Route path="/Myths" element={<Myths />} /> */}
 
-        {/* Routes protégées par un login */}
+        {/* Login restricted Routes*/}
         <Route element={<AuthenticatedRoute redirectPath="/login" />}></Route>
 
-        {/* Routes uniquement accessibles si non connecté */}
+        {/* Only non connected Routes */}
         <Route element={<UnauthenticatedRoute redirectPath="/" />}>
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/signup" element={<Signup />} /> */}
+          <Route path="/signup" element={<Signup />} />
         </Route>
 
         <Route path="/notfound" element={<NotFound />} />

@@ -3,18 +3,17 @@ import axios from "../utils/axios";
 
 export const registerUser = createAsyncThunk(
   "users/postWithFirstName-LastName-Email-Pass",
-  async ({ firstname, lastname, email, password }, thunkAPI) => {
+  async ({ firstname, lastname, email, password }, { rejectWithValue }) => {
     try {
-      const { data, headers } = await axios.post("/user/", {
+      const { data } = await axios.post("/user/", {
         firstname,
         lastname,
         email,
         password,
       });
-      return { data: data, headers: headers };
+      return { data: data };
     } catch (error) {
-      console.log("error", error);
-      return thunkAPI.rejectWithValue(error);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
