@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useWindowSize } from "react-use";
 import classnames from "classnames";
 import {
@@ -7,17 +7,19 @@ import {
   BiMenu as MenuMobile,
 } from "react-icons/bi";
 
+import menuConnected from "../../../assets/data/menuConnected.json";
+import menuNotConnected from "../../../assets/data/menuNotConnected.json";
+import menuHeaderNav from "../../../assets/data/menuHeaderNav.json";
 import Anchor from "../../atoms/Anchor/Anchor";
 import HeaderLogo from "../../atoms/LogoHeader/LogoHeader";
 import SearchBar from "../../organisms/SearchBar/SearchBar";
 import LiElement from "../../molecules/LiElement/LiElement";
-import menuConnected from "../../../assets/data/menuConnected.json";
-import menuNotConnected from "../../../assets/data/menuNotConnected.json";
-import menuHeaderNav from "../../../assets/data/menuHeaderNav.json";
+import { logoutUser } from "../../../API/userService";
 
 export default function Header() {
   const { isConnected } = useSelector((state) => state.login);
   const { width } = useWindowSize();
+  const dispatch = useDispatch();
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
@@ -40,6 +42,10 @@ export default function Header() {
   };
   const closeMenu = () => {
     setMenuOpened(false);
+  };
+
+  const disconnectUser = () => {
+    dispatch(logoutUser());
   };
 
   const [searchOpen, setSearchOpen] = useState(false);
@@ -121,7 +127,6 @@ export default function Header() {
                 );
               })}
 
-            {/* il me faut creer methode disconnectUser() au menu Se deconnecter */}
             {isConnected &&
               menuConnected.map((menu) => {
                 return (
@@ -130,8 +135,7 @@ export default function Header() {
                     data={menu}
                     funcMenu={() => {
                       closeMenu();
-                      // changer toggle pour disconnect
-                      toggleMenu();
+                      disconnectUser();
                     }}
                   />
                 );

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "../../../API/authService";
+import { logoutUser } from "../../../API/userService";
 
 const loginSlice = createSlice({
   name: "login",
@@ -12,21 +13,23 @@ const loginSlice = createSlice({
   reducers: {},
   extraReducers: {
     // we can change our state cause reduxjs already uses Immer to handle immutable states
-    [loginUser.pending]: (state, { payload }) => {
-      console.log("Pending");
+    [loginUser.pending]: (state) => {
       state.loading = true;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      console.log("fullfill", "payload", payload);
       state.loading = false;
       state.data = payload.login;
       state.isConnected = true;
     },
     [loginUser.rejected]: (state, { payload }) => {
-      console.log("rejeced", "payload", payload);
       state.errMssg = payload;
       state.loading = false;
       state.isConnected = false;
+    },
+    [logoutUser.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.isConnected = false;
+      state.data = payload;
     },
   },
 });
