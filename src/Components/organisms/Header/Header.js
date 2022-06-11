@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useWindowSize } from "react-use";
 import classnames from "classnames";
 import {
   BiUserCircle as MenuLogoUser,
@@ -16,46 +17,22 @@ import menuHeaderNav from "../../../assets/data/menuHeaderNav.json";
 
 export default function Header() {
   const { isConnected } = useSelector((state) => state.login);
-  console.log(isConnected);
+  const { width } = useWindowSize();
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
   useEffect(() => {
-    if (window.innerWidth > 950) {
+    if (width > 950) {
       setMediumLarge(false);
       setMiniLarge(false);
-    } else if (window.innerWidth <= 950 && window.innerWidth > 500) {
+    } else if (width <= 950 && width > 500) {
       setMediumLarge(true);
       setMiniLarge(false);
-    } else if (window.innerWidth <= 550) {
+    } else if (width <= 550) {
       setMediumLarge(false);
       setMiniLarge(true);
     }
-
-    const changeWidth = () => {
-      if (headerContainer.offsetWidth > 950) {
-        setMediumLarge(false);
-        setMiniLarge(false);
-      } else if (
-        headerContainer.offsetWidth <= 950 &&
-        headerContainer.offsetWidth > 550
-      ) {
-        setMediumLarge(true);
-        setMiniLarge(false);
-      } else if (headerContainer.offsetWidth <= 550) {
-        setMediumLarge(false);
-        setMiniLarge(true);
-      }
-    };
-
-    let headerContainer = document.querySelector(".Header");
-
-    window.addEventListener("resize", changeWidth);
-
-    return () => {
-      window.removeEventListener("resize", changeWidth);
-    };
-  }, []);
+  }, [width]);
 
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
@@ -144,14 +121,18 @@ export default function Header() {
                 );
               })}
 
-            {/* il me faut paser methode disconnectUser() au menu Se deconnecter */}
+            {/* il me faut creer methode disconnectUser() au menu Se deconnecter */}
             {isConnected &&
               menuConnected.map((menu) => {
                 return (
                   <LiElement
                     key={menu.id}
                     data={menu}
-                    funcMenuClose={closeMenu}
+                    funcMenu={() => {
+                      closeMenu();
+                      // changer toggle pour disconnect
+                      toggleMenu();
+                    }}
                   />
                 );
               })}
