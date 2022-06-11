@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import getLoginData from "../../store/features/login/getLoginData";
-// import loginSlice from "../../store/features/login/getLoginData";
+import { loginUser } from "../../API/authService";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -9,14 +8,16 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
-  const stored = useSelector((state) => state.login);
+
+  const { loading, isSuccess, errMssg } = useSelector((state) => state.login);
+  useEffect(() => {
+    errMssg && setErrorMessage(errMssg);
+  }, [errMssg]);
+  console.log(loading, isSuccess, errorMessage);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setErrorMessage("");
-    dispatch(getLoginData({ email: email, password: password }));
-    console.log("submited");
-    console.log(JSON.stringify(stored));
+    dispatch(loginUser({ email: email, password: password }));
   };
 
   return (

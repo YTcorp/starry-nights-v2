@@ -1,35 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import getLoginData from "./getLoginData";
-import authMiddleware from "./authMiddleware";
+import { loginUser } from "../../../API/authService";
 
 const loginSlice = createSlice({
   name: "login",
   initialState: {
     data: [],
-    headers: [],
     isSucces: false,
     errMssg: "",
     loading: false,
   },
   reducers: {},
   extraReducers: {
-    [getLoginData.pending]: (state, { payload }) => {
-      // we can change our state cause reduxjs already uses Immer to handle immutable states
+    // we can change our state cause reduxjs already uses Immer to handle immutable states
+    [loginUser.pending]: (state, { payload }) => {
+      console.log("Pending");
       state.loading = true;
     },
-    [getLoginData.fulfilled]: (state, { payload }) => {
+    [loginUser.fulfilled]: (state, { payload }) => {
+      console.log("fullfill", "payload", payload);
       state.loading = false;
-      state.data = payload.data;
-      state.headers = payload.headers;
+      state.data = payload.login;
       state.isSuccess = true;
     },
-    [getLoginData.rejected]: (state, { payload }) => {
+    [loginUser.rejected]: (state, { payload }) => {
+      console.log("rejeced", "payload", payload);
       state.errMssg = payload;
       state.loading = false;
       state.isSuccess = false;
     },
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware),
 });
 export default loginSlice;
