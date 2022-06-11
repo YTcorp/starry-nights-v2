@@ -42,6 +42,7 @@ export default function Header() {
   };
   const closeMenu = () => {
     setMenuOpened(false);
+    console.log("closeMenu", menuOpened);
   };
 
   const disconnectUser = () => {
@@ -55,7 +56,6 @@ export default function Header() {
   const closeSearchOpen = () => {
     setSearchOpen(false);
   };
-  // jai besoin de passer onClick={closeMenu} a mes anchors non connectes ET connectes !!! ref ?
 
   return (
     <header className="Header">
@@ -90,16 +90,14 @@ export default function Header() {
             <ul>{<LiElement data={menuHeaderNav[0]} />}</ul>
           </nav>
         )}
-
-        <nav className="Header-Menu">
+        <nav onClick={toggleMenu} onBlur={closeMenu} className="Header-Menu">
           {mediumLarge || miniLarge ? (
-            <MenuMobile onClick={toggleMenu} className="Header-Menu-Toggle" />
+            <MenuMobile className="Header-Menu-Toggle" />
           ) : (
             <MenuLogoUser
               className={classnames("Header-Menu-Toggle", {
                 "Header-Menu-Toggle__Connected": isConnected,
               })}
-              onClick={toggleMenu}
             />
           )}
 
@@ -111,7 +109,7 @@ export default function Header() {
             {mediumLarge && (
               <LiElement
                 data={menuHeaderNav[0]}
-                funcMenuClose={closeMenu}
+                funcMenu={closeMenu}
                 customClass="Header-Menu-Item"
               />
             )}
@@ -119,11 +117,7 @@ export default function Header() {
             {!isConnected &&
               menuNotConnected.map((menu) => {
                 return (
-                  <LiElement
-                    key={menu.id}
-                    data={menu}
-                    funcMenuClose={closeMenu}
-                  />
+                  <LiElement key={menu.id} data={menu} funcMenu={closeMenu} />
                 );
               })}
 

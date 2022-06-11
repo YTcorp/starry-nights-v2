@@ -1,0 +1,14 @@
+@import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+[data-testid] {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
+}
+circle {
+  fill: $violet-li;
+}

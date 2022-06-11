@@ -1,6 +1,7 @@
 /* templates */
 @import "./templates/Homepage.css";
 @import "./templates/NotFound.css";
+@import "./templates/Login.css";
 
 /* organisms */
 @import "./organisms/Footer/Footer.css";
@@ -14,3 +15,4 @@
 /* atoms */
 @import "./atoms/ArrowDown/ArrowDown.css";
 @import "./atoms/LogoHeader/LogoHeader.css";
+@import "./atoms/Spinner/Spinner.css";
