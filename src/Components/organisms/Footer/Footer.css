@@ -6,9 +6,9 @@
 
   &-Sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 500px));
     justify-content: center;
-    gap: 3rem;
+    gap: 10%;
     padding: 3rem 3rem 6rem;
 
     &-Section {

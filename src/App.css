@@ -1,4 +1,4 @@
 .App {
   display: grid;
-  grid-template-rows: 70px 1fr auto;
+  grid-template-rows: 70px minmax(100vh, 1fr) auto;
 }

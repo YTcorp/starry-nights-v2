@@ -1,8 +1,10 @@
+import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import { loginUser } from "../../API/authService";
+import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -32,6 +34,7 @@ export default function Login() {
 
       <form onSubmit={handleSubmit} className="Form Block Block--small">
         {errorMessage.length > 0 && <p className="Error">{errorMessage}</p>}
+        {loading && <Spinner />}
         <fieldset className="Fieldset">
           <label className="Label" htmlFor="email">
             Adresse email
@@ -64,7 +67,7 @@ export default function Login() {
           />
         </fieldset>
 
-        <button type="submit" className="Button">
+        <button type="submit" className="Button" disabled={loading}>
           Se connecter
         </button>
       </form>

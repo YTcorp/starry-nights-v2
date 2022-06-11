@@ -1,7 +1,8 @@
 .Hero {
   height: calc(100vh - 70px);
+  max-height: 100%;
   display: grid;
-  grid-template-rows: minmax(180px, 1fr) 1fr min-content;
+  grid-template-rows: minmax(0, 1fr) 1fr min-content;
   gap: 10px;
 
   &-Title {
