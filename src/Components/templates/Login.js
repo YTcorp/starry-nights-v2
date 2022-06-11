@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+
 import { loginUser } from "../../API/authService";
 
 export default function Login() {
@@ -18,6 +20,10 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(loginUser({ email: email, password: password }));
+
+    if (isConnected) {
+      return <Navigate to="/" />;
+    }
   };
 
   return (

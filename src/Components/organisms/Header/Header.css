@@ -57,13 +57,14 @@
       display: block;
       font-size: 2rem;
       cursor: pointer;
-    }
-    .Connected {
-      transform: filter 0.5s ease;
-      filter: drop-shadow(0 0 0.2rem $lilac);
 
-      &:hover {
-        filter: drop-shadow(0 0 0 $lilac);
+      &__Connected {
+        transform: filter 0.5s ease;
+        filter: drop-shadow(0 0 0.2rem $lilac);
+
+        &:hover {
+          filter: drop-shadow(0 0 0 $lilac);
+        }
       }
     }
 

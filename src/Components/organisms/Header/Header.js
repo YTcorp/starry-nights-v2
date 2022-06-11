@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Anchor from "../../atoms/Anchor/Anchor";
-import HeaderLogo from "../../atoms/LogoHeader/LogoHeader";
-import SearchBar from "../../organisms/SearchBar/SearchBar";
+import { useSelector } from "react-redux";
 import classnames from "classnames";
 import {
   BiUserCircle as MenuLogoUser,
   BiMenu as MenuMobile,
 } from "react-icons/bi";
+
+import Anchor from "../../atoms/Anchor/Anchor";
+import HeaderLogo from "../../atoms/LogoHeader/LogoHeader";
+import SearchBar from "../../organisms/SearchBar/SearchBar";
 import LiElement from "../../molecules/LiElement/LiElement";
 import menuConnected from "../../../assets/data/menuConnected.json";
 import menuNotConnected from "../../../assets/data/menuNotConnected.json";
 import menuHeaderNav from "../../../assets/data/menuHeaderNav.json";
 
 export default function Header() {
-  //   const { isConnected, disconnectUser } = useContext(authContext);
-  // je vais gerer ça avec des contexts ??????
+  const { isConnected } = useSelector((state) => state.login);
+  console.log(isConnected);
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
@@ -111,10 +113,9 @@ export default function Header() {
             <MenuMobile onClick={toggleMenu} className="Header-Menu-Toggle" />
           ) : (
             <MenuLogoUser
-              className="Header-Menu-Toggle"
-              //   className={
-              //     isConnected ? "Header-Menu-Toggle Connected" : "Header-Menu-Toggle"
-              //   }
+              className={classnames("Header-Menu-Toggle", {
+                "Header-Menu-Toggle__Connected": isConnected,
+              })}
               onClick={toggleMenu}
             />
           )}
@@ -132,26 +133,28 @@ export default function Header() {
               />
             )}
 
-            {menuNotConnected.map((menu) => {
-              return (
-                <LiElement
-                  key={menu.id}
-                  data={menu}
-                  funcMenuClose={closeMenu}
-                />
-              );
-            })}
+            {!isConnected &&
+              menuNotConnected.map((menu) => {
+                return (
+                  <LiElement
+                    key={menu.id}
+                    data={menu}
+                    funcMenuClose={closeMenu}
+                  />
+                );
+              })}
 
             {/* il me faut paser methode disconnectUser() au menu Se deconnecter */}
-            {menuConnected.map((menu) => {
-              return (
-                <LiElement
-                  key={menu.id}
-                  data={menu}
-                  funcMenuClose={closeMenu}
-                />
-              );
-            })}
+            {isConnected &&
+              menuConnected.map((menu) => {
+                return (
+                  <LiElement
+                    key={menu.id}
+                    data={menu}
+                    funcMenuClose={closeMenu}
+                  />
+                );
+              })}
           </ul>
         </nav>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import Space from "../../assets/img/Space.jpg";
 
 export default function NotFound() {
   const particlesInit = async (main) => {
@@ -20,8 +21,7 @@ export default function NotFound() {
         options={{
           detectRetina: true,
           background: {
-            image: "url('../../assets/img/Space.jpg')",
-            // image: "url('https://particles.js.org/images/background3.jpg')",
+            image: `url(${Space})`,
             position: "50% 50%",
             repeat: "no-repeat",
             size: "cover",
@@ -71,10 +71,6 @@ export default function NotFound() {
             },
             shape: {
               type: "circle",
-              stroke: {
-                width: 2,
-                color: "#000000",
-              },
             },
             size: {
               value: { min: 0.1, max: 2.7 },
