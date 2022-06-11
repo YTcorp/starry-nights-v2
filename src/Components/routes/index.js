@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 // import AuthenticatedRoute from "./AuthenticatedRoute";
 import UnauthenticatedRoute from "./UnauthenticatedRoute";
+import AuthenticatedRoute from "./AuthenticatedRoute";
 
 import Header from "../organisms/Header/Header";
 import Homepage from "../templates/Homepage";
@@ -28,13 +29,13 @@ const Routes = () => {
         {/* <Route path="/Myths" element={<Myths />} /> */}
 
         {/* Routes protégées par un login */}
-        {/* <Route element={<AuthenticatedRoute redirectPath="/login" />}></Route> */}
+        <Route element={<AuthenticatedRoute redirectPath="/login" />}></Route>
 
         {/* Routes uniquement accessibles si non connecté */}
-        {/* <Route element={<UnauthenticatedRoute redirectPath="/" />}> */}
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/signup" element={<Signup />} /> */}
-        {/* </Route> */}
+        <Route element={<UnauthenticatedRoute redirectPath="/" />}>
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/signup" element={<Signup />} /> */}
+        </Route>
 
         {/* <Route path="/notfound" element={<NotFound />} /> */}
 

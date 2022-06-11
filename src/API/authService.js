@@ -21,7 +21,7 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "users/postByEmail-Pass",
-  async ({ email, password }, thunkAPI) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
       return await axios
         .post("/user/login", {
@@ -29,9 +29,7 @@ export const loginUser = createAsyncThunk(
           password,
         })
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
-            console.log("status 200", res);
             localStorage.setItem(
               "token_user",
               res.headers.authorization.match(/Bearer\s(.*)/)[1]
@@ -40,7 +38,7 @@ export const loginUser = createAsyncThunk(
           return res.data;
         });
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

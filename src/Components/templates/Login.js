@@ -9,11 +9,11 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  const { loading, isSuccess, errMssg } = useSelector((state) => state.login);
+  const { loading, isConnected, errMssg } = useSelector((state) => state.login);
   useEffect(() => {
     errMssg && setErrorMessage(errMssg);
   }, [errMssg]);
-  console.log(loading, isSuccess, errorMessage);
+  console.log(loading, isConnected, errorMessage);
 
   const handleSubmit = (event) => {
     event.preventDefault();
