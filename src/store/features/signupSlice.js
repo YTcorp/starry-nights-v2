@@ -4,9 +4,9 @@ import { registerUser } from "../../API/authService";
 const signupSlice = createSlice({
   name: "login",
   initialState: {
+    loading: false,
     isSuccess: false,
     errMssg: "",
-    loading: false,
   },
   reducers: {},
   extraReducers: {
@@ -19,8 +19,8 @@ const signupSlice = createSlice({
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.loading = false;
-      state.errMssg = payload;
       state.isSuccess = false;
+      state.errMssg = payload;
     },
   },
 });

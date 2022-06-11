@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-// import { filterName } from "../../../utils/filterName";
+import React, { useState, useEffect } from "react";
+import { filterName } from "../../../utils/filterName";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchContentEntity } from "../../../API/entityService";
+import { fetchConstellationNames } from "../../../API/constellationService";
 
 export default function SearchBar({
   placeholder,
@@ -8,40 +11,42 @@ export default function SearchBar({
   funcSearchToggle,
   funcSearchClose,
 }) {
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
-  // const [searchOptions, setSearchOptions] = useState([]);
-  // const [constellations, setConstellations] = useState([]);
+  const [constellations, setConstellations] = useState([]);
+  const [searchNames, setSearchNames] = useState([]);
 
-  // const closeMenu = () => {
-  //   setMenuOpened(false);
-  // };
-  const stopDefault = (event) => {
-    event.preventDefault();
-    // setSearchBarOpen(true);
-  };
+  const { loading, isSuccess, data, dataNames, errMssg } = useSelector(
+    (state) => state.entity
+  );
+  useEffect(() => {
+    dispatch(fetchContentEntity({ name: "constellation" }));
+    dispatch(fetchConstellationNames({}));
+    setSearchValue("");
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setConstellations(data);
+      setSearchNames(dataNames);
+    }
+  }, [isSuccess, data, dataNames]);
 
   let options = [];
+  console.log(searchNames, searchValue);
+  console.log(searchNames.length, searchValue.length);
+  if (searchNames.length > 0 && searchValue.length > 0) {
+    console.log("all ok");
+    options = searchNames.filter((option) => {
+      console.log(option);
+      return filterName(option.name).includes(filterName(searchValue));
+    });
+  }
+  console.log("options", options);
 
-  // if (searchOptions.length > 0 && searchValue.length > 0) {
-  //   options = searchOptions.filter((option) =>
-  //     filterName(option.name).includes(filterName(searchValue))
-  //   );
-  // }
-
-  //   const handleFavConstellation = (optionId) => {
-  //     const foundConst = constellations.find(
-  //       (constellation) => constellation.id === optionId
-  //     );
-  //     const isFav = favoriteList.find((favorite) => favorite.id === optionId)
-  //       ? true
-  //       : false;
-  //     const decoratedConstellation = {
-  //       ...foundConst,
-  //       favorite: isFav,
-  //     };
-  //     setOpenedConstellation(decoratedConstellation);
-  //   };
-
+  const stopDefault = (event) => {
+    event.preventDefault();
+  };
   return (
     <form onSubmit={stopDefault}>
       <label className="Header-Search" htmlFor="header-search">

@@ -5,10 +5,10 @@ import { logoutUser } from "../../API/userService";
 const loginSlice = createSlice({
   name: "login",
   initialState: {
-    data: [],
-    isConnected: false,
-    errMssg: "",
     loading: false,
+    isConnected: false,
+    data: [],
+    errMssg: "",
   },
   reducers: {},
   extraReducers: {
@@ -18,13 +18,13 @@ const loginSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.data = payload.login;
       state.isConnected = true;
+      state.data = payload.login;
     },
     [loginUser.rejected]: (state, { payload }) => {
-      state.errMssg = payload;
       state.loading = false;
       state.isConnected = false;
+      state.errMssg = payload;
     },
     [logoutUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
