@@ -3,9 +3,8 @@ import {
   BrowserRouter as Router,
   Routes as RoutesContainer,
   Route,
-  // Navigate,
+  Navigate,
 } from "react-router-dom";
-// import AuthenticatedRoute from "./AuthenticatedRoute";
 import UnauthenticatedRoute from "./UnauthenticatedRoute";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 
@@ -14,9 +13,9 @@ import Homepage from "../templates/Homepage";
 import Login from "../templates/Login";
 // import Signup from "../../pages/Signup";
 // import Constellations from "../../pages/Constellations";
-// import NotFound from "../../pages/NotFound";
 // import Myths from "../../pages/Myths";
 import Footer from "../organisms/Footer/Footer";
+import NotFound from "../templates/NotFound";
 
 const Routes = () => {
   return (
@@ -37,9 +36,9 @@ const Routes = () => {
           {/* <Route path="/signup" element={<Signup />} /> */}
         </Route>
 
-        {/* <Route path="/notfound" element={<NotFound />} /> */}
+        <Route path="/notfound" element={<NotFound />} />
 
-        {/* <Route path="*" element={<Navigate to="/notfound" />} /> */}
+        <Route path="*" element={<Navigate to="/notfound" />} />
       </RoutesContainer>
       <Footer />
     </Router>

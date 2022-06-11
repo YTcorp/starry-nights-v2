@@ -1,0 +1,29 @@
+#tsparticles {
+  /* //   overflow: hidden;
+  //   position: absolute;
+  //   top: 0px;
+  //   bottom: 0px;
+  //   left: 0px;
+  //   right: 0px;
+  //   z-index: 0; */
+  height: 100vh;
+}
+
+.NotFound {
+  margin: 0 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.card404 {
+  @mixin title;
+  @mixin card;
+  backdrop-filter: blur(9px);
+  font-size: 3rem;
+  padding: 5rem;
+  z-index: 1;
+
+  strong {
+    font-size: 4rem;
+  }
+}

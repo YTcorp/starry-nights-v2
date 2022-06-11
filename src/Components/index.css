@@ -1,5 +1,6 @@
 /* templates */
 @import "./templates/Homepage.css";
+@import "./templates/NotFound.css";
 
 /* organisms */
 @import "./organisms/Footer/Footer.css";
