@@ -7,11 +7,11 @@ import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const dispatch = useDispatch();
 
   const { loading, errMssg } = useSelector((state) => state.login);
   const isConnected = localStorage.getItem("userConnected");

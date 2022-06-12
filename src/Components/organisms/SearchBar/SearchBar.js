@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchConstellations } from "../../../API/constellationService";
 import { fetchConstellationsNames } from "../../../API/constellationService";
 import { fetchUserConstellations } from "../../../API/userService";
+import { setModalContent } from "../../../store/features/modalSlice";
 
 export default function SearchBar({
   placeholder,
@@ -12,16 +13,8 @@ export default function SearchBar({
   funcSearchToggle,
   funcSearchClose,
 }) {
-  const { constellations, constellationsNames } = useSelector(
-    (state) => state.constellation
-  );
-  const { favConstellations } = useSelector((state) => state.userData);
-  const { isConnected } = useSelector((state) => state.login);
-
-  const [searchValue, setSearchValue] = useState("");
-  const [modalOpen, setModalOpen] = useState(null);
-
   const dispatch = useDispatch();
+  const isConnected = localStorage.getItem("userConnected");
   useEffect(() => {
     dispatch(fetchConstellations({}));
     dispatch(fetchConstellationsNames({}));
@@ -31,6 +24,12 @@ export default function SearchBar({
     setSearchValue("");
   }, [dispatch, isConnected]);
 
+  const [searchValue, setSearchValue] = useState("");
+  const { constellations, constellationsNames } = useSelector(
+    (state) => state.constellation
+  );
+  const { favConstellations } = useSelector((state) => state.userData);
+
   let submenus = [];
   if (constellationsNames.length > 0 && searchValue.length > 0) {
     submenus = constellationsNames.filter((submenu) => {
@@ -39,7 +38,7 @@ export default function SearchBar({
   }
 
   const handleFavConstellation = (submenuId) => {
-    const foundConstellation = constellations.find(
+    let foundConstellation = constellations.find(
       (constellation) => constellation.id === submenuId
     );
     const isFav = favConstellations.find(
@@ -47,11 +46,8 @@ export default function SearchBar({
     )
       ? true
       : false;
-    const pickedConstellation = {
-      ...foundConstellation,
-      favorite: isFav,
-    };
-    setModalOpen(pickedConstellation);
+    foundConstellation = { ...foundConstellation, favorite: isFav };
+    dispatch(setModalContent(foundConstellation));
   };
 
   const stopDefault = (event) => {
