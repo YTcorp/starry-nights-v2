@@ -4,7 +4,7 @@ import {
   fetchConstellationsNames,
 } from "../../API/constellationService";
 
-const loginSlice = createSlice({
+const constellationSlice = createSlice({
   name: "login",
   initialState: {
     loading: false,
@@ -43,4 +43,4 @@ const loginSlice = createSlice({
     },
   },
 });
-export default loginSlice;
+export default constellationSlice;

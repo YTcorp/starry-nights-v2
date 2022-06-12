@@ -22,11 +22,43 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-export const fetchUserConstellations = createAsyncThunk(
-  "user/getAllFavoritUserConstellations",
+export const fetchUserFavoritesConstellations = createAsyncThunk(
+  "user/getAllFavoritesUserConstellations",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get("/constellation/favorite", {
+        headers: authHeader(),
+      });
+      return { data: data };
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const postUserFavoriteConstellation = createAsyncThunk(
+  "user/postNewFavoriteUserConstellation",
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        "/constellation/favorite",
+        { constellation_id: id },
+        {
+          headers: authHeader(),
+        }
+      );
+      return { data: data };
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const deleteUserFavoriteConstellation = createAsyncThunk(
+  "user/deleteOneFavoriteUserConstellation",
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/constellation/favorite/${id}`, {
         headers: authHeader(),
       });
       return { data: data };

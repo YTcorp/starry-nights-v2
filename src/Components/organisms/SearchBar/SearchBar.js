@@ -3,7 +3,7 @@ import { filterName } from "../../../utils/filterName";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchConstellations } from "../../../API/constellationService";
 import { fetchConstellationsNames } from "../../../API/constellationService";
-import { fetchUserConstellations } from "../../../API/userService";
+import { fetchUserFavoritesConstellations } from "../../../API/userService";
 import { setModalContent } from "../../../store/features/modalSlice";
 
 export default function SearchBar({
@@ -14,21 +14,20 @@ export default function SearchBar({
   funcSearchClose,
 }) {
   const dispatch = useDispatch();
-  const isConnected = localStorage.getItem("userConnected");
-  useEffect(() => {
-    dispatch(fetchConstellations({}));
-    dispatch(fetchConstellationsNames({}));
-    if (isConnected) {
-      dispatch(fetchUserConstellations({}));
-    }
-    setSearchValue("");
-  }, [dispatch, isConnected]);
-
   const [searchValue, setSearchValue] = useState("");
   const { constellations, constellationsNames } = useSelector(
     (state) => state.constellation
   );
   const { favConstellations } = useSelector((state) => state.userData);
+  const isConnected = localStorage.getItem("userConnected");
+  useEffect(() => {
+    dispatch(fetchConstellations({}));
+    dispatch(fetchConstellationsNames({}));
+    if (isConnected) {
+      dispatch(fetchUserFavoritesConstellations({}));
+    }
+    setSearchValue("");
+  }, [dispatch, isConnected]);
 
   let submenus = [];
   if (constellationsNames.length > 0 && searchValue.length > 0) {

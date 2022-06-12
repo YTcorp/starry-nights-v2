@@ -12,7 +12,7 @@ const store = configureStore({
     login: loginSlice.reducer,
     signup: signupSlice.reducer,
     constellation: constellationSlice.reducer,
-    userData: userDataSlice.reducer,
+    userData: userDataSlice,
     modal: modalSlice,
   },
   middleware: (getDefaultMiddleware) =>

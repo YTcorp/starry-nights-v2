@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUserConstellations } from "../../API/userService";
+import { fetchUserFavoritesConstellations } from "../../API/userService";
 
 const userDataSlice = createSlice({
   name: "userData",
@@ -9,21 +9,27 @@ const userDataSlice = createSlice({
     favConstellations: [],
     errMssg: "",
   },
-  reducers: {},
+  reducers: {
+    setFavoritesConstellations(state, action) {
+      console.log("new favs constellations:", action.payload);
+      state.favConstellations = action.payload;
+    },
+  },
   extraReducers: {
-    [fetchUserConstellations.pending]: (state) => {
+    [fetchUserFavoritesConstellations.pending]: (state) => {
       state.loading = true;
     },
-    [fetchUserConstellations.fulfilled]: (state, { payload }) => {
+    [fetchUserFavoritesConstellations.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.isLoaded = true;
       state.favConstellations = payload.data;
     },
-    [fetchUserConstellations.rejected]: (state, { payload }) => {
+    [fetchUserFavoritesConstellations.rejected]: (state, { payload }) => {
       state.loading = false;
       state.isLoaded = false;
       state.errMssg = payload;
     },
   },
 });
-export default userDataSlice;
+export const { setFavoritesConstellations } = userDataSlice.actions;
+export default userDataSlice.reducer;
