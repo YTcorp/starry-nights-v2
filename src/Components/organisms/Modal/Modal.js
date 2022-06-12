@@ -34,9 +34,9 @@ export default function Modal() {
         setIsOpened(true);
       }, 200);
     }
-  }, [dataModal, favConstellations]);
+  }, [dataModal]);
 
-  if (!dataModal) {
+  if (dataModal.length === 0) {
     document.querySelector("html").classList.remove("no-scroll");
     return null;
   }
@@ -51,12 +51,14 @@ export default function Modal() {
       );
       dispatch(setFavoritesConstellations(restFromFavorites));
       dispatch(deleteUserFavoriteConstellation({ id: dataModal.id }));
+      setIsOpenedFavorite(!isOpenedFavorite);
     } else {
       favoritesConstellationsCopy.push(dataModal);
       dispatch(setFavoritesConstellations(favoritesConstellationsCopy));
       dispatch(
         postUserFavoriteConstellation({ constellation_id: dataModal.id })
       );
+      setIsOpenedFavorite(!isOpenedFavorite);
     }
   };
 
@@ -97,22 +99,24 @@ export default function Modal() {
             </figcaption>
           </figure>
           <div className="Detail-Description">
-            {/* {(dataModal.myths !== null || dataModal.myths !== undefined) &&
-            dataModal.myths.map((myth) => {
-              return (
-                <React.Fragment key={myth.id}>
-                  <Title
-                    type="h2"
-                    tClass="Detail-Description-Title"
-                    tData="Mythe :"
-                  />
-                  <Paragraph
-                    cClass="Detail-Description-Text"
-                    cData={`Selon le mythe d'origine ${myth.origin}, ${myth.legend}`}
-                  />
-                </React.Fragment>
-              );
-            })} */}
+            {dataModal.myths !== undefined &&
+              dataModal.myths !== null &&
+              dataModal.myths.map((myth) => {
+                console.log(myth);
+                return (
+                  <React.Fragment key={myth.id}>
+                    <Title
+                      type="h2"
+                      tClass="Detail-Description-Title"
+                      tData="Mythe :"
+                    />
+                    <Paragraph
+                      cClass="Detail-Description-Text"
+                      cData={`Selon le mythe d'origine ${myth.origin}, ${myth.legend}`}
+                    />
+                  </React.Fragment>
+                );
+              })}
             {Boolean(dataModal.history) && (
               <>
                 <Title

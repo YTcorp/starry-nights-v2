@@ -11,7 +11,6 @@ const userDataSlice = createSlice({
   },
   reducers: {
     setFavoritesConstellations(state, action) {
-      console.log("new favs constellations:", action.payload);
       state.favConstellations = action.payload;
     },
   },

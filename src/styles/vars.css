@@ -5,12 +5,26 @@ $lilac-2: #9f98ca;
 $lilac-light-transp: #c0b6dc62;
 $lilac-transp: #ad98eb77;
 $lilac-transp-2: rgba(255, 255, 255, 0.247);
+$blue-transp: #747cf078;
 $grey-blue: rgb(52, 53, 94);
 $violet-li: #8479b9;
 $violet: #2f1e61;
 $violet-deep: #05092f;
-$background-1: rgba(33, 34, 93, 0.944) 0%;
-$background-2: rgb(2, 2, 45) 100%;
 $background-3: rgba(0, 0, 23, 0.35);
 $gradient-1: rgba(255, 255, 255, 0.1);
-$gradient-2: rgba(255, 255, 255, 0);
+$background-2: rgba(255, 255, 255, 0);
+$background-modal: rgba(7, 6, 46, 0.9);
+$gradient-background-modal: linear-gradient(
+  180deg,
+  rgba(129, 124, 249, 0.35),
+  rgba(106, 101, 245, 0.15)
+);
+$gradient-background-night: linear-gradient(
+  rgba(33, 34, 93, 0.944) 0%,
+  rgb(2, 2, 45) 100%
+);
+$gradient-background-card: linear-gradient(
+  180deg,
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0)
+);

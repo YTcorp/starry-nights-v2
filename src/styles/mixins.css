@@ -7,7 +7,6 @@
 
 @define-mixin paragraph {
   color: $lilac-2;
-  font-weight: bold;
   letter-spacing: 0.05rem;
   padding: 3rem;
   line-height: 1.4rem;
@@ -28,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   max-width: 60rem;
-  background: linear-gradient(180deg, $gradient-1, $gradient-2;);
+  background: $gradient-background-card;
   border-radius: 20px;
 }
 
@@ -59,7 +58,7 @@
   @mixin input;
   background-color: $violet-li;
   font-weight: 600;
-  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) $background-1;
+  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) $gradient-1;
 
   &:hover {
     color: $violet;
@@ -87,8 +86,7 @@
   @mixin title;
   text-shadow: unset;
   font-size: 1.3rem;
-  font-weight: 400;
-  color: $lilac-transp-2;
+  color: $blue-transp;
   border-radius: 20px;
 }
 

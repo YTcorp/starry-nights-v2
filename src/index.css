@@ -14,5 +14,5 @@ body {
 }
 
 #root {
-  background: linear-gradient($background-1, $background-2);
+  background: $gradient-background-night;
 }

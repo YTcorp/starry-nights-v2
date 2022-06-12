@@ -39,7 +39,11 @@ li {
   flex-direction: column;
   justify-content: center;
   max-width: 60rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0););
+  background: linear-gradient(
+  180deg,
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0)
+);
   border-radius: 20px;
 }
 .Block--small {
@@ -95,7 +99,7 @@ li {
 .Button {
   background-color: #8479b9;
   font-weight: 600;
-  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) rgba(33, 34, 93, 0.944) 0%;
+  transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) rgba(255, 255, 255, 0.1);
 }
 .Button:hover {
     color: #2f1e61;
@@ -176,7 +180,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 #root {
-  background: linear-gradient(rgba(33, 34, 93, 0.944) 0%, rgb(2, 2, 45) 100%);
+  background: linear-gradient(
+  rgba(33, 34, 93, 0.944) 0%,
+  rgb(2, 2, 45) 100%
+);
 }
 /* Components */
 /* templates */
@@ -224,7 +231,11 @@ body {
   flex-direction: column;
   justify-content: center;
   max-width: 60rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0););
+  background: linear-gradient(
+  180deg,
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0)
+);
   border-radius: 20px;
   -webkit-backdrop-filter: blur(9px);
           backdrop-filter: blur(9px);
@@ -453,7 +464,7 @@ body {
   padding: 2rem;
   max-width: 100%;
   z-index: 11;
-  background-color: rgba(7, 6, 46, 0.45);
+  background-color: rgba(7, 6, 46, 0.9);
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   opacity: 0;
@@ -471,7 +482,7 @@ body {
     filter: drop-shadow(0 0 0.2rem #c0b6dc);
   }
 .Modal .Detail-Modal-Close {
-      color: var(--color-lilac);
+      color: #c0b6dc;
       font-size: 2rem;
       position: absolute;
       right: 1.5rem;
@@ -489,10 +500,10 @@ body {
       height: 35rem;
       display: block;
       background: linear-gradient(
-        180deg,
-        rgba(129, 124, 249, 0.35),
-        rgba(106, 101, 245, 0.15)
-      );
+  180deg,
+  rgba(129, 124, 249, 0.35),
+  rgba(106, 101, 245, 0.15)
+);
     }
 .Modal .Detail-Block-Title {
         margin-bottom: 1rem;
@@ -508,9 +519,7 @@ body {
 .Modal .Detail-Picture {
       display: flex;
       flex-direction: column;
-      position: sticky;
       min-width: 10rem;
-      top: 3rem;
       height: min-content;
     }
 .Modal .Detail-Picture img {
@@ -540,8 +549,7 @@ body {
         text-align: center;
         text-shadow: unset;
         font-size: 1.3rem;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.247);
+        color: #747cf078;
         border-radius: 20px;
         text-align: left;
         padding: 0.1rem 0.5rem;
@@ -549,7 +557,6 @@ body {
       }
 .Modal .Detail-Description-Text {
         color: #9f98ca;
-        font-weight: bold;
         letter-spacing: 0.05rem;
         padding: 3rem;
         line-height: 1.4rem;
@@ -566,7 +573,7 @@ body {
     filter: drop-shadow(0 0 0.2rem #c0b6dc);
   }
 .Modal .Detail-Modal-Favorite {
-      color: var(--color-lilac);
+      color: #c0b6dc;
       font-size: 2rem;
       position: absolute;
       bottom: 1.5rem;
@@ -574,8 +581,18 @@ body {
       cursor: pointer;
 }
 .Modal .Detail-Modal-Favorite--favorited {
-        color: var(--color-lilac-2);
+        color: #9f98ca;
       }
+@media screen and (max-width: 760px) {
+    .Modal .Detail-Block-Container {
+      overflow-y: auto;
+      display: block;
+    }
+
+      .Modal .Detail-Block-Container .Detail-Description {
+        overflow-y: visible;
+      }
+  }
 .Header-Search {
     justify-self: flex-start;
     position: relative;
