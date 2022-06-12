@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginSlice from "./features/loginSlice";
 import signupSlice from "./features/signupSlice";
-import contentEntitySlice from "./features/contentEntitySlice";
+import constellationSlice from "./features/constellationSlice";
+import userDataSlice from "./features/userDataSlice";
 
 const store = configureStore({
   reducer: {
     login: loginSlice.reducer,
     signup: signupSlice.reducer,
-    entity: contentEntitySlice.reducer,
+    constellation: constellationSlice.reducer,
+    userData: userDataSlice.reducer,
   },
 });
 

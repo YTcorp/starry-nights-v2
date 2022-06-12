@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { filterName } from "../../../utils/filterName";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContentEntity } from "../../../API/entityService";
-import { fetchConstellationNames } from "../../../API/constellationService";
+import { fetchConstellations } from "../../../API/constellationService";
+import { fetchConstellationsNames } from "../../../API/constellationService";
+import { fetchUserConstellations } from "../../../API/userService";
 
 export default function SearchBar({
   placeholder,
@@ -11,38 +12,47 @@ export default function SearchBar({
   funcSearchToggle,
   funcSearchClose,
 }) {
-  const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState("");
-  const [constellations, setConstellations] = useState([]);
-  const [searchNames, setSearchNames] = useState([]);
-
-  const { loading, isSuccess, data, dataNames, errMssg } = useSelector(
-    (state) => state.entity
+  const { constellations, constellationsNames } = useSelector(
+    (state) => state.constellation
   );
-  useEffect(() => {
-    dispatch(fetchContentEntity({ name: "constellation" }));
-    dispatch(fetchConstellationNames({}));
-    setSearchValue("");
-  }, [dispatch]);
+  const { favConstellations } = useSelector((state) => state.userData);
+  const { isConnected } = useSelector((state) => state.login);
 
+  const [searchValue, setSearchValue] = useState("");
+  const [modalOpen, setModalOpen] = useState(null);
+
+  const dispatch = useDispatch();
   useEffect(() => {
-    if (isSuccess) {
-      setConstellations(data);
-      setSearchNames(dataNames);
+    dispatch(fetchConstellations({}));
+    dispatch(fetchConstellationsNames({}));
+    if (isConnected) {
+      dispatch(fetchUserConstellations({}));
     }
-  }, [isSuccess, data, dataNames]);
+    setSearchValue("");
+  }, [dispatch, isConnected]);
 
-  let options = [];
-  console.log(searchNames, searchValue);
-  console.log(searchNames.length, searchValue.length);
-  if (searchNames.length > 0 && searchValue.length > 0) {
-    console.log("all ok");
-    options = searchNames.filter((option) => {
-      console.log(option);
-      return filterName(option.name).includes(filterName(searchValue));
+  let submenus = [];
+  if (constellationsNames.length > 0 && searchValue.length > 0) {
+    submenus = constellationsNames.filter((submenu) => {
+      return filterName(submenu.name).includes(filterName(searchValue));
     });
   }
-  console.log("options", options);
+
+  const handleFavConstellation = (submenuId) => {
+    const foundConstellation = constellations.find(
+      (constellation) => constellation.id === submenuId
+    );
+    const isFav = favConstellations.find(
+      (favorite) => favorite.id === submenuId
+    )
+      ? true
+      : false;
+    const pickedConstellation = {
+      ...foundConstellation,
+      favorite: isFav,
+    };
+    setModalOpen(pickedConstellation);
+  };
 
   const stopDefault = (event) => {
     event.preventDefault();
@@ -64,16 +74,16 @@ export default function SearchBar({
         />
         {searchValue.length > 0 && (
           <ul className="Header-Search-Options">
-            {options.map((option, index) => (
+            {submenus.map((submenu, index) => (
               <li
                 className="Header-Search-Option"
-                key={`Header-Search-Option--${option.name}--${index}`}
+                key={`Header-Search-Option--${submenu.name}--${index}`}
                 onClick={() => {
                   setSearchValue("");
-                  //   handleFavConstellation(option.id);
+                  handleFavConstellation(submenu.id);
                 }}
               >
-                {option.name}
+                {submenu.name}
               </li>
             ))}
           </ul>

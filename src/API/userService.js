@@ -3,7 +3,7 @@ import axios from "../utils/axios";
 import authHeader from "./authHeader";
 
 export const logoutUser = createAsyncThunk(
-  "users/logoutUser",
+  "user/logoutUser",
   async (_, { rejectWithValue }) => {
     try {
       return await axios
@@ -20,7 +20,21 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-export const authService = {
-  logoutUser,
-};
-export default authService;
+export const fetchUserConstellations = createAsyncThunk(
+  "user/getAllFavoritUserConstellations",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get("/constellation/favorite", {
+        headers: authHeader(),
+      });
+      return { data: data };
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+// export const authService = {
+//   logoutUser,
+// };
+// export default authService;
