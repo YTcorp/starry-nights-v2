@@ -17,7 +17,7 @@ import LiElement from "../../molecules/LiElement/LiElement";
 import { logoutUser } from "../../../API/userService";
 
 export default function Header() {
-  const { isConnected } = useSelector((state) => state.login);
+  const isConnected = localStorage.getItem("userConnected");
   const { width } = useWindowSize();
   const dispatch = useDispatch();
 
@@ -42,7 +42,6 @@ export default function Header() {
   };
   const closeMenu = () => {
     setMenuOpened(false);
-    console.log("closeMenu", menuOpened);
   };
 
   const disconnectUser = () => {

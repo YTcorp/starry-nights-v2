@@ -6,7 +6,7 @@ const loginSlice = createSlice({
   name: "login",
   initialState: {
     loading: false,
-    isConnected: true,
+    isConnected: false,
     okMssg: "",
     errMssg: "",
   },

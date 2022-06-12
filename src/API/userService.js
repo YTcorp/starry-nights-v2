@@ -11,6 +11,8 @@ export const logoutUser = createAsyncThunk(
         .then((res) => {
           if (res.status === 200) {
             localStorage.removeItem("token_user");
+            localStorage.getItem("userConnected") &&
+              localStorage.removeItem("userConnected");
           }
           return res.data;
         });

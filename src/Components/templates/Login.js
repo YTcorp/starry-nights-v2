@@ -13,7 +13,8 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  const { loading, isConnected, errMssg } = useSelector((state) => state.login);
+  const { loading, errMssg } = useSelector((state) => state.login);
+  const isConnected = localStorage.getItem("userConnected");
   useEffect(() => {
     if (isConnected) {
       navigate("/");
