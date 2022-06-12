@@ -7,6 +7,7 @@
 @import "./organisms/Footer/Footer.css";
 @import "./organisms/Header/Header.css";
 @import "./organisms/HomeHero/HomeHero.css";
+@import "./organisms/Modal/Modal.css";
 @import "./organisms/SearchBar/SearchBar.css";
 
 /* molecules */

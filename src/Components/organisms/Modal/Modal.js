@@ -27,7 +27,7 @@ export default function Modal() {
   const [isOpenedFavorite, setIsOpenedFavorite] = useState(false);
   const { dataModal } = useSelector((state) => state.modal);
   useEffect(() => {
-    if (dataModal) {
+    if (dataModal && Object.keys(dataModal).length > 1) {
       setIsOpenedFavorite(dataModal.favorite);
 
       setTimeout(() => {
@@ -35,7 +35,6 @@ export default function Modal() {
       }, 200);
     }
   }, [dataModal, favConstellations]);
-  console.log(isOpenedFavorite);
 
   if (!dataModal) {
     document.querySelector("html").classList.remove("no-scroll");
@@ -51,11 +50,13 @@ export default function Modal() {
         (each) => each.name !== dataModal.name
       );
       dispatch(setFavoritesConstellations(restFromFavorites));
-      dispatch(postUserFavoriteConstellation(dataModal.id));
+      dispatch(deleteUserFavoriteConstellation({ id: dataModal.id }));
     } else {
       favoritesConstellationsCopy.push(dataModal);
       dispatch(setFavoritesConstellations(favoritesConstellationsCopy));
-      dispatch(deleteUserFavoriteConstellation(dataModal.id));
+      dispatch(
+        postUserFavoriteConstellation({ constellation_id: dataModal.id })
+      );
     }
   };
 
@@ -95,9 +96,8 @@ export default function Modal() {
               {dataModal.latin_name}
             </figcaption>
           </figure>
-        </div>
-        <div className="Detail-Description">
-          {/* {(dataModal.myths !== null || dataModal.myths !== undefined) &&
+          <div className="Detail-Description">
+            {/* {(dataModal.myths !== null || dataModal.myths !== undefined) &&
             dataModal.myths.map((myth) => {
               return (
                 <React.Fragment key={myth.id}>
@@ -113,50 +113,51 @@ export default function Modal() {
                 </React.Fragment>
               );
             })} */}
-          {Boolean(dataModal.history) && (
-            <>
-              <Title
-                type="h3"
-                tClass="Detail-Description-Title"
-                tData="Histoire :"
-              />
-              <Paragraph
-                cClass="Detail-Description-Text"
-                cData={dataModal.history}
-              />
-            </>
-          )}
-          {Boolean(dataModal.spotting) && (
-            <>
-              <Title
-                type="h3"
-                tClass="Detail-Description-Title"
-                tData="Répérage :"
-              />
-              <Paragraph
-                cClass="Detail-Description-Text"
-                cData={dataModal.spotting}
-              />
-            </>
-          )}
+            {Boolean(dataModal.history) && (
+              <>
+                <Title
+                  type="h3"
+                  tClass="Detail-Description-Title"
+                  tData="Histoire :"
+                />
+                <Paragraph
+                  cClass="Detail-Description-Text"
+                  cData={dataModal.history}
+                />
+              </>
+            )}
+            {Boolean(dataModal.spotting) && (
+              <>
+                <Title
+                  type="h3"
+                  tClass="Detail-Description-Title"
+                  tData="Répérage :"
+                />
+                <Paragraph
+                  cClass="Detail-Description-Text"
+                  cData={dataModal.spotting}
+                />
+              </>
+            )}
+          </div>
         </div>
+        {isConnected &&
+          (isOpenedFavorite ? (
+            <FullHeart
+              onClick={() => {
+                handleFavs();
+              }}
+              className="Detail-Modal-Favorite Detail-Modal-Favorite--favorited"
+            />
+          ) : (
+            <EmptyHeart
+              onClick={() => {
+                handleFavs();
+              }}
+              className="Detail-Modal-Favorite"
+            />
+          ))}
       </div>
-      {isConnected &&
-        (isOpenedFavorite ? (
-          <FullHeart
-            onClick={() => {
-              handleFavs();
-            }}
-            className="Detail-Modal-Favorite Detail-Modal-Favorite--favorited"
-          />
-        ) : (
-          <EmptyHeart
-            onClick={() => {
-              handleFavs();
-            }}
-            className="Detail-Modal-Favorite"
-          />
-        ))}
     </div>
   );
 }

@@ -38,11 +38,11 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
 
 export const postUserFavoriteConstellation = createAsyncThunk(
   "user/postNewFavoriteUserConstellation",
-  async ({ id }, { rejectWithValue }) => {
+  async ({ constellation_id }, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
         "/constellation/favorite",
-        { constellation_id: id },
+        { constellation_id },
         {
           headers: authHeader(),
         }
@@ -58,7 +58,7 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
   "user/deleteOneFavoriteUserConstellation",
   async ({ id }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/constellation/favorite/${id}`, {
+      const { data } = await axios.delete(`/constellation/favorite/${id}`, {
         headers: authHeader(),
       });
       return { data: data };
