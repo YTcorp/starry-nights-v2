@@ -113,9 +113,25 @@
   }
 
   @media screen and (max-width: 760px) {
+    .Detail-Block {
+      overflow: hidden;
+
+      .Block {
+        padding-bottom: 3rem;
+      }
+
+      &-Title {
+        font-size: 1.3rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+    }
+
     .Detail-Block-Container {
       overflow-y: auto;
       display: block;
+      max-height: calc(100% - 5rem);
+      padding-bottom: 1rem;
 
       .Detail-Description {
         overflow-y: visible;

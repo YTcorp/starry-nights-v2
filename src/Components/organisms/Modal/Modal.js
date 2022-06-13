@@ -36,7 +36,7 @@ export default function Modal() {
     }
   }, [dataModal]);
 
-  if (dataModal.length === 0) {
+  if (dataModal === null || dataModal.length === 0) {
     document.querySelector("html").classList.remove("no-scroll");
     return null;
   }
@@ -102,7 +102,6 @@ export default function Modal() {
             {dataModal.myths !== undefined &&
               dataModal.myths !== null &&
               dataModal.myths.map((myth) => {
-                console.log(myth);
                 return (
                   <React.Fragment key={myth.id}>
                     <Title
