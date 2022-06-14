@@ -11,31 +11,28 @@ import {
 } from "../../../API/userService";
 import { setFavoritesConstellations } from "../../../store/features/userDataSlice";
 
-export default function FavHeart() {
+export default function FavHeart({ data }) {
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
   const isConnected = localStorage.getItem("userConnected");
-  const { dataCard } = useSelector((state) => state.modal);
   const { favConstellations } = useSelector((state) => state.userData);
   useEffect(() => {
-    setIsFavorite(dataCard.favorite);
-  }, [dataCard]);
+    setIsFavorite(data.favorite);
+  }, [data]);
 
   const handleFavs = () => {
     const favoritesConstellationsCopy = cloneDeep(favConstellations);
     if (isFavorite) {
       const restFromFavorites = favoritesConstellationsCopy.filter(
-        (constellation) => constellation.id !== dataCard.id
+        (constellation) => constellation.id !== data.id
       );
       dispatch(setFavoritesConstellations(restFromFavorites));
-      dispatch(deleteUserFavoriteConstellation({ id: dataCard.id }));
+      dispatch(deleteUserFavoriteConstellation({ id: data.id }));
       setIsFavorite(!isFavorite);
     } else {
-      favoritesConstellationsCopy.push(dataCard);
+      favoritesConstellationsCopy.push(data);
       dispatch(setFavoritesConstellations(favoritesConstellationsCopy));
-      dispatch(
-        postUserFavoriteConstellation({ constellation_id: dataCard.id })
-      );
+      dispatch(postUserFavoriteConstellation({ constellation_id: data.id }));
       setIsFavorite(!isFavorite);
     }
   };

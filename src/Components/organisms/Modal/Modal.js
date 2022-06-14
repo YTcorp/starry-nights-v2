@@ -3,27 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
 import { setModalContent } from "../../../store/features/modalSlice";
-import CardInfo from "../../molecules/CardInfo/CardInfo";
+import CardConstellation from "../../molecules/CardConstellation/CardConstellation";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const [isOpened, setIsOpened] = useState(false);
-  const { dataCard } = useSelector((state) => state.modal);
+  const { dataSearchBar } = useSelector((state) => state.modal);
   useEffect(() => {
-    if (dataCard && Object.keys(dataCard).length > 1) {
+    if (dataSearchBar && Object.keys(dataSearchBar).length > 1) {
       setTimeout(() => {
         setIsOpened(true);
       }, 200);
     }
-  }, [dataCard]);
-
-  if (dataCard === null || dataCard.length === 0) {
+  }, [dataSearchBar]);
+  if (
+    dataSearchBar === undefined ||
+    dataSearchBar === null ||
+    dataSearchBar.length === 0
+  ) {
     document.querySelector("html").classList.remove("no-scroll");
     return null;
   }
   document.querySelector("html").classList.add("no-scroll");
 
-  const handleCloseConstellation = () => {
+  const handleClose = () => {
     setIsOpened(false);
     setTimeout(() => {
       dispatch(setModalContent(null));
@@ -35,11 +38,15 @@ export default function Modal() {
       className={classNames("Modal", { "Modal--opened": isOpened })}
       onClick={({ target, currentTarget }) => {
         if (currentTarget === target) {
-          handleCloseConstellation();
+          handleClose();
         }
       }}
     >
-      <CardInfo modal={true} funcClose={handleCloseConstellation} />
+      <CardConstellation
+        modal={true}
+        funcClose={handleClose}
+        data={dataSearchBar}
+      />
     </div>
   );
 }

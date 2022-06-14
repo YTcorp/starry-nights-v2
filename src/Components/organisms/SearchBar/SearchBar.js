@@ -37,16 +37,18 @@ export default function SearchBar({
   }
 
   const handleFavConstellation = (submenuId) => {
-    let foundConstellation = constellations.find(
-      (constellation) => constellation.id === submenuId
-    );
-    const isFav = favConstellations.find(
-      (favorite) => favorite.id === submenuId
-    )
-      ? true
-      : false;
-    foundConstellation = { ...foundConstellation, favorite: isFav };
-    dispatch(setModalContent(foundConstellation));
+    if (constellations) {
+      let foundConstellation = constellations.find(
+        (constellation) => constellation.id === submenuId
+      );
+      const isFav = favConstellations.find(
+        (favorite) => favorite.id === submenuId
+      )
+        ? true
+        : false;
+      foundConstellation = { ...foundConstellation, favorite: isFav };
+      dispatch(setModalContent(foundConstellation));
+    }
   };
 
   const stopDefault = (event) => {
