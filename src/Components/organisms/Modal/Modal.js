@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
 import { setModalContent } from "../../../store/features/modalSlice";
-import CardConstellation from "../../molecules/CardConstellation/CardConstellation";
+import CardConstellation from "../../molecules/Cards/CardConstellation";
 
 export default function Modal() {
   const dispatch = useDispatch();

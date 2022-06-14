@@ -14,7 +14,7 @@ export default function CardMyth({ modal, data, funcClose }) {
       <Title
         type="h3"
         tClass="Title Title--small Detail-Block-Title"
-        tData={`Myth ${data.constellation.name}`}
+        tData={`Mythe`}
       />
       <div className="Detail-Block-Container">
         <figure className="Detail-Picture">
@@ -27,49 +27,15 @@ export default function CardMyth({ modal, data, funcClose }) {
           </figcaption>
         </figure>
         <div className="Detail-Description">
-          {/* {data.myths !== undefined &&
-            data.myths !== null &&
-            data.myths.map((myth) => {
-              return (
-                <React.Fragment key={myth.id}> */}
-          {/* <Title
-                    type="h2"
-                    tClass="Detail-Description-Title"
-                    tData="Mythe :"
-                  /> */}
+          <Title
+            type="h2"
+            tClass="Detail-Description-Title"
+            tData={`Constellation ${data.constellation.name}`}
+          />
           <Paragraph
             cClass="Detail-Description-Text"
             cData={`Selon le mythe d'origine ${data.origin}, ${data.legend}`}
           />
-          {/* </React.Fragment>
-              );
-            })} */}
-          {/* {Boolean(data.history) && (
-            <>
-              <Title
-                type="h3"
-                tClass="Detail-Description-Title"
-                tData="Histoire :"
-              />
-              <Paragraph
-                cClass="Detail-Description-Text"
-                cData={data.history}
-              />
-            </>
-          )} */}
-          {/* {Boolean(data.spotting) && (
-            <>
-              <Title
-                type="h3"
-                tClass="Detail-Description-Title"
-                tData="Répérage :"
-              />
-              <Paragraph
-                cClass="Detail-Description-Text"
-                cData={data.spotting}
-              />
-            </>
-          )} */}
         </div>
         <FavHeart data={data} />
       </div>
