@@ -5,7 +5,7 @@ import {
 } from "../../API/constellationService";
 
 const constellationSlice = createSlice({
-  name: "login",
+  name: "constellation",
   initialState: {
     loading: false,
     isLoaded: false,

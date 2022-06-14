@@ -1,27 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "../../API/authService";
+import { fetchRandomMyth } from "../../API/mythService";
 
-const signupSlice = createSlice({
-  name: "signup",
+const mythSlice = createSlice({
+  name: "myth",
   initialState: {
     loading: false,
     isSuccess: false,
+    randomMyth: [],
     errMssg: "",
   },
   reducers: {},
   extraReducers: {
-    [registerUser.pending]: (state) => {
+    [fetchRandomMyth.pending]: (state) => {
       state.loading = true;
     },
-    [registerUser.fulfilled]: (state) => {
+    [fetchRandomMyth.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.isSuccess = true;
+      state.randomMyth = payload.data;
     },
-    [registerUser.rejected]: (state, { payload }) => {
+    [fetchRandomMyth.rejected]: (state, { payload }) => {
       state.loading = false;
       state.isSuccess = false;
       state.errMssg = payload;
     },
   },
 });
-export default signupSlice;
+export default mythSlice;
