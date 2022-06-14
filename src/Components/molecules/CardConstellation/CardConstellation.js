@@ -1,37 +1,32 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { AiOutlineCloseCircle as CloseIcon } from "react-icons/ai";
 import { baseURL } from "../../../utils/axios";
-import FavHeart from "../../atoms/FavHeart/FavHeart";
-import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Title from "../../atoms/Title/Title";
+import Paragraph from "../../atoms/Paragraph/Paragraph";
+import FavHeart from "../../atoms/FavHeart/FavHeart";
 
-export default function CardInfo(props) {
-  const { dataCard } = useSelector((state) => state.modal);
+export default function cardConstellation({ modal, data, funcClose }) {
   return (
     <div className="Block Detail-Block">
-      {props.modal && (
-        <CloseIcon
-          className="Detail-Modal-Close"
-          onClick={() => props.funcClose()}
-        />
+      {modal && (
+        <CloseIcon className="Detail-Modal-Close" onClick={() => funcClose()} />
       )}
       <Title
         type="h3"
         tClass="Title Title--small Detail-Block-Title"
-        tData={`Constellation ${dataCard.name}`}
+        tData={`Constellation ${data.name}`}
       />
       <div className="Detail-Block-Container">
         <figure className="Detail-Picture">
-          <img src={`${baseURL}${dataCard.img_url}`} alt={dataCard.name} />
+          <img src={`${baseURL}${data.img_url}`} alt={data.name} />
           <figcaption className="Title Title--small Detail-Picture-Title">
-            {dataCard.latin_name}
+            {data.latin_name}
           </figcaption>
         </figure>
         <div className="Detail-Description">
-          {dataCard.myths !== undefined &&
-            dataCard.myths !== null &&
-            dataCard.myths.map((myth) => {
+          {data.myths !== undefined &&
+            data.myths !== null &&
+            data.myths.map((myth) => {
               return (
                 <React.Fragment key={myth.id}>
                   <Title
@@ -46,7 +41,7 @@ export default function CardInfo(props) {
                 </React.Fragment>
               );
             })}
-          {Boolean(dataCard.history) && (
+          {Boolean(data.history) && (
             <>
               <Title
                 type="h3"
@@ -55,11 +50,11 @@ export default function CardInfo(props) {
               />
               <Paragraph
                 cClass="Detail-Description-Text"
-                cData={dataCard.history}
+                cData={data.history}
               />
             </>
           )}
-          {Boolean(dataCard.spotting) && (
+          {Boolean(data.spotting) && (
             <>
               <Title
                 type="h3"
@@ -68,12 +63,12 @@ export default function CardInfo(props) {
               />
               <Paragraph
                 cClass="Detail-Description-Text"
-                cData={dataCard.spotting}
+                cData={data.spotting}
               />
             </>
           )}
         </div>
-        <FavHeart />
+        <FavHeart data={data} />
       </div>
     </div>
   );
