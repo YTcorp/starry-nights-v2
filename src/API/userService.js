@@ -9,6 +9,7 @@ export const logoutUser = createAsyncThunk(
       return await axios
         .get("/user/logout", { headers: authHeader() })
         .then((res) => {
+          console.log("logout user", res);
           if (res.status === 200) {
             localStorage.removeItem("token_user");
             localStorage.getItem("userConnected") &&
@@ -17,6 +18,11 @@ export const logoutUser = createAsyncThunk(
           return res.data;
         });
     } catch (error) {
+      if (error.response.status === 401) {
+        console.log("401 error", error);
+        localStorage.removeItem("token_user");
+        localStorage.removeItem("userConnected");
+      }
       rejectWithValue(error.response.data);
     }
   }

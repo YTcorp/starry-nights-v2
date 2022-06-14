@@ -6,7 +6,6 @@ export const fetchRandomMyth = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get("/myth/random");
-      console.log("on mythService", data.data);
       return { data: data };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
