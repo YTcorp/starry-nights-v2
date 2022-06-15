@@ -1,4 +1,9 @@
 .Main {
   @mixin container;
   padding: 0 1rem;
+
+  .Section-Title {
+    @mixin subtitle;
+    padding-bottom: 2rem;
+  }
 }

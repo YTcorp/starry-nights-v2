@@ -1,57 +1,29 @@
-.Modal {
-  position: fixed;
-  display: flex;
+.Myth {
+  height: calc (100vh - 70px);
+  display: grid;
+  grid-template-rows: minmax(0, max-content) 1fr min-content;
   align-items: center;
   justify-content: center;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding: 2rem;
-  max-width: 100%;
-  z-index: 11;
-  background-color: $background-modal;
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.2s ease-in-out opacity;
+  gap: 10px;
 
-  &--opened {
-    opacity: 1;
-    pointer-events: initial;
-  }
   .Detail {
     &-Block {
       @mixin glass-effect;
-      margin: 6rem auto;
       height: 100%;
       min-height: 25rem;
       max-height: 35rem;
       display: block;
       background: $gradient-background-modal;
 
-      &-Modal-Close {
-        @mixin svg;
-        color: $lilac;
-        font-size: 2rem;
-        position: absolute;
-        right: 1.5rem;
-        top: 1.5rem;
-        cursor: pointer;
-        z-index: 1;
-      }
-
-      &-Title {
-        margin-bottom: 1rem;
-        position: sticky;
-        top: 0rem;
-      }
-
       &-Container {
         display: grid;
         grid-template-columns: 40% 60%;
         height: 100%;
         max-height: calc(100% - 3rem);
+      }
+      &-Title {
+        font-style: italic;
+        font-size: 1.5rem;
       }
     }
 
@@ -68,17 +40,13 @@
         object-position: center;
         margin-bottom: 1rem;
       }
-
-      &-Title {
-        font-style: italic;
-        font-size: 1.5rem;
-      }
     }
 
     &-Description {
-      padding: 1.2rem 1rem 0 3rem;
+      /* padding: 1.2rem 1rem 0 3rem; */
+      padding: 0 1rem 0 3rem;
       overflow-y: auto;
-      height: 100%;
+      height: min-content;
       max-height: calc(100% - 2rem);
 
       &-Title {
@@ -95,20 +63,6 @@
       }
       &-Text:last-child {
         padding-bottom: 0;
-      }
-    }
-
-    &-Modal-Favorite {
-      @mixin svg;
-      color: $lilac;
-      font-size: 2rem;
-      position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      cursor: pointer;
-
-      &--favorited {
-        color: $lilac-2;
       }
     }
   }
@@ -136,6 +90,7 @@
 
       .Detail-Description {
         overflow-y: visible;
+        padding: 1.2rem 1rem 0 3rem;
       }
     }
   }
