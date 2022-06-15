@@ -10,7 +10,7 @@ export default function HomeHero() {
       className={"Hero Section"}
       data={sectionHeroHomepage[0]}
     >
-      <ArrowDown />
+      <ArrowDown href="#Myth" />
     </Section>
   );
 }

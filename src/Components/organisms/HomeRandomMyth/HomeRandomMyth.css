@@ -1,0 +1,12 @@
+.Myth {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: minmax(0, max-content) 1fr min-content;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  .Section-Title {
+    padding-top: 4rem;
+  }
+}

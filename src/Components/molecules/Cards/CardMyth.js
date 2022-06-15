@@ -16,18 +16,18 @@ export default function CardMyth({ modal, data, funcClose }) {
       )}
       <div className="Detail-Block-Container">
         <figure className="Detail-Picture">
-          <Title
+          {/* <Title
             type="h3"
             tClass="Title Title--small Detail-Block-Title"
             tData={data.constellation.latin_name}
-          />
+          /> */}
+          <figcaption className="Title Title--small Detail-Picture-Title">
+            {data.constellation.latin_name}
+          </figcaption>
           <img
             src={`${baseURL}${data.img_url || data.constellation.img_url}`}
             alt={data.constellation.name}
           />
-          {/* <figcaption className="Title Title--small Detail-Picture-Title">
-            {data.constellation.latin_name}
-          </figcaption> */}
         </figure>
         <div className="Detail-Description">
           <Title

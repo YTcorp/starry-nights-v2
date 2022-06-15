@@ -1,23 +1,18 @@
 .Myth {
-  height: calc (100vh - 70px);
-  display: grid;
-  grid-template-rows: minmax(0, max-content) 1fr min-content;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
   .Detail {
     &-Block {
       @mixin glass-effect;
       height: 100%;
-      min-height: 25rem;
+      min-height: min-content;
       max-height: 35rem;
       display: block;
       background: $gradient-background-modal;
+      margin-bottom: 2rem;
 
       &-Container {
         display: grid;
         grid-template-columns: 40% 60%;
+        align-items: center;
         height: 100%;
         max-height: calc(100% - 3rem);
       }
@@ -40,10 +35,13 @@
         object-position: center;
         margin-bottom: 1rem;
       }
+
+      &-Title {
+        margin-bottom: 1rem;
+      }
     }
 
     &-Description {
-      /* padding: 1.2rem 1rem 0 3rem; */
       padding: 0 1rem 0 3rem;
       overflow-y: auto;
       height: min-content;
@@ -85,7 +83,7 @@
     .Detail-Block-Container {
       overflow-y: auto;
       display: block;
-      max-height: calc(100% - 5rem);
+      max-height: calc(100% - 3rem);
       padding-bottom: 1rem;
 
       .Detail-Description {

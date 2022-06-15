@@ -1,3 +1,9 @@
+# 0.1.1 (2022-06-16)
+
+- added modal for search bar results
+- handled connection information on localStorage
+- Created store for favorite constellations
+
 # 0.1.0 (2022-06-11)
 
 - Created store and slices to handle user login and signup
