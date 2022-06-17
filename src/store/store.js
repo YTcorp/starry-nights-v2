@@ -7,6 +7,7 @@ import constellationSlice from "./features/constellationSlice";
 import mythSlice from "./features/mythSlice";
 import userDataSlice from "./features/userDataSlice";
 import modalSlice from "./features/modalSlice";
+import addressSlice from "./features/addressSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     myth: mythSlice.reducer,
     userData: userDataSlice,
     modal: modalSlice,
+    address: addressSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authMiddleware),
