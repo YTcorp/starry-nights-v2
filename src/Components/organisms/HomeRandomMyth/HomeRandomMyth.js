@@ -17,7 +17,7 @@ export default function HomeRandomMyth() {
       {Object.keys(randomMyth).length > 0 && (
         <CardMyth modal={false} data={randomMyth} />
       )}
-      <ArrowDown />
+      <ArrowDown href="#Map" />
     </section>
   );
 }

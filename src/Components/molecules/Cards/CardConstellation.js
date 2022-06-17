@@ -9,7 +9,10 @@ export default function cardConstellation({ modal, data, funcClose }) {
   return (
     <div className="Block Detail-Block">
       {modal && (
-        <CloseIcon className="Detail-Modal-Close" onClick={() => funcClose()} />
+        <CloseIcon
+          className="Detail-Block-Modal-Close"
+          onClick={() => funcClose()}
+        />
       )}
       <Title
         type="h3"
