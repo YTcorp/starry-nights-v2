@@ -16,6 +16,7 @@ export default function Modal() {
       }, 200);
     }
   }, [dataSearchBar]);
+
   if (
     dataSearchBar === undefined ||
     dataSearchBar === null ||
@@ -35,7 +36,9 @@ export default function Modal() {
 
   return (
     <div
-      className={classNames("Modal", { "Modal--opened": isOpened })}
+      className={classNames("Modal", {
+        "Modal--opened": isOpened,
+      })}
       onClick={({ target, currentTarget }) => {
         if (currentTarget === target) {
           handleClose();

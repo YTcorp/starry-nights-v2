@@ -692,7 +692,7 @@ body {
       border: 1px solid rgba(107, 85, 185, 0.299);
       border-bottom: 1px solid rgb(144 134 181 / 18%);
       box-shadow: 2px 8px 25px 0 rgba(17, 2, 42, 0.843);
-      height: 100%;
+      height: 80%;
       min-height: min-content;
       max-height: 35rem;
       display: block;
@@ -711,8 +711,8 @@ body {
         max-height: calc(100% - 3rem);
       }
 .Myth .Detail-Block-Title {
-        font-style: italic;
-        font-size: 1.5rem;
+        font-size: 2rem;
+        margin-bottom: 1rem;
       }
 .Myth .Detail-Picture {
       display: flex;
@@ -729,11 +729,13 @@ body {
       }
 .Myth .Detail-Picture-Title {
         margin-bottom: 1rem;
+        font-style: italic;
+        font-size: 1.3rem;
       }
 .Myth .Detail-Description {
       padding: 0 1rem 0 3rem;
       overflow-y: auto;
-      height: min-content;
+      height: 100%;
       max-height: calc(100% - 2rem);
     }
 .Myth .Detail-Description-Title {
@@ -749,7 +751,7 @@ body {
         color: #747cf078;
         border-radius: 20px;
         text-align: left;
-        padding: 0.1rem 0.5rem;
+        padding: 0.1rem 0;
         display: inline;
       }
 .Myth .Detail-Description-Text {
@@ -773,7 +775,7 @@ body {
       }
 
       .Myth .Detail-Block-Title {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
         margin-left: 2rem;
         margin-right: 2rem;
       }
