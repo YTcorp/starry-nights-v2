@@ -1,0 +1,15 @@
+.Detail {
+  &-Favorite {
+    @mixin svg;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    color: $lilac;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &--favorited {
+      color: $lilac-2;
+    }
+  }
+}

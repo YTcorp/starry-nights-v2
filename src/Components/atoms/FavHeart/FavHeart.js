@@ -45,14 +45,14 @@ export default function FavHeart({ data }) {
             onClick={() => {
               handleFavs();
             }}
-            className="Detail-Modal-Favorite Detail-Modal-Favorite--favorited"
+            className="Detail-Favorite Detail-Favorite--favorited"
           />
         ) : (
           <EmptyHeart
             onClick={() => {
               handleFavs();
             }}
-            className="Detail-Modal-Favorite"
+            className="Detail-Favorite"
           />
         ))}
     </>

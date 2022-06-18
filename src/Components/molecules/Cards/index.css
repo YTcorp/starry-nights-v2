@@ -1,0 +1,92 @@
+.Detail {
+  &-Block {
+    @mixin glass-effect;
+    justify-content: flex-start;
+    background: $gradient-background-modal;
+    height: 80%;
+    min-height: min-content;
+    max-height: 35rem;
+    margin-bottom: 2rem;
+
+    &-Title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    &-Container {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      align-items: center;
+      height: 100%;
+      max-height: calc(100% - 5rem);
+    }
+  }
+
+  &-Picture {
+    display: flex;
+    flex-direction: column;
+    min-width: 10rem;
+    height: min-content;
+
+    img {
+      border-radius: 20px;
+      height: 13rem;
+      max-height: 16rem;
+      object-fit: cover;
+      object-position: center;
+      margin-bottom: 1rem;
+    }
+
+    &-Title {
+      margin-bottom: 1rem;
+      font-style: italic;
+      font-size: 1.3rem;
+    }
+  }
+
+  &-Description {
+    padding: 0 1rem 0 3rem;
+    overflow-y: auto;
+    height: 100%;
+    max-height: calc(100% - 2rem);
+
+    &-Title {
+      @mixin subtitle-2;
+      text-align: left;
+      display: inline;
+    }
+
+    &-Text {
+      @mixin paragraph;
+      padding: 0.7rem 0 2.4rem 0;
+      line-height: 1.6rem;
+    }
+    &-Text:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .Detail-Block {
+    overflow: hidden;
+
+    &-Title {
+      font-size: 1.6rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+  }
+
+  .Detail-Block-Container {
+    display: block;
+    overflow-y: auto;
+    max-height: calc(100% - 5rem);
+    padding-bottom: 1rem;
+
+    .Detail-Description {
+      overflow-y: visible;
+      padding: 1.2rem 1rem 0 3rem;
+    }
+  }
+}

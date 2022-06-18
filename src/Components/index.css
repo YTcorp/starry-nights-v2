@@ -8,14 +8,16 @@
 @import "./organisms/Header/Header.css";
 @import "./organisms/HomeHero/HomeHero.css";
 @import "./organisms/HomeRandomMyth/HomeRandomMyth.css";
+@import "./organisms/HomeMapCelestial/FormMap.css";
 @import "./organisms/Modal/Modal.css";
 @import "./organisms/SearchBar/SearchBar.css";
 
 /* molecules */
 @import "./molecules/Section/Section.css";
-@import "./molecules/Cards/CardMyth.css";
+@import "./molecules/Cards";
 
 /* atoms */
 @import "./atoms/ArrowDown/ArrowDown.css";
 @import "./atoms/LogoHeader/LogoHeader.css";
 @import "./atoms/Spinner/Spinner.css";
+@import "./atoms/FavHeart/FavHeart.css";

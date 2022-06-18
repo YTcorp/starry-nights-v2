@@ -22,13 +22,9 @@
   }
   .Detail {
     &-Block {
-      @mixin glass-effect;
-      margin: 6rem auto;
       height: 100%;
       min-height: 25rem;
-      max-height: 35rem;
-      display: block;
-      background: $gradient-background-modal;
+      margin: 6rem auto;
 
       &-Modal-Close {
         @mixin svg;
@@ -40,103 +36,19 @@
         cursor: pointer;
         z-index: 1;
       }
-
-      &-Title {
-        margin-bottom: 1rem;
-        position: sticky;
-        top: 0rem;
-      }
-
-      &-Container {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        height: 100%;
-        max-height: calc(100% - 3rem);
-      }
     }
 
     &-Picture {
-      display: flex;
-      flex-direction: column;
-      min-width: 10rem;
-      height: min-content;
-
       img {
-        border-radius: 20px;
         height: 16rem;
-        object-fit: cover;
-        object-position: center;
-        margin-bottom: 1rem;
       }
-
       &-Title {
-        font-style: italic;
         font-size: 1.5rem;
       }
     }
 
     &-Description {
       padding: 1.2rem 1rem 0 3rem;
-      overflow-y: auto;
-      height: 100%;
-      max-height: calc(100% - 2rem);
-
-      &-Title {
-        @mixin subtitle-2;
-        text-align: left;
-        padding: 0.1rem 0.5rem;
-        display: inline;
-      }
-
-      &-Text {
-        @mixin paragraph;
-        padding: 0.7rem 0 2.4rem 0;
-        line-height: 1.6rem;
-      }
-      &-Text:last-child {
-        padding-bottom: 0;
-      }
-    }
-
-    &-Modal-Favorite {
-      @mixin svg;
-      color: $lilac;
-      font-size: 2rem;
-      position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      cursor: pointer;
-
-      &--favorited {
-        color: $lilac-2;
-      }
-    }
-  }
-
-  @media screen and (max-width: 760px) {
-    .Detail-Block {
-      overflow: hidden;
-
-      .Block {
-        padding-bottom: 3rem;
-      }
-
-      &-Title {
-        font-size: 1.3rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-      }
-    }
-
-    .Detail-Block-Container {
-      overflow-y: auto;
-      display: block;
-      max-height: calc(100% - 5rem);
-      padding-bottom: 1rem;
-
-      .Detail-Description {
-        overflow-y: visible;
-      }
     }
   }
 }
