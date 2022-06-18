@@ -1,34 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAddress } from "../../API/geocodingService";
+import { fetchLocation } from "../../API/geocodingService";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
+var now = dayjs().utc().format("YYYY-MM-DDThh:mm");
 
 const addressSlice = createSlice({
   name: "address",
   initialState: {
     loading: false,
     address: [],
+    location: [],
+    date: now,
     errMssg: false,
   },
   reducers: {
-    setLocationError(state, action) {
-      state.errMssg = action.payload;
-    },
     setAddress(state, action) {
       state.address = action.payload;
     },
+    setLocation(state, action) {
+      state.location = action.payload;
+    },
+    setDate(state, action) {
+      state.date = action.payload;
+    },
+    setLocationError(state, action) {
+      state.errMssg = action.payload;
+    },
   },
   extraReducers: {
-    [fetchAddress.pending]: (state) => {
+    [fetchLocation.pending]: (state) => {
       state.loading = true;
     },
-    [fetchAddress.fulfilled]: (state, { payload }) => {
+    [fetchLocation.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.address = payload;
+      state.location = payload;
     },
-    [fetchAddress.rejected]: (state, { payload }) => {
+    [fetchLocation.rejected]: (state, { payload }) => {
       state.loading = false;
       state.errMssg = payload;
     },
   },
 });
-export const { setAddress, setLocationError } = addressSlice.actions;
+export const { setAddress, setLocation, setDate, setLocationError } =
+  addressSlice.actions;
 export default addressSlice.reducer;

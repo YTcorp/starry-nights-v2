@@ -1,40 +1,30 @@
 import React from "react";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { fetchAddress } from "../../../API/geocodingService";
+import { fetchLocation } from "../../../API/geocodingService";
 import {
   setAddress,
+  setLocation,
+  setDate,
   setLocationError,
 } from "../../../store/features/addressSlice";
 
 export default function FormMap() {
-  dayjs.extend(utc);
-  var now = dayjs().utc().format("YYYY-MM-DDThh:mm");
-
   const isConnected = localStorage.getItem("userConnected");
-  const { loading } = useSelector((state) => state.address);
-  const { address } = useSelector((state) => state.address);
-
-  const [datetime, setDatetime] = useState(now);
-  const [userCoords, setUserCoords] = useState({});
-  //   const [inputAddress, setInputAddress] = useState("");
-  //   const [locationError, setLocationError] = useState(null);
+  const { address, location, date } = useSelector((state) => state.address);
   const dispatch = useDispatch();
-  console.log(address);
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (userPosition) => {
-          setAddress({
-            latitude: userPosition.coords.latitude,
-            longitude: userPosition.coords.longitude,
-          });
+          dispatch(
+            setLocation({
+              latitude: userPosition.coords.latitude,
+              longitude: userPosition.coords.longitude,
+            })
+          );
         },
         (error) => {
-          console.log(error);
           dispatch(setLocationError(error.message));
         }
       );
@@ -46,13 +36,15 @@ export default function FormMap() {
   };
 
   const apiLocation = async () => {
-    const result = dispatch(fetchAddress({ address }));
-    setUserCoords({
-      latitude: result.latitude,
-      longitude: result.longitude,
-    });
+    const result = dispatch(fetchLocation({ address }));
+    dispatch(
+      setLocation({
+        latitude: result.latitude,
+        longitude: result.longitude,
+      })
+    );
   };
-  console.log(userCoords, address);
+  console.log("address, location & date: ", address, location, date);
 
   return (
     <div className="Map-Form-Container">
@@ -67,7 +59,9 @@ export default function FormMap() {
               type="text"
               placeholder="1 rue Dupont, 75000 Paris, FRANCE"
               value={address}
-              onChange={({ currentTarget }) => setAddress(currentTarget.value)}
+              onChange={({ currentTarget }) =>
+                dispatch(setAddress(currentTarget.value))
+              }
             />
             <button
               title="Cherchez les constellations visibles depuis votre adresse"
@@ -83,8 +77,10 @@ export default function FormMap() {
               className="Input"
               name="datetime"
               type="datetime-local"
-              value={datetime}
-              onChange={({ currentTarget }) => setDatetime(currentTarget.value)}
+              value={date}
+              onChange={({ currentTarget }) =>
+                dispatch(setDate(currentTarget.value))
+              }
             />
             <button
               title="Regardez les constellations visibles depuis votre position actuelle"

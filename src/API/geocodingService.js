@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
 
-export const fetchAddress = createAsyncThunk(
+export const fetchLocation = createAsyncThunk(
   "address/getOneAddressLocation",
   async (address, { rejectWithValue }) => {
     try {
@@ -20,6 +20,6 @@ export const fetchAddress = createAsyncThunk(
 );
 
 export const geocodingService = {
-  fetchAddress,
+  fetchLocation,
 };
 export default geocodingService;
