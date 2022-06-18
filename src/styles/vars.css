@@ -14,6 +14,8 @@ $background-3: rgba(0, 0, 23, 0.35);
 $gradient-1: rgba(255, 255, 255, 0.1);
 $background-2: rgba(255, 255, 255, 0);
 $background-modal: rgba(7, 6, 46, 0.9);
+
+/* GRADIENTS */
 $gradient-background-modal: linear-gradient(
   180deg,
   rgba(129, 124, 249, 0.35),
@@ -28,3 +30,6 @@ $gradient-background-card: linear-gradient(
   rgba(255, 255, 255, 0.1),
   rgba(255, 255, 255, 0)
 );
+
+/* MEDIAS SIZES */
+$md: 760px;

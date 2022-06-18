@@ -21,6 +21,8 @@ li {
   box-shadow: 1px 1px 5px rgba(1, 1, 0, 0.7);
 }
 /* COLORS */
+/* GRADIENTS */
+/* MEDIAS SIZES */
 .Page-Title {
   margin: 4rem 0 2rem 0;
 }
@@ -504,11 +506,36 @@ body {
       justify-content: center;
       width: 100%;
     }
-.Homepage .Map-Form-Bottom-Gelolocation,
+.Homepage .Map-Form-Bottom-Geolocation,
       .Homepage .Map-Form-Bottom-Favorite,
       .Homepage .Map-Form-Bottom-Event {
-        width: 100%;
+        width: 33.3%;
       }
+@media screen and (max-width: 760px) {
+    .Homepage .Map .LookAddress-Address {
+      width: 50%;
+    }
+    .Homepage .Map .LookAddress-Search {
+      width: 20%;
+    }
+    .Homepage .Map .LookAddress-Date {
+      width: 30%;
+    }
+
+    .Homepage .Map-Form-Bottom {
+      /* display: flex;
+      justify-content: center;
+      width: 100%; */
+      flex-direction: column;
+      align-items: center;
+    }
+
+      .Homepage .Map-Form-Bottom-Geolocation,
+      .Homepage .Map-Form-Bottom-Favorite,
+      .Homepage .Map-Form-Bottom-Event {
+        width: 33.3%;
+      }
+  }
 .Modal {
   position: fixed;
   display: flex;
