@@ -1,7 +1,6 @@
 .Homepage .Map {
   &-Interactive {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
     display: flex;
     justify-content: center;
     max-width: 60rem;
@@ -19,6 +18,13 @@
       #celestial-zoomin,
       #celestial-zoomout {
         left: 23px;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      #celestial-map {
+        display: flex;
+        justify-content: center;
       }
     }
   }

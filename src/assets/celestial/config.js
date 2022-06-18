@@ -5,7 +5,7 @@ export const config = {
   center: null, // Initial center coordinates in equatorial transformation [hours, degrees, degrees],
   // otherwise [degrees, degrees, degrees], 3rd parameter is orientation, null = default center
   orientationfixed: true, // Keep orientation angle the same as center[2]
-  background: { fill: "#000000", stroke: "$lilac-li", opacity: 1 }, // Background style
+  background: { fill: "#000000", stroke: "#e5dff8", opacity: 1 }, // Background style
   adaptable: true, // Sizes are increased with higher zoom-levels
   zoomlevel: 2.4,
   interactive: true, // Enable zooming and rotation with mousewheel and dragging
