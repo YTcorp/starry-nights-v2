@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { AiOutlineCloseCircle as CloseIcon } from "react-icons/ai";
 import { baseURL } from "../../../utils/axios";
 import Title from "../../atoms/Title/Title";
@@ -7,7 +7,7 @@ import Paragraph from "../../atoms/Paragraph/Paragraph";
 import FavHeart from "../../atoms/FavHeart/FavHeart";
 
 export default function CardMyth({ modal, data, funcClose }) {
-  const { loading } = useSelector((state) => state.myth);
+  // const { loading } = useSelector((state) => state.myth);
   return (
     <div className="Block Detail-Block">
       {modal && (

@@ -482,58 +482,65 @@ body {
     margin-bottom: 2rem;
     flex-direction: column;
     align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    grid-gap: 0.3rem;
   }
 .Homepage .Map-Form-LookAddress {
       width: 100%;
       display: flex;
+      grid-column: span 2;
     }
 .Homepage .Map-Form-LookAddress .LookAddress-Address {
-        width: 60%;
+        width: 70%;
         border-radius: 20px 0 0 20px;
         margin-right: 0;
       }
 .Homepage .Map-Form-LookAddress .LookAddress-Search {
-        width: 20%;
+        width: 30%;
         padding-left: 0.5rem;
         border-radius: 0 20px 20px 0;
         margin-left: 0;
       }
-.Homepage .Map-Form-LookAddress .LookAddress-Date {
-        width: 20%;
-      }
-.Homepage .Map-Form-Bottom {
-      display: flex;
-      justify-content: center;
+.Homepage .Map-Form-Date,
+    .Homepage .Map-Form-Geolocation,
+    .Homepage .Map-Form-Favorite,
+    .Homepage .Map-Form-Event {
       width: 100%;
+      margin: 0;
     }
-.Homepage .Map-Form-Bottom-Geolocation,
-      .Homepage .Map-Form-Bottom-Favorite,
-      .Homepage .Map-Form-Bottom-Event {
-        width: 33.3%;
-      }
+.Homepage .Map-Form-Favorite,
+    .Homepage .Map-Form-Event {
+      grid-column: span 2;
+    }
 @media screen and (max-width: 760px) {
-    .Homepage .Map .LookAddress-Address {
-      width: 50%;
-    }
-    .Homepage .Map .LookAddress-Search {
-      width: 20%;
-    }
-    .Homepage .Map .LookAddress-Date {
-      width: 30%;
-    }
+      .Homepage .Map .Map-Form-LookAddress {
+        grid-column: span 4;
+      }
 
-    .Homepage .Map-Form-Bottom {
-      /* display: flex;
-      justify-content: center;
-      width: 100%; */
-      flex-direction: column;
-      align-items: center;
-    }
+      .Homepage .Map .Map-Form-Date,
+      .Homepage .Map .Map-Form-Geolocation {
+        grid-column: span 2;
+      }
+  }
+@media screen and (max-width: 550px) {
+      .Homepage .Map .Map-Form-LookAddress {
+        grid-column: span 4;
+      }
 
-      .Homepage .Map-Form-Bottom-Geolocation,
-      .Homepage .Map-Form-Bottom-Favorite,
-      .Homepage .Map-Form-Bottom-Event {
-        width: 33.3%;
+      .Homepage .Map .Map-Form-Favorite,
+      .Homepage .Map .Map-Form-Event {
+        grid-column: span 4;
+      }
+  }
+@media screen and (max-width: 420px) {
+      .Homepage .Map .Map-Form-LookAddress,
+      .Homepage .Map .Map-Form-Date,
+      .Homepage .Map .Map-Form-Geolocation,
+      .Homepage .Map .Map-Form-Favorite,
+      .Homepage .Map .Map-Form-Even {
+        grid-column: span 4;
       }
   }
 .Modal {

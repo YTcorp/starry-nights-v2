@@ -12,7 +12,7 @@ export default function FormMap() {
   const isConnected = localStorage.getItem("userConnected");
   const { address, location, date } = useSelector((state) => state.address);
   const dispatch = useDispatch();
-
+  console.log("isConnected", isConnected);
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -35,7 +35,8 @@ export default function FormMap() {
     }
   };
 
-  const apiLocation = async () => {
+  const apiLocation = async (e) => {
+    e.preventDefault();
     const result = dispatch(fetchLocation({ address }));
     dispatch(
       setLocation({
@@ -44,59 +45,61 @@ export default function FormMap() {
       })
     );
   };
-  console.log("address, location & date: ", address, location, date);
+  console.log("address:", address, "location:", location, "date", date);
 
   return (
     <div className="Map-Form-Container">
       <div className="Block Map-Form">
-        <div className="Map-Form-left">
-          <div className="Map-Form-LookAddress">
-            <input
-              autoComplete="off"
-              title="Saisissez votre adresse complète"
-              className="Input LookAddress"
-              name="address"
-              type="text"
-              placeholder="1 rue Dupont, 75000 Paris, FRANCE"
-              value={address}
-              onChange={({ currentTarget }) =>
-                dispatch(setAddress(currentTarget.value))
-              }
-            />
-            <button
-              title="Cherchez les constellations visibles depuis votre adresse"
-              className="Button LookAddress"
-              onClick={apiLocation}
-            >
-              Chercher
-            </button>
-          </div>
-          <div className="Map-Form-row">
-            <input
-              title="Changez la date et l'heure pour montrer les constellations visibles"
-              className="Input"
-              name="datetime"
-              type="datetime-local"
-              value={date}
-              onChange={({ currentTarget }) =>
-                dispatch(setDate(currentTarget.value))
-              }
-            />
-            <button
-              title="Regardez les constellations visibles depuis votre position actuelle"
-              className="Button"
-              onClick={getUserLocation}
-            >
-              Position actuelle
-            </button>
-          </div>
-        </div>
+        <form className="Map-Form-LookAddress">
+          <input
+            autoComplete="off"
+            title="Saisissez votre adresse complète"
+            className="Input LookAddress-Address"
+            name="address"
+            type="text"
+            placeholder="1 rue Dupont, 75000 Paris, FRANCE"
+            value={address}
+            onChange={({ currentTarget }) =>
+              dispatch(setAddress(currentTarget.value))
+            }
+          />
+          <button
+            title="Cherchez les constellations visibles depuis votre adresse"
+            className="Button LookAddress-Search"
+            onClick={apiLocation}
+          >
+            Chercher
+          </button>
+        </form>
+        <input
+          title="Changez la date et l'heure pour montrer les constellations visibles"
+          className="Input Map-Form-Date"
+          name="datetime"
+          type="datetime-local"
+          value={date}
+          onChange={({ currentTarget }) =>
+            dispatch(setDate(currentTarget.value))
+          }
+        />
+        <button
+          title="Regardez les constellations visibles depuis votre position actuelle"
+          className="Map-Form-Geolocation Button"
+          onClick={getUserLocation}
+        >
+          Position actuelle
+        </button>
         {isConnected && (
-          <div className="Map-Form-right">
-            <button className="Button">Enregistrer ce lieu comme favori</button>
-            <button className="Button">Enregistrer un événement</button>
-          </div>
+          <>
+            <button className="Map-Form-Favorite Button">
+              Enregistrer un lieu
+            </button>
+            <button className="Map-Form-Event Button">
+              Enregistrer un événement
+            </button>
+          </>
         )}
+        {/* <div className="Map-Form-Bottom">
+        </div> */}
       </div>
       {/* <InteractiveMap
         latitude={userCoords.latitude}

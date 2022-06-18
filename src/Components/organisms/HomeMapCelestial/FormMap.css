@@ -1,0 +1,80 @@
+.Homepage .Map {
+  &-Form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    grid-gap: 0.3rem;
+
+    &-LookAddress {
+      width: 100%;
+      display: flex;
+      grid-column: span 2;
+
+      .LookAddress-Address {
+        width: 70%;
+        border-radius: 20px 0 0 20px;
+        margin-right: 0;
+      }
+      .LookAddress-Search {
+        width: 30%;
+        padding-left: 0.5rem;
+        border-radius: 0 20px 20px 0;
+        margin-left: 0;
+      }
+    }
+
+    &-Date,
+    &-Geolocation,
+    &-Favorite,
+    &-Event {
+      width: 100%;
+      margin: 0;
+    }
+
+    &-Favorite,
+    &-Event {
+      grid-column: span 2;
+    }
+  }
+
+  @media screen and (max-width: $md) {
+    .Map-Form {
+      &-LookAddress {
+        grid-column: span 4;
+      }
+
+      &-Date,
+      &-Geolocation {
+        grid-column: span 2;
+      }
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .Map-Form {
+      &-LookAddress {
+        grid-column: span 4;
+      }
+
+      &-Favorite,
+      &-Event {
+        grid-column: span 4;
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .Map-Form {
+      &-LookAddress,
+      &-Date,
+      &-Geolocation,
+      &-Favorite,
+      &-Even {
+        grid-column: span 4;
+      }
+    }
+  }
+}
