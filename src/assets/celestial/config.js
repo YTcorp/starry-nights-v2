@@ -5,7 +5,7 @@ export const config = {
   center: null, // Initial center coordinates in equatorial transformation [hours, degrees, degrees],
   // otherwise [degrees, degrees, degrees], 3rd parameter is orientation, null = default center
   orientationfixed: true, // Keep orientation angle the same as center[2]
-  background: { fill: "#000000", stroke: "#000000", opacity: 1 }, // Background style
+  background: { fill: "#000000", stroke: "$lilac-li", opacity: 1 }, // Background style
   adaptable: true, // Sizes are increased with higher zoom-levels
   zoomlevel: 2.4,
   interactive: true, // Enable zooming and rotation with mousewheel and dragging
@@ -36,13 +36,13 @@ export const config = {
     desig: false, // Show all names, including Draper and Hipparcos
     namelimit: 2.5, // Show only names for stars brighter than namelimit
     namestyle: {
-      fill: "#ddddbb",
+      fill: "#c0b6dc",
       font: "11px Georgia, Times, 'Times Roman', serif",
       align: "left",
       baseline: "top",
     },
     propernamestyle: {
-      fill: "#ddddbb",
+      fill: "#c0b6dc",
       font: "11px Georgia, Times, 'Times Roman', serif",
       align: "right",
       baseline: "bottom",
@@ -111,7 +111,7 @@ export const config = {
     names: true, // Show constellation names
     desig: false, // Show short constellation names (3 letter designations)
     nameStyle: {
-      fill: "#cccc99",
+      fill: " #e5dff8",
       align: "center",
       baseline: "middle",
       opacity: 0.8,
@@ -122,10 +122,10 @@ export const config = {
       ],
     },
     lines: true, // Show constellation lines
-    linestyle: { stroke: "#cccccc", width: 1, opacity: 0.6 },
+    linestyle: { stroke: "#c0b6dc", width: 1, opacity: 0.6 },
     bounds: true, // Show constellation boundaries
     boundstyle: {
-      stroke: "#cccc00",
+      stroke: "#9f98ca",
       width: 0.7,
       opacity: 0.8,
       dash: [2, 5],
@@ -149,7 +149,7 @@ export const config = {
   lines: {
     graticule: {
       show: false,
-      stroke: "#cccccc",
+      stroke: "#c0b6dc",
       width: 0.6,
       opacity: 0.8, // Show graticule lines
       // grid values: "outline", "center", or [lat,...] specific position
@@ -165,7 +165,7 @@ export const config = {
         font: "10px Helvetica, Arial, sans-serif",
       },
     },
-    equatorial: { show: true, stroke: "#aaaaaa", width: 1.3, opacity: 0.7 }, // Show equatorial plane
+    equatorial: { show: true, stroke: "#9f98ca", width: 1.3, opacity: 0.7 }, // Show equatorial plane
     ecliptic: { show: false, stroke: "#66cc66", width: 1.3, opacity: 0.7 }, // Show ecliptic plane
     galactic: { show: false, stroke: "#cc6666", width: 1.3, opacity: 0.7 }, // Show galactic plane
     supergalactic: {

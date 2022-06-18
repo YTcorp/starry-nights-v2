@@ -1,0 +1,25 @@
+.Homepage .Map {
+  &-Interactive {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    max-width: 60rem;
+
+    #celestial-map {
+      display: flex;
+      justify-content: center;
+
+      canvas {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 20px;
+      }
+
+      #celestial-zoomin,
+      #celestial-zoomout {
+        left: 23px;
+      }
+    }
+  }
+}

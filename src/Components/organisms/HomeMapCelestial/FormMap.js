@@ -45,7 +45,7 @@ export default function FormMap() {
       })
     );
   };
-  console.log(address, location, date);
+
   return (
     <div className="Map-Form-Container">
       <div className="Block Map-Form">

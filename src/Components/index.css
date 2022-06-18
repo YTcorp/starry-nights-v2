@@ -4,13 +4,15 @@
 @import "./templates/LoginSignup.css";
 
 /* organisms */
-@import "./organisms/Footer/Footer.css";
 @import "./organisms/Header/Header.css";
+@import "./organisms/SearchBar/SearchBar.css";
 @import "./organisms/HomeHero/HomeHero.css";
 @import "./organisms/HomeRandomMyth/HomeRandomMyth.css";
+@import "./organisms/HomeMapCelestial/HomeMapCelestial.css";
 @import "./organisms/HomeMapCelestial/FormMap.css";
+@import "./organisms/HomeMapCelestial/Celestial.css";
 @import "./organisms/Modal/Modal.css";
-@import "./organisms/SearchBar/SearchBar.css";
+@import "./organisms/Footer/Footer.css";
 
 /* molecules */
 @import "./molecules/Section/Section.css";
