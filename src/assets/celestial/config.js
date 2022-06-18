@@ -25,7 +25,7 @@ export const config = {
   lang: "fr", // Language for names, so far only for constellations: de: german, es: spanish
   // Default:en or empty string for english
   container: "celestial-map", // ID of parent element, e.g. div
-  datapath: "../celestial/data/", // Path/URL to data files, empty = subfolder 'data' - par rapport a HTML !
+  datapath: "./celestial/data/", // Path/URL to data files, empty = subfolder 'data'
   stars: {
     show: true, // Show stars
     limit: 5, // Show only stars brighter than limit magnitude
