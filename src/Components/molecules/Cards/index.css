@@ -67,7 +67,7 @@
   }
 }
 
-@media screen and (max-width: $md) {
+@media screen and (max-width: 760px) {
   .Detail-Block {
     overflow: hidden;
 
@@ -87,6 +87,12 @@
     .Detail-Description {
       overflow-y: visible;
       padding: 1.2rem 1rem 0 3rem;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    .Detail-Block-Container {
+      max-height: calc(100% - 6rem);
     }
   }
 }

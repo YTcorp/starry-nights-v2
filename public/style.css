@@ -22,7 +22,6 @@ li {
 }
 /* COLORS */
 /* GRADIENTS */
-/* MEDIAS SIZES */
 .Page-Title {
   margin: 4rem 0 2rem 0;
 }
@@ -515,34 +514,34 @@ body {
       grid-column: span 2;
     }
 @media screen and (max-width: 760px) {
-      .Homepage .Map .Map-Form-LookAddress {
-        grid-column: span 4;
-      }
+    .Map-Form-LookAddress {
+      grid-column: span 4;
+    }
 
-      .Homepage .Map .Map-Form-Date,
-      .Homepage .Map .Map-Form-Geolocation {
-        grid-column: span 2;
-      }
-  }
+    .Map-Form-Date,
+    .Map-Form-Geolocation {
+      grid-column: span 2;
+    }
+}
 @media screen and (max-width: 550px) {
-      .Homepage .Map .Map-Form-LookAddress {
-        grid-column: span 4;
-      }
+    .Map-Form-LookAddress {
+      grid-column: span 4;
+    }
 
-      .Homepage .Map .Map-Form-Favorite,
-      .Homepage .Map .Map-Form-Event {
-        grid-column: span 4;
-      }
-  }
+    .Map-Form-Favorite,
+    .Map-Form-Event {
+      grid-column: span 4;
+    }
+}
 @media screen and (max-width: 420px) {
-      .Homepage .Map .Map-Form-LookAddress,
-      .Homepage .Map .Map-Form-Date,
-      .Homepage .Map .Map-Form-Geolocation,
-      .Homepage .Map .Map-Form-Favorite,
-      .Homepage .Map .Map-Form-Even {
-        grid-column: span 4;
-      }
-  }
+    .Map-Form-LookAddress,
+    .Map-Form-Date,
+    .Map-Form-Geolocation,
+    .Map-Form-Favorite,
+    .Map-Form-Even {
+      grid-column: span 4;
+    }
+}
 .Modal {
   position: fixed;
   display: flex;
@@ -748,6 +747,12 @@ body {
       overflow-y: visible;
       padding: 1.2rem 1rem 0 3rem;
     }
+
+  @media screen and (max-width: 520px) {
+    .Detail-Block-Container {
+      max-height: calc(100% - 6rem);
+    }
+  }
 }
 /* atoms */
 .Arrow {

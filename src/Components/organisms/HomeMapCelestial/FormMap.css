@@ -40,41 +40,42 @@
       grid-column: span 2;
     }
   }
+}
 
-  @media screen and (max-width: $md) {
-    .Map-Form {
-      &-LookAddress {
-        grid-column: span 4;
-      }
+@media screen and (max-width: 760px) {
+  .Map-Form {
+    &-LookAddress {
+      grid-column: span 4;
+    }
 
-      &-Date,
-      &-Geolocation {
-        grid-column: span 2;
-      }
+    &-Date,
+    &-Geolocation {
+      grid-column: span 2;
     }
   }
+}
 
-  @media screen and (max-width: 550px) {
-    .Map-Form {
-      &-LookAddress {
-        grid-column: span 4;
-      }
+@media screen and (max-width: 550px) {
+  .Map-Form {
+    &-LookAddress {
+      grid-column: span 4;
+    }
 
-      &-Favorite,
-      &-Event {
-        grid-column: span 4;
-      }
+    &-Favorite,
+    &-Event {
+      grid-column: span 4;
     }
   }
-  @media screen and (max-width: 420px) {
-    .Map-Form {
-      &-LookAddress,
-      &-Date,
-      &-Geolocation,
-      &-Favorite,
-      &-Even {
-        grid-column: span 4;
-      }
+}
+
+@media screen and (max-width: 420px) {
+  .Map-Form {
+    &-LookAddress,
+    &-Date,
+    &-Geolocation,
+    &-Favorite,
+    &-Even {
+      grid-column: span 4;
     }
   }
 }
