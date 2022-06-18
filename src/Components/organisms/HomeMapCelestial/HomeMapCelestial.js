@@ -6,7 +6,6 @@ export default function HomeMapCelestial() {
     <section id="Map" className="Map Section">
       <h1 className="Section-Title">Map</h1>
       <FormMap />
-      {/* <InteractiveMap /> */}
     </section>
   );
 }

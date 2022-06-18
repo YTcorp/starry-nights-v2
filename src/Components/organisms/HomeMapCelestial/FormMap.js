@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocation } from "../../../API/geocodingService";
+import Celestial from "./Celestial";
 import {
   setAddress,
   setLocation,
@@ -12,7 +13,6 @@ export default function FormMap() {
   const isConnected = localStorage.getItem("userConnected");
   const { address, location, date } = useSelector((state) => state.address);
   const dispatch = useDispatch();
-  console.log("isConnected", isConnected);
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -45,7 +45,6 @@ export default function FormMap() {
       })
     );
   };
-  console.log("address:", address, "location:", location, "date", date);
 
   return (
     <div className="Map-Form-Container">
@@ -98,14 +97,12 @@ export default function FormMap() {
             </button>
           </>
         )}
-        {/* <div className="Map-Form-Bottom">
-        </div> */}
       </div>
-      {/* <InteractiveMap
-        latitude={userCoords.latitude}
-        longitude={userCoords.longitude}
-        datetime={datetime}
-      /> */}
+      <Celestial
+        latitude={location.latitude}
+        longitude={location.longitude}
+        datetime={date}
+      />
     </div>
   );
 }

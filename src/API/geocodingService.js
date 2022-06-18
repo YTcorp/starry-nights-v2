@@ -6,7 +6,7 @@ export const fetchLocation = createAsyncThunk(
   async (address, { rejectWithValue }) => {
     try {
       const { data } = await axios.get("/geocoding/forward/", {
-        params: { address: address },
+        params: { address: address.address },
       });
       const result = {
         latitude: data[0].latitude,
