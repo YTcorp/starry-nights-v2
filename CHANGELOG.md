@@ -1,3 +1,9 @@
+# 0.1.2 (2022-06-19)
+
+- handled 401 response error on authenticated routes
+- added very small screen responsive styles
+- added d3-celestial with dynamic render for small screens
+
 # 0.1.1 (2022-06-16)
 
 - added modal for search bar results

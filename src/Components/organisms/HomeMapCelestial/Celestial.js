@@ -1,22 +1,34 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useWindowSize } from "react-use";
 import celestial from "d3-celestial";
-import { celestialConfig } from "../../../assets/celestial/config";
+import { defaultConfig, dynamicConfig } from "../../../assets/celestial/config";
 
 export default function Celestial({ latitude, longitude, datetime }) {
   let Celestial = celestial.Celestial();
-  const config = celestialConfig();
+  const { width } = useWindowSize();
+  const [celestialConfig, setCelestialConfig] = useState(defaultConfig);
+  console.log(defaultConfig.zoomlevel);
+  console.log(celestialConfig.zoomlevel);
 
   useEffect(() => {
-    Celestial.display(config);
-  }, [Celestial, config]);
+    Celestial.display(celestialConfig);
+  }, [Celestial, celestialConfig]);
+
+  useEffect(() => {
+    if (width < 749) {
+      setCelestialConfig(dynamicConfig({ proj: "airy", zoom: 2.4 }));
+    } else {
+      setCelestialConfig(dynamicConfig({ proj: "eckert3", zoom: 2.4 }));
+    }
+  }, [width]);
 
   useEffect(() => {
     Celestial.skyview({
-      location: [latitude, longitude],
       date: new Date(datetime),
+      location: [latitude, longitude],
     });
-  }, [Celestial, datetime, latitude, longitude]);
+  }, [latitude, longitude, datetime, Celestial]);
 
   return (
     <div className="Map-Interactive Container">
