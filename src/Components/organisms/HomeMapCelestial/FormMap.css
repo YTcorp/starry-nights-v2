@@ -76,6 +76,17 @@
       &-Even {
         grid-column: span 4;
       }
+      button {
+        font-size: 11px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .Map-Form {
+      button {
+        font-size: 11px;
+      }
     }
   }
 }

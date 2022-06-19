@@ -2,7 +2,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 
   &.no-scroll {
     overflow: hidden;
@@ -14,5 +13,6 @@ body {
 }
 
 #root {
+  overflow-x: hidden;
   background: $gradient-background-night;
 }

@@ -1,4 +1,18 @@
 .Section {
   position: relative;
-  padding-top: 6vw;
+  padding-top: 6rem;
+
+  @media screen and (max-width: 470px) {
+    .Section-Title {
+      font-size: 3rem;
+    }
+  }
+  @media screen and (max-width: 410px) {
+    .Section-Title {
+      font-size: 2rem;
+    }
+  }
+}
+.Section:first-child {
+  padding-top: 3rem;
 }

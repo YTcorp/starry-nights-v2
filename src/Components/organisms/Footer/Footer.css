@@ -6,7 +6,7 @@
 
   &-Sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 500px));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 500px));
     justify-content: center;
     gap: 10%;
     padding: 3rem 3rem 6rem;
@@ -46,7 +46,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     text-align: center;
     font-style: italic;
     font-size: 0.8rem;

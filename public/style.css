@@ -172,7 +172,6 @@ li {
 }
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 html.no-scroll {
     overflow: hidden;
@@ -181,6 +180,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 #root {
+  overflow-x: hidden;
   background: linear-gradient(
   rgba(33, 34, 93, 0.944) 0%,
   rgb(2, 2, 45) 100%
@@ -449,9 +449,6 @@ body {
   justify-content: center;
   gap: 10px;
 }
-.Myth .Section-Title {
-    padding-top: 4rem;
-  }
 .Homepage .Map-Interactive {
     margin: 2rem auto;
     display: flex;
@@ -541,6 +538,14 @@ body {
       .Homepage .Map .Map-Form-Favorite,
       .Homepage .Map .Map-Form-Even {
         grid-column: span 4;
+      }
+      .Homepage .Map .Map-Form button {
+        font-size: 11px;
+      }
+  }
+@media screen and (max-width: 350px) {
+      .Homepage .Map .Map-Form button {
+        font-size: 11px;
       }
   }
 /* Copyright 2015-16 Olaf Frohn https://github.com/ofrohn, see LICENSE */
@@ -682,7 +687,7 @@ body {
 }
 .Footer-Sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 500px));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 500px));
     justify-content: center;
     gap: 10%;
     padding: 3rem 3rem 6rem;
@@ -729,7 +734,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     text-align: center;
     font-style: italic;
     font-size: 0.8rem;
@@ -748,7 +753,20 @@ body {
 /* molecules */
 .Section {
   position: relative;
-  padding-top: 6vw;
+  padding-top: 6rem;
+}
+@media screen and (max-width: 470px) {
+    .Section .Section-Title {
+      font-size: 3rem;
+    }
+  }
+@media screen and (max-width: 410px) {
+    .Section .Section-Title {
+      font-size: 2rem;
+    }
+  }
+.Section:first-child {
+  padding-top: 3rem;
 }
 .Detail-Block {
     -webkit-backdrop-filter: blur(12px);
