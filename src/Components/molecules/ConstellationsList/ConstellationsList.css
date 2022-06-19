@@ -1,0 +1,31 @@
+.Constellations-List {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  &-Item {
+    margin: 1rem;
+    padding: 1rem;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+
+    &-Image {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      object-position: left;
+      border-radius: 50%;
+    }
+
+    &-Name {
+      color: var(--color-lilac);
+      margin: 0.5rem;
+      text-align: center;
+    }
+  }
+}

@@ -12,7 +12,7 @@ import Header from "../organisms/Header/Header";
 import Homepage from "../templates/Homepage";
 import Login from "../templates/Login";
 import Signup from "../templates/Signup";
-// import Constellations from "../../pages/Constellations";
+import ConstellationsPage from "../templates/ConstellationsPage";
 import Footer from "../organisms/Footer/Footer";
 import NotFound from "../templates/NotFound";
 
@@ -23,7 +23,7 @@ const Routes = () => {
 
       <RoutesContainer>
         <Route path="/" element={<Homepage />} />
-        {/* <Route path="/Constellations" element={<Constellations />} /> */}
+        <Route path="/constellations" element={<ConstellationsPage />} />
 
         {/* Login restricted Routes*/}
         <Route element={<AuthenticatedRoute redirectPath="/login" />}></Route>

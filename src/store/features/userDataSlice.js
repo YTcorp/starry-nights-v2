@@ -4,7 +4,7 @@ import { fetchUserFavoritesConstellations } from "../../API/userService";
 const userDataSlice = createSlice({
   name: "userData",
   initialState: {
-    loading: false,
+    favLoading: false,
     isLoaded: false,
     favConstellations: [],
     errMssg: "",
@@ -16,15 +16,15 @@ const userDataSlice = createSlice({
   },
   extraReducers: {
     [fetchUserFavoritesConstellations.pending]: (state) => {
-      state.loading = true;
+      state.favLoading = true;
     },
     [fetchUserFavoritesConstellations.fulfilled]: (state, { payload }) => {
-      state.loading = false;
+      state.favLoading = false;
       state.isLoaded = true;
       state.favConstellations = payload.data;
     },
     [fetchUserFavoritesConstellations.rejected]: (state, { payload }) => {
-      state.loading = false;
+      state.favLoading = false;
       state.isLoaded = false;
       state.errMssg = payload;
     },

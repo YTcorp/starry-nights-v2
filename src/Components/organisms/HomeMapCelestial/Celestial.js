@@ -8,8 +8,6 @@ export default function Celestial({ latitude, longitude, datetime }) {
   let Celestial = celestial.Celestial();
   const { width } = useWindowSize();
   const [celestialConfig, setCelestialConfig] = useState(defaultConfig);
-  console.log(defaultConfig.zoomlevel);
-  console.log(celestialConfig.zoomlevel);
 
   useEffect(() => {
     Celestial.display(celestialConfig);
@@ -17,7 +15,7 @@ export default function Celestial({ latitude, longitude, datetime }) {
 
   useEffect(() => {
     if (width < 749) {
-      setCelestialConfig(dynamicConfig({ proj: "airy", zoom: 2.4 }));
+      setCelestialConfig(dynamicConfig({ proj: "airy", zoom: 3 }));
     } else {
       setCelestialConfig(dynamicConfig({ proj: "eckert3", zoom: 2.4 }));
     }

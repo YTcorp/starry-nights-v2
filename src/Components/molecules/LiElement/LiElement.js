@@ -1,24 +1,36 @@
 import React from "react";
 import Anchor from "../../atoms/Anchor/Anchor";
 
-export default function LiElement({ data, funcMenu, customClass }) {
-  const { liclass, url, name } = data;
-  if (url) {
+export default function LiElement(props) {
+  if (typeof props.data.url !== "undefined") {
     return (
       <li
-        className={(liclass && liclass) || customClass}
-        onClick={() => funcMenu()}
+        className={
+          (props.data.liclass && props.data.liclass) || props.customClass
+        }
+        onClick={() => props.funcMenu()}
       >
-        <Anchor url={`/${url ? url : name.toLowerCase()}`} content={name} />
+        <Anchor
+          url={`/${
+            props.data.url ? props.data.url : props.data.name.toLowerCase()
+          }`}
+          content={props.data.name}
+        />
       </li>
     );
   } else {
     return (
       <li
-        className={(liclass && liclass) || customClass}
-        onClick={() => funcMenu()}
+        className={
+          (props.data.liclass && props.data.liclass) || props.customClass
+        }
+        onClick={() => props.funcMenu()}
       >
-        {name}
+        {props.children
+          ? props.children.length > 1
+            ? props.children.map((element) => element)
+            : props.children
+          : props.data.name}
       </li>
     );
   }
