@@ -49,5 +49,5 @@ export const authService = {
 export default authService;
 
 // loginUser, registerUser are the actions
+// the ({ email, password }, { rejectWithValue }) => {...  is the action.payload
 // the "users/fetchByEmail&Pass" is the type
-// the rest ({ email, password }, { rejectWithValue }) => {...  is the action.payload

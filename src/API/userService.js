@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
-import authHeader from "./authHeader";
+import { authHeader, response401 } from "./authHeader";
 
 export const logoutUser = createAsyncThunk(
   "user/logoutUser",
@@ -17,10 +17,7 @@ export const logoutUser = createAsyncThunk(
           return res.data;
         });
     } catch (error) {
-      if (error.response.status === 401) {
-        localStorage.removeItem("token_user");
-        localStorage.removeItem("userConnected");
-      }
+      response401(error);
       rejectWithValue(error.response.data);
     }
   }
@@ -35,6 +32,7 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
       });
       return { data: data };
     } catch (error) {
+      response401(error);
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -53,6 +51,7 @@ export const postUserFavoriteConstellation = createAsyncThunk(
       );
       return { data: data };
     } catch (error) {
+      response401(error);
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -67,6 +66,7 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
       });
       return { data: data };
     } catch (error) {
+      response401(error);
       return rejectWithValue(error.response.data.message);
     }
   }
