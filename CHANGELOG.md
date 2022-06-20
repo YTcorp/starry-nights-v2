@@ -1,3 +1,8 @@
+# 0.1.3 (2022-06-20)
+
+- added Constellations Page
+- factorised data sent to modals
+
 # 0.1.2 (2022-06-19)
 
 - handled 401 response error on authenticated routes
