@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { filterName } from "../../../utils/filterName";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchConstellations } from "../../../API/constellationService";
-// import { fetchConstellationsNames } from "../../../API/constellationService";
 import { fetchUserFavoritesConstellations } from "../../../API/userService";
-import { setModalContent } from "../../../store/features/modalSlice";
+import LiElement from "../../molecules/LiElement/LiElement";
 
 export default function SearchBar({
   placeholder,
@@ -16,11 +15,9 @@ export default function SearchBar({
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
   const { constellations } = useSelector((state) => state.constellation);
-  const { favConstellations } = useSelector((state) => state.userData);
   const isConnected = localStorage.getItem("userConnected");
   useEffect(() => {
     dispatch(fetchConstellations({}));
-    // dispatch(fetchConstellationsNames({}));
     if (isConnected) {
       dispatch(fetchUserFavoritesConstellations({}));
     }
@@ -33,14 +30,6 @@ export default function SearchBar({
       return filterName(submenu.name).includes(filterName(searchValue));
     });
   }
-
-  const handleFavConstellation = (data) => {
-    const isFav = favConstellations.find((favorite) => favorite.id === data.id)
-      ? true
-      : false;
-    const foundConstellation = { ...data, favorite: isFav };
-    dispatch(setModalContent(foundConstellation));
-  };
 
   const stopDefault = (event) => {
     event.preventDefault();
@@ -58,22 +47,21 @@ export default function SearchBar({
           value={searchValue}
           onChange={({ target }) => setSearchValue(target.value)}
           onClick={funcSearchToggle && (() => funcSearchToggle())}
-          onBlur={funcSearchClose && (() => funcSearchClose())}
+          onBlur={
+            funcSearchToggle && (() => funcSearchToggle())
+          }
         />
         {searchValue.length > 0 && (
           <ul className="Header-Search-Options">
             {constellations &&
               submenus.map((submenu, index) => (
-                <li
-                  className="Header-Search-Option"
+                <LiElement
+                  customClass="Header-Search-Option"
                   key={`Header-Search-Option--${submenu.name}--${index}`}
-                  onClick={() => {
-                    setSearchValue("");
-                    handleFavConstellation(submenu);
-                  }}
+                  data={submenu}
+                  funcMenu={() => setSearchValue('')}
                 >
-                  {submenu.name}
-                </li>
+                </LiElement>
               ))}
           </ul>
         )}

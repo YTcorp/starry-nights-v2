@@ -6,13 +6,16 @@ import Anchor from "../..//atoms/Anchor/Anchor";
 export default function LiElement(props) {
   const { favConstellations } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
+  let handleData;
 
-  const handleData = (constellation) => {
-    const isFav = favConstellations.find((favorite) => favorite.id === constellation.id)
-      ? true
-      : false;
-    const foundConstellation = { ...constellation, favorite: isFav };
-    dispatch(setModalContent(foundConstellation));
+  if (props.data.img_url) {
+    handleData = (constellation) => {
+      const isFav = favConstellations.find((favorite) => favorite.id === constellation.id)
+        ? true
+        : false;
+      const foundConstellation = { ...constellation, favorite: isFav };
+      dispatch(setModalContent(foundConstellation));
+    }
   }
 
   return (
@@ -21,7 +24,7 @@ export default function LiElement(props) {
         (props.data.liclass && props.data.liclass) || props.customClass
       }
       onClick={() => {
-        handleData && handleData(props.data);
+        typeof handleData === 'function' && handleData(props.data);
         props.funcMenu && props.funcMenu();
       }
       }
