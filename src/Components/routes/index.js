@@ -12,6 +12,7 @@ import Header from "../organisms/Header/Header";
 import Homepage from "../templates/Homepage";
 import Login from "../templates/Login";
 import Signup from "../templates/Signup";
+import Profile from "../templates/Profile";
 import ConstellationsPage from "../templates/ConstellationsPage";
 import Footer from "../organisms/Footer/Footer";
 import NotFound from "../templates/NotFound";
@@ -26,7 +27,9 @@ const Routes = () => {
         <Route path="/constellations" element={<ConstellationsPage />} />
 
         {/* Login restricted Routes*/}
-        <Route element={<AuthenticatedRoute redirectPath="/login" />}></Route>
+        <Route element={<AuthenticatedRoute redirectPath="/login" />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
         {/* Only non connected Routes */}
         <Route element={<UnauthenticatedRoute redirectPath="/" />}>

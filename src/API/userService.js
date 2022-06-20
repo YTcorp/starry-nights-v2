@@ -23,6 +23,22 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
+export const getProfileUser = createAsyncThunk(
+  "user/getProfileUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await axios
+        .get("/user/", { headers: authHeader() })
+        .then((res) => {
+          return res.data;
+        });
+    } catch (error) {
+      response401(error);
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const fetchUserFavoritesConstellations = createAsyncThunk(
   "user/getAllFavoritesUserConstellations",
   async (_, { rejectWithValue }) => {
@@ -71,8 +87,3 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
     }
   }
 );
-
-// export const authService = {
-//   logoutUser,
-// };
-// export default authService;

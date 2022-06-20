@@ -1,12 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUserFavoritesConstellations } from "../../API/userService";
+import {
+  fetchUserFavoritesConstellations,
+  getProfileUser,
+} from "../../API/userService";
 
 const userDataSlice = createSlice({
   name: "userData",
   initialState: {
     favLoading: false,
-    isLoaded: false,
+    detailsLoading: false,
     favConstellations: [],
+    userDetails: [],
     errMssg: "",
   },
   reducers: {
@@ -20,12 +24,21 @@ const userDataSlice = createSlice({
     },
     [fetchUserFavoritesConstellations.fulfilled]: (state, { payload }) => {
       state.favLoading = false;
-      state.isLoaded = true;
       state.favConstellations = payload.data;
     },
     [fetchUserFavoritesConstellations.rejected]: (state, { payload }) => {
       state.favLoading = false;
-      state.isLoaded = false;
+      state.errMssg = payload;
+    },
+    [getProfileUser.pending]: (state, { payload }) => {
+      state.detailsLoading = true;
+    },
+    [getProfileUser.fulfilled]: (state, { payload }) => {
+      state.detailsLoading = false;
+      state.userDetails = payload;
+    },
+    [getProfileUser.rejected]: (state, { payload }) => {
+      state.detailsLoading = false;
       state.errMssg = payload;
     },
   },
