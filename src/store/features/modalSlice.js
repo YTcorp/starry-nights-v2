@@ -4,11 +4,11 @@ const modalSlice = createSlice({
   name: "modal",
   initialState: {
     isOpenModal: false,
-    dataSearchBar: [],
+    dataModal: [],
   },
   reducers: {
     setModalContent(state, action) {
-      state.dataSearchBar = action.payload;
+      state.dataModal = action.payload;
     },
     openModal(state) {
       state.isOpenModal = true;

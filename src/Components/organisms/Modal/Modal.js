@@ -8,20 +8,17 @@ import CardConstellation from "../../molecules/Cards/CardConstellation";
 export default function Modal() {
   const dispatch = useDispatch();
   const [isOpened, setIsOpened] = useState(false);
-  const { dataSearchBar } = useSelector((state) => state.modal);
+  const { dataModal } = useSelector((state) => state.modal);
+  // console.log(dataModal);
   useEffect(() => {
-    if (dataSearchBar && Object.keys(dataSearchBar).length > 1) {
+    if (dataModal && Object.keys(dataModal).length > 1) {
       setTimeout(() => {
         setIsOpened(true);
       }, 200);
     }
-  }, [dataSearchBar]);
+  }, [dataModal]);
 
-  if (
-    dataSearchBar === undefined ||
-    dataSearchBar === null ||
-    dataSearchBar.length === 0
-  ) {
+  if (dataModal === undefined || dataModal === null || dataModal.length === 0) {
     document.querySelector("html").classList.remove("no-scroll");
     return null;
   }
@@ -48,7 +45,7 @@ export default function Modal() {
       <CardConstellation
         modal={true}
         funcClose={handleClose}
-        data={dataSearchBar}
+        data={dataModal}
       />
     </div>
   );

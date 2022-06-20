@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { filterName } from "../../../utils/filterName";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchConstellations } from "../../../API/constellationService";
-import { fetchConstellationsNames } from "../../../API/constellationService";
+// import { fetchConstellationsNames } from "../../../API/constellationService";
 import { fetchUserFavoritesConstellations } from "../../../API/userService";
 import { setModalContent } from "../../../store/features/modalSlice";
 
@@ -15,14 +15,12 @@ export default function SearchBar({
 }) {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
-  const { constellations, constellationsNames } = useSelector(
-    (state) => state.constellation
-  );
+  const { constellations } = useSelector((state) => state.constellation);
   const { favConstellations } = useSelector((state) => state.userData);
   const isConnected = localStorage.getItem("userConnected");
   useEffect(() => {
     dispatch(fetchConstellations({}));
-    dispatch(fetchConstellationsNames({}));
+    // dispatch(fetchConstellationsNames({}));
     if (isConnected) {
       dispatch(fetchUserFavoritesConstellations({}));
     }
@@ -30,25 +28,18 @@ export default function SearchBar({
   }, [dispatch, isConnected]);
 
   let submenus = [];
-  if (constellationsNames.length > 0 && searchValue.length > 0) {
-    submenus = constellationsNames.filter((submenu) => {
+  if (constellations.length > 0 && searchValue.length > 0) {
+    submenus = constellations.filter((submenu) => {
       return filterName(submenu.name).includes(filterName(searchValue));
     });
   }
 
-  const handleFavConstellation = (submenuId) => {
-    if (constellations) {
-      let foundConstellation = constellations.find(
-        (constellation) => constellation.id === submenuId
-      );
-      const isFav = favConstellations.find(
-        (favorite) => favorite.id === submenuId
-      )
-        ? true
-        : false;
-      foundConstellation = { ...foundConstellation, favorite: isFav };
-      dispatch(setModalContent(foundConstellation));
-    }
+  const handleFavConstellation = (data) => {
+    const isFav = favConstellations.find((favorite) => favorite.id === data.id)
+      ? true
+      : false;
+    const foundConstellation = { ...data, favorite: isFav };
+    dispatch(setModalContent(foundConstellation));
   };
 
   const stopDefault = (event) => {
@@ -71,18 +62,19 @@ export default function SearchBar({
         />
         {searchValue.length > 0 && (
           <ul className="Header-Search-Options">
-            {submenus.map((submenu, index) => (
-              <li
-                className="Header-Search-Option"
-                key={`Header-Search-Option--${submenu.name}--${index}`}
-                onClick={() => {
-                  setSearchValue("");
-                  handleFavConstellation(submenu.id);
-                }}
-              >
-                {submenu.name}
-              </li>
-            ))}
+            {constellations &&
+              submenus.map((submenu, index) => (
+                <li
+                  className="Header-Search-Option"
+                  key={`Header-Search-Option--${submenu.name}--${index}`}
+                  onClick={() => {
+                    setSearchValue("");
+                    handleFavConstellation(submenu);
+                  }}
+                >
+                  {submenu.name}
+                </li>
+              ))}
           </ul>
         )}
       </label>

@@ -19,12 +19,13 @@ export default function LiElement(props) {
       </li>
     );
   } else {
+    console.log("noURL >>>>>>>>>>>>>>>>>>>>>>>>>>", props.funcMenu);
     return (
       <li
         className={
           (props.data.liclass && props.data.liclass) || props.customClass
         }
-        onClick={() => props.funcMenu()}
+        onClick={props.funcMenu && (() => props.funcMenu())}
       >
         {props.children
           ? props.children.length > 1

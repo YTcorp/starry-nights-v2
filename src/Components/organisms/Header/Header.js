@@ -43,7 +43,6 @@ export default function Header() {
   const closeMenu = () => {
     setMenuOpened(false);
   };
-
   const disconnectUser = () => {
     dispatch(logoutUser());
   };
