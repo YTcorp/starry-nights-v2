@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useWindowSize } from "react-use";
 import classnames from "classnames";
 import {
-  BiUserCircle as MenuLogoUser,
-  BiMenu as MenuMobile,
+  BiUserCircle as IconLogoUser,
+  BiMenu as IconHamburger,
 } from "react-icons/bi";
 
 import menuConnected from "../../../assets/data/menuConnected.json";
@@ -90,9 +90,9 @@ export default function Header() {
         )}
         <nav onClick={toggleMenu} onBlur={closeMenu} className="Header-Menu">
           {mediumLarge || miniLarge ? (
-            <MenuMobile className="Header-Menu-Toggle" />
+            <IconHamburger className="Header-Menu-Toggle" />
           ) : (
-            <MenuLogoUser
+            <IconLogoUser
               className={classnames("Header-Menu-Toggle", {
                 "Header-Menu-Toggle__Connected": isConnected,
               })}
@@ -104,7 +104,7 @@ export default function Header() {
               "Header-Menu-Container--opened": menuOpened,
             })}
           >
-            {mediumLarge && (
+            {(mediumLarge || miniLarge) && (
               <LiElement
                 data={menuHeaderNav[0]}
                 funcMenu={closeMenu}

@@ -47,9 +47,7 @@ export default function SearchBar({
           value={searchValue}
           onChange={({ target }) => setSearchValue(target.value)}
           onClick={funcSearchToggle && (() => funcSearchToggle())}
-          onBlur={
-            funcSearchToggle && (() => funcSearchToggle())
-          }
+          onBlur={funcSearchClose && (() => funcSearchClose())}
         />
         {searchValue.length > 0 && (
           <ul className="Header-Search-Options">
@@ -59,9 +57,8 @@ export default function SearchBar({
                   customClass="Header-Search-Option"
                   key={`Header-Search-Option--${submenu.name}--${index}`}
                   data={submenu}
-                  funcMenu={() => setSearchValue('')}
-                >
-                </LiElement>
+                  funcMenu={() => setSearchValue("")}
+                ></LiElement>
               ))}
           </ul>
         )}
