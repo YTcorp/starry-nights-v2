@@ -70,6 +70,8 @@
 @media screen and (max-width: 760px) {
   .Detail-Block {
     overflow: hidden;
+    height: 90%;
+    margin-bottom: 0;
 
     &-Title {
       font-size: 1.6rem;

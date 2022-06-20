@@ -1,0 +1,13 @@
+.Page-Title {
+  margin: 4rem 0 2rem 0;
+}
+@media screen and (max-width: 630px) {
+  .Page-Title {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 410px) {
+  .Page-Title {
+    font-size: 2rem;
+  }
+}

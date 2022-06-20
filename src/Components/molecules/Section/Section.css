@@ -1,6 +1,11 @@
 .Section {
   position: relative;
-  padding-top: 6rem;
+  padding-top: 2rem;
+
+  &-Title {
+    @mixin subtitle;
+    padding-bottom: 2rem;
+  }
 
   @media screen and (max-width: 470px) {
     .Section-Title {

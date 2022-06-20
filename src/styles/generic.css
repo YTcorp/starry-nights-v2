@@ -1,7 +1,3 @@
-.Page-Title {
-  margin: 4rem 0 2rem 0;
-}
-
 .Block {
   @mixin card;
 

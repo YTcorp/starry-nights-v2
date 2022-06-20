@@ -20,6 +20,7 @@
     opacity: 1;
     pointer-events: initial;
   }
+
   .Detail {
     &-Block {
       height: 100%;

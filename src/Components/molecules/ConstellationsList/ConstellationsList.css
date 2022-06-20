@@ -1,7 +1,7 @@
 .Constellations-List {
   max-width: 100%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(calc(120px + 4rem), 1fr));
   justify-content: space-evenly;
   flex-wrap: wrap;
 

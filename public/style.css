@@ -22,9 +22,6 @@ li {
 }
 /* COLORS */
 /* GRADIENTS */
-.Page-Title {
-  margin: 4rem 0 2rem 0;
-}
 .Block {
   width: calc(100% - 1rem);
   max-width: 1500px;
@@ -195,18 +192,6 @@ body {
   margin-right: auto;
   padding: 0 1rem;
 }
-.Main .Section-Title {
-    font-family: "Montserrat", sans-serif;
-    font-size: 4.7rem;
-    font-weight: 500;
-    color: #9f98ca;
-    letter-spacing: 0.12rem;
-    text-shadow: #9f98ca 1px 0.5px 4px;
-    text-align: center;
-    font-size: 3.5rem;
-    font-weight: 400;
-    padding-bottom: 2rem;
-  }
 #tsparticles {
   /* //   overflow: hidden;
   //   position: absolute;
@@ -266,6 +251,19 @@ body {
 .Login .Form .Button:disabled, .Signup .Form .Button:disabled {
     background-color: rgb(52, 53, 94);
   }
+.Page-Title {
+  margin: 4rem 0 2rem 0;
+}
+@media screen and (max-width: 630px) {
+  .Page-Title {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 410px) {
+  .Page-Title {
+    font-size: 2rem;
+  }
+}
 /* organisms */
 .Header {
   z-index: 10;
@@ -440,6 +438,11 @@ body {
     font-weight: 600;
     font-size: 1.8rem;
     text-align: center;
+  }
+@media screen and (max-width: 550px) {
+    .Hero .Hero-Title {
+      font-size: 3.5rem;
+    }
   }
 .Myth {
   height: 100vh;
@@ -753,8 +756,20 @@ body {
 /* molecules */
 .Section {
   position: relative;
-  padding-top: 6rem;
+  padding-top: 2rem;
 }
+.Section-Title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 4.7rem;
+    font-weight: 500;
+    color: #9f98ca;
+    letter-spacing: 0.12rem;
+    text-shadow: #9f98ca 1px 0.5px 4px;
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 400;
+    padding-bottom: 2rem;
+  }
 @media screen and (max-width: 470px) {
     .Section .Section-Title {
       font-size: 3rem;
@@ -850,6 +865,8 @@ body {
 @media screen and (max-width: 760px) {
   .Detail-Block {
     overflow: hidden;
+    height: 90%;
+    margin-bottom: 0;
   }
 
     .Detail-Block-Title {
@@ -879,7 +896,7 @@ body {
 .Constellations-List {
   max-width: 100%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(calc(120px + 4rem), 1fr));
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
