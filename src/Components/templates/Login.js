@@ -15,7 +15,9 @@ export default function Login() {
 
   const { loading, errMssg } = useSelector((state) => state.login);
   const isConnected = localStorage.getItem("userConnected");
+
   useEffect(() => {
+    console.log(isConnected);
     if (isConnected) {
       navigate("/");
     }
@@ -27,6 +29,7 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("dispatch:");
     dispatch(loginUser({ email: email, password: password }));
   };
 

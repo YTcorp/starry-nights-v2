@@ -8,8 +8,10 @@ const userDataSlice = createSlice({
   name: "userData",
   initialState: {
     favLoading: false,
-    detailsLoading: false,
+    favSuccess: false,
     favConstellations: [],
+    detailsLoading: false,
+    detailsSuccess: false,
     userDetails: [],
     errMssg: "",
   },
@@ -32,13 +34,16 @@ const userDataSlice = createSlice({
     },
     [getProfileUser.pending]: (state, { payload }) => {
       state.detailsLoading = true;
+      state.detailsSuccess = false;
     },
     [getProfileUser.fulfilled]: (state, { payload }) => {
       state.detailsLoading = false;
+      state.detailsSuccess = true;
       state.userDetails = payload;
     },
     [getProfileUser.rejected]: (state, { payload }) => {
       state.detailsLoading = false;
+      state.detailsSuccess = false;
       state.errMssg = payload;
     },
   },

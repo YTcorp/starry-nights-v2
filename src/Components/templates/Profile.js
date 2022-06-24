@@ -1,34 +1,134 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileUser } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Profile() {
-  const { userDetails, detailsLoading } = useSelector(
+  const { userDetails, detailsLoading, detailsSuccess } = useSelector(
     (state) => state.userData
   );
-  const { firstname, lastname, email, role, notification } = userDetails;
-  console.log("userDetails", firstname, lastname, email, role, notification);
+  useEffect(() => {
+    const { firstname, lastname, email, role, notification } = userDetails;
+    setFirstname(firstname);
+    setLastname(lastname);
+    setEmail(email);
+    setNotification(notification);
+  }, [userDetails]);
+
+  const [editionMode, setEditionMode] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [notification, setNotification] = useState(false);
+  const [inputFirstname, setInputFirstname] = useState("");
+  const [inputLastname, setInputLastname] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputNotification, setInputNotification] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProfileUser());
   }, [dispatch]);
 
+  const toggleEditionMode = (e) => {
+    e.preventDefault();
+    setEditionMode(!editionMode);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e);
+  };
+
   return (
     <main className="Main Profile">
       <h1 className="Title Page-Title">Profile</h1>
-      <div className="Profile-Container">
+      <form className="Form Block profile-container" onSubmit={handleSubmit}>
         {detailsLoading && <Spinner />}
-        <p className="Profile-Details">Prenom :</p>
-        <p className="Profile-Details">{firstname}</p>
-        <p className="Profile-Details">Nom :</p>
-        <p className="Profile-Details">{lastname}</p>
-        <p className="Profile-Details">E-mail :</p>
-        <p className="Profile-Details">{email}</p>
-        <p className="Profile-Details">Notifications :</p>
-        <p className="Profile-Details">{notification.toString()}</p>
-        <button className="Button">Modifier</button>
-      </div>
+        <fieldset className="Fieldset">
+          <label className="Label profile-details">Prenom :</label>
+          {editionMode ? (
+            <input
+              autoComplete="off"
+              className="Input profile-details profile-details__data"
+              id="firstname"
+              value={firstname}
+              onChange={({ target }) => setInputFirstname(target.value)}
+              placeholder={firstname}
+            />
+          ) : (
+            <p className="profile-details profile-details__data">{firstname}</p>
+          )}
+        </fieldset>
+        <fieldset className="Fieldset">
+          <label className="Label profile-details">Nom :</label>
+          {editionMode ? (
+            <input
+              className="Input profile-details profile-details__data"
+              id="lastname"
+              autoComplete="off"
+              value={lastname}
+              onChange={({ target }) => setInputLastname(target.value)}
+              placeholder={lastname}
+            />
+          ) : (
+            <p className="profile-details profile-details__data">{lastname}</p>
+          )}
+        </fieldset>
+        <fieldset className="Fieldset">
+          <label className="Label profile-details">E-mail :</label>
+          {editionMode ? (
+            <input
+              className="Input profile-details profile-details__data"
+              id="email"
+              autoComplete="off"
+              value={email}
+              onChange={({ target }) => setInputEmail(target.value)}
+              placeholder={email}
+            />
+          ) : (
+            <p className="profile-details profile-details__data">{email}</p>
+          )}
+        </fieldset>
+        <fieldset className="Fieldset">
+          <label className="Label profile-details">Notifications :</label>
+          {editionMode ? (
+            <input
+              className="Input profile-details profile-details__data"
+              type="checkbox"
+              value={notification}
+              onChange={({ target }) => setInputNotification(target.value)}
+            />
+          ) : (
+            <p className="profile-details profile-details__data">
+              {notification && notification.toString()}
+            </p>
+          )}
+        </fieldset>
+        {editionMode ? (
+          <>
+            <button
+              className="Button Button-Annuler"
+              onClick={toggleEditionMode}
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              disabled={detailsLoading}
+              className="Button Button-Valider"
+            >
+              Valider
+            </button>
+          </>
+        ) : (
+          <>
+            <button className="Button" onClick={toggleEditionMode}>
+              Modifier
+            </button>
+          </>
+        )}
+      </form>
     </main>
   );
 }

@@ -8,6 +8,7 @@ import Spinner from "../atoms/Spinner/Spinner";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConf, setPasswordConf] = useState("");
@@ -41,7 +42,6 @@ const Signup = () => {
     } else {
       setErrorMessage("");
     }
-
     dispatch(
       registerUser({
         firstname: firstname,
