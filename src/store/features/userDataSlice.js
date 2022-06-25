@@ -26,7 +26,7 @@ const userDataSlice = createSlice({
     },
     [fetchUserFavoritesConstellations.fulfilled]: (state, { payload }) => {
       state.favLoading = false;
-      state.favConstellations = payload.data;
+      state.favConstellations = payload;
     },
     [fetchUserFavoritesConstellations.rejected]: (state, { payload }) => {
       state.favLoading = false;

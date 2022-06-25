@@ -3,6 +3,7 @@ import axios from "../utils/axios";
 import { authHeader } from "../helpers/authHeader";
 import { response401 } from "../helpers/response401";
 import { logout } from "../helpers/logout";
+import { saveState } from "../helpers/localStorage";
 
 export const logoutUser = createAsyncThunk(
   "user/logoutUser",
@@ -33,6 +34,7 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
           headers: authHeader(),
         })
         .then((res) => {
+          saveState("favs_consts", res.data);
           return res.data;
         });
     } catch (error) {
@@ -83,6 +85,7 @@ export const getProfileUser = createAsyncThunk(
       return await axios
         .get("/user/", { headers: authHeader() })
         .then((res) => {
+          saveState("user_details", res.data);
           return res.data;
         });
     } catch (error) {
