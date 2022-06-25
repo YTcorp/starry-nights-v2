@@ -14,8 +14,9 @@ import { setFavoritesConstellations } from "../../../store/features/userDataSlic
 export default function FavHeart({ data }) {
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
-  const isConnected = localStorage.getItem("userConnected");
-  const { favConstellations } = useSelector((state) => state.userData);
+  const isConnected = localStorage.getItem("user_connected");
+  // const { favConstellations } = useSelector((state) => state.userData);
+  const favConstellations = localStorage.getItem("favsConsts");
   useEffect(() => {
     setIsFavorite(data.favorite);
   }, [data]);

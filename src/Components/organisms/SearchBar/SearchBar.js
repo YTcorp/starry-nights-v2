@@ -14,7 +14,7 @@ export default function SearchBar({
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
   const { constellations } = useSelector((state) => state.constellation);
-  const isConnected = localStorage.getItem("userConnected");
+  const isConnected = localStorage.getItem("user_connected");
   useEffect(() => {
     dispatch(fetchConstellations({}));
     setSearchValue("");

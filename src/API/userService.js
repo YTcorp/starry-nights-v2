@@ -3,7 +3,6 @@ import axios from "../utils/axios";
 import { authHeader } from "../helpers/authHeader";
 import { response401 } from "../helpers/response401";
 import { logout } from "../helpers/logout";
-import { loadState, saveState } from "../helpers/localStorage";
 
 export const logoutUser = createAsyncThunk(
   "user/logoutUser",
@@ -34,12 +33,6 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
           headers: authHeader(),
         })
         .then((res) => {
-          // if (res.status === 200) {
-          //   loadState("favsConsts");
-          //   // const data = JSON.stringify(res.data);
-          //   // console.log(data);
-          //   // localStorage.setItem("favsConsts", data);
-          // }
           return res.data;
         });
     } catch (error) {

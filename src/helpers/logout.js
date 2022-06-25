@@ -1,5 +1,5 @@
 export function logout() {
-  localStorage.getItem("token_user") && localStorage.removeItem("token_user");
-  localStorage.getItem("userConnected") &&
-    localStorage.removeItem("userConnected");
+  localStorage.getItem("user_auth") && localStorage.removeItem("user_auth");
+  localStorage.getItem("user_connected") &&
+    localStorage.removeItem("user_connected");
 }

@@ -16,7 +16,7 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { loading, errMssg } = useSelector((state) => state.login);
-  const isConnected = localStorage.getItem("userConnected");
+  const isConnected = localStorage.getItem("user_connected");
 
   useEffect(() => {
     if (isConnected === "true") {

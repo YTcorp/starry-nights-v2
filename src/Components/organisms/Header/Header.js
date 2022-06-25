@@ -18,7 +18,7 @@ import LiElement from "../../molecules/LiElement/LiElement";
 import { logoutUser } from "../../../API/userService";
 
 export default function Header() {
-  const isConnected = localStorage.getItem("userConnected");
+  const isConnected = localStorage.getItem("user_connected");
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
