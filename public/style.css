@@ -264,6 +264,81 @@ body {
     font-size: 2rem;
   }
 }
+/* height: 471px; */
+@media screen and (max-width: 500px) {
+      .Profile .Block .Form-Buttons {
+        flex-wrap: wrap;
+      }
+    }
+.Profile .Block .profile-container {
+        width: 70%;
+      }
+.Profile .Block .profile-fields {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        align-items: center;
+        height: 43px;
+      }
+@media screen and (max-width: 780px) {
+.Profile .Block .profile-fields {
+          font-size: 0.8em
+      }
+        }
+@media screen and (max-width: 670px) {
+.Profile .Block .profile-fields {
+          grid-template-rows: 1fr 1fr;
+          grid-template-columns: 1fr;
+          justify-content: center;
+          margin-bottom: 2rem
+      }
+
+          .Profile .Block .profile-fields .Label.profile-details {
+            justify-self: flex-start;
+          }
+        }
+.Profile .Block .profile-fields .Label {
+          justify-self: flex-end;
+          padding-right: 1rem;
+        }
+.Profile .Block .profile-fields .Input {
+          margin: 0;
+        }
+.Profile .Block .profile-fields .Input[type="checkbox"] {
+            appearance: none;
+            background-color: #c0b6dc;
+            margin: 0;
+            font: inherit;
+            color: #c0b6dc;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.15em;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+          }
+.Profile .Block .profile-fields .Input[type="checkbox"]::before {
+              content: "";
+              width: 0.64em;
+              height: 0.64em;
+              transform: scale(0);
+              transition: 120ms transform ease-in-out;
+              box-shadow: inset 1em 1em rgb(52, 53, 94);
+            }
+.Profile .Block .profile-fields .Input[type="checkbox"]:checked::before {
+              transform: scale(1.5);
+            }
+.Profile .Block .profile-fields p {
+          padding: 12px;
+          color: #e5dff8;
+          font-size: 0.8rem;
+        }
+.Profile .Block .Form-Buttons {
+      max-width: 70%;
+      display: flex;
+    }
+.Profile .Block .Form-Buttons .Button {
+        width: 10em;
+      }
 /* organisms */
 .Header {
   z-index: 10;

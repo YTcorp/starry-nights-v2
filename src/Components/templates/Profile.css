@@ -1,0 +1,87 @@
+.Profile {
+  .Block {
+    /* height: 471px; */
+
+    @media screen and (max-width: 500px) {
+      .Form-Buttons {
+        flex-wrap: wrap;
+      }
+    }
+    .profile {
+      &-container {
+        width: 70%;
+      }
+      &-fields {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        align-items: center;
+        height: 43px;
+
+        @media screen and (max-width: 780px) {
+          font-size: 0.8em;
+        }
+        @media screen and (max-width: 670px) {
+          grid-template-rows: 1fr 1fr;
+          grid-template-columns: 1fr;
+          justify-content: center;
+          margin-bottom: 2rem;
+
+          .Label.profile-details {
+            justify-self: flex-start;
+          }
+        }
+
+        .Label {
+          justify-self: flex-end;
+          padding-right: 1rem;
+        }
+        .Input {
+          margin: 0;
+
+          &[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: $lilac;
+            margin: 0;
+            font: inherit;
+            color: $lilac;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.15em;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+
+            &::before {
+              content: "";
+              width: 0.64em;
+              height: 0.64em;
+              transform: scale(0);
+              transition: 120ms transform ease-in-out;
+              box-shadow: inset 1em 1em $grey-blue;
+            }
+
+            &:checked::before {
+              transform: scale(1.5);
+            }
+          }
+        }
+
+        p {
+          padding: 12px;
+          color: $lilac-li;
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    .Form-Buttons {
+      max-width: 70%;
+      display: flex;
+
+      .Button {
+        width: 10em;
+      }
+    }
+  }
+}
