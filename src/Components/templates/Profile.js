@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProfileUser } from "../../API/userService";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const { userDetails, detailsLoading, detailsSuccess } = useSelector(
     (state) => state.userData
   );
+  console.log("on profile detailSuccess", detailsSuccess);
+
   useEffect(() => {
-    const { firstname, lastname, email, role, notification } = userDetails;
-    setFirstname(firstname);
-    setLastname(lastname);
-    setEmail(email);
-    setNotification(notification);
-  }, [userDetails]);
+    if (userDetails !== undefined && userDetails !== null) {
+      const { firstname, lastname, email, notification } = userDetails;
+      setFirstname(firstname);
+      setLastname(lastname);
+      setEmail(email);
+      setNotification(notification);
+    } else {
+      navigate("/");
+    }
+  }, [navigate, userDetails]);
 
   const [editionMode, setEditionMode] = useState(false);
   const [firstname, setFirstname] = useState("");
@@ -24,11 +32,6 @@ export default function Profile() {
   const [inputLastname, setInputLastname] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputNotification, setInputNotification] = useState(false);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProfileUser());
-  }, [dispatch]);
 
   const toggleEditionMode = (e) => {
     e.preventDefault();

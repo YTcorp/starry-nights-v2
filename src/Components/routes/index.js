@@ -5,9 +5,9 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import UnauthenticatedRoute from "./UnauthenticatedRoute";
 import AuthenticatedRoute from "./AuthenticatedRoute";
-
 import Header from "../organisms/Header/Header";
 import Homepage from "../templates/Homepage";
 import Login from "../templates/Login";

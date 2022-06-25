@@ -3,6 +3,7 @@
 @import "./templates/NotFound.css";
 @import "./templates/LoginSignup.css";
 @import "./templates/Pages.css";
+@import "./templates/Profile.css";
 
 /* organisms */
 @import "./organisms/Header/Header.css";

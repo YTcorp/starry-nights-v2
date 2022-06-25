@@ -9,7 +9,6 @@ export default function Modal() {
   const dispatch = useDispatch();
   const [isOpened, setIsOpened] = useState(false);
   const { dataModal } = useSelector((state) => state.modal);
-  // console.log(dataModal);
   useEffect(() => {
     if (dataModal && Object.keys(dataModal).length > 1) {
       setTimeout(() => {

@@ -11,6 +11,7 @@ export default function HomeRandomMyth() {
     dispatch(fetchRandomMyth());
   }, [dispatch]);
   const { randomMyth } = useSelector((state) => state.myth);
+
   return (
     <section id="Myth" className="Section Myth">
       <h2 className="Section-Title">Retrouvez les mythes</h2>

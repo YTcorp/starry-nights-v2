@@ -1,4 +1,5 @@
-import Router from "./Components/routes";
+import React from "react";
+import Router from "../src/Components/routes";
 
 function App() {
   return (
