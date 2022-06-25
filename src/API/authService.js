@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
+import { login } from "../helpers/login";
 
 export const registerUser = createAsyncThunk(
   "signup/postWithFirstName-LastName-Email-Pass",
@@ -29,10 +30,7 @@ export const loginUser = createAsyncThunk(
         })
         .then((res) => {
           if (res.status === 200) {
-            localStorage.setItem(
-              "token_user",
-              res.headers.authorization.match(/Bearer\s(.*)/)[1]
-            );
+            login(res);
           }
           return res.data;
         });
