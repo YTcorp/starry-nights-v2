@@ -1,6 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
-import { logout, authHeader, response401 } from "./authHeader";
+import { authHeader } from "../helpers/authHeader";
+import { response401 } from "../helpers/response401";
+import { logout } from "../helpers/logout";
+import { loadState, saveState } from "../helpers/localStorage";
 
 export const logoutUser = createAsyncThunk(
   "user/logoutUser",
@@ -18,18 +21,27 @@ export const logoutUser = createAsyncThunk(
       response401(error);
       rejectWithValue(error.response.data);
     }
-    logout();
   }
 );
 
 export const fetchUserFavoritesConstellations = createAsyncThunk(
   "user/getAllFavoritesUserConstellations",
   async (_, { rejectWithValue }) => {
+    console.log("on FetchFavsConsts");
     try {
-      const { data } = await axios.get("/constellation/favorite", {
-        headers: authHeader(),
-      });
-      return { data: data };
+      return await axios
+        .get("/constellation/favorite", {
+          headers: authHeader(),
+        })
+        .then((res) => {
+          // if (res.status === 200) {
+          //   loadState("favsConsts");
+          //   // const data = JSON.stringify(res.data);
+          //   // console.log(data);
+          //   // localStorage.setItem("favsConsts", data);
+          // }
+          return res.data;
+        });
     } catch (error) {
       response401(error);
       return rejectWithValue(error.response.data.message);

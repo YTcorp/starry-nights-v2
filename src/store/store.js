@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { throttle } from "lodash";
 
+import { loadState, saveState } from "../helpers/localStorage";
 import authMiddleware from "./features/authMiddleware";
 import loginSlice from "./features/loginSlice";
 import signupSlice from "./features/signupSlice";
@@ -9,6 +11,7 @@ import userDataSlice from "./features/userDataSlice";
 import modalSlice from "./features/modalSlice";
 import addressSlice from "./features/addressSlice";
 
+const persistedState = loadState();
 const store = configureStore({
   reducer: {
     login: loginSlice.reducer,
@@ -21,6 +24,15 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authMiddleware),
+  persistedState,
 });
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      userData: store.getState().userData,
+    });
+  }, 1000)
+);
 
 export default store;
