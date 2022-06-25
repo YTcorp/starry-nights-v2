@@ -14,7 +14,7 @@ export default function Anchor({
         target="_blank"
         rel="noreferrer"
         className={customClass}
-        onClick={() => funcClick()}
+        onClick={funcClick && (() => funcClick())}
         href={url}
       >
         {content || children}
@@ -22,7 +22,11 @@ export default function Anchor({
     );
   } else {
     return (
-      <a className={customClass} onClick={() => funcClick()} href={url}>
+      <a
+        className={customClass}
+        onClick={funcClick && (() => funcClick())}
+        href={url}
+      >
         {content || children}
       </a>
     );
