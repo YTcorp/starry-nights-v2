@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { loadStorage } from "../../helpers/localStorage";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const { userDetails, detailsLoading, detailsSuccess } = useSelector(
-    (state) => state.userData
-  );
-  console.log("on profile detailSuccess", detailsSuccess);
+  const { detailsLoading } = useSelector((state) => state.userData);
+  const userDetails = loadStorage("user_details");
+  console.log("on profile detailSuccess", !!userDetails);
 
   useEffect(() => {
     if (userDetails !== undefined && userDetails !== null) {

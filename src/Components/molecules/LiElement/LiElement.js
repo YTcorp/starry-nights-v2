@@ -1,11 +1,12 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setModalContent } from "../../../store/features/modalSlice";
 import Anchor from "../..//atoms/Anchor/Anchor";
+import { loadStorage } from "../../../helpers/localStorage";
 
 export default function LiElement(props) {
-  const { favConstellations } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
+  const favConstellations = loadStorage("favs_consts");
 
   let handleData;
   if (props.data.img_url) {
