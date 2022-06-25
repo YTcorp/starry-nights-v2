@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../API/authService";
+import { fetchUserFavoritesConstellations } from "../../API/userService";
+import { getProfileUser } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Login() {
@@ -17,11 +19,12 @@ export default function Login() {
   const isConnected = localStorage.getItem("userConnected");
 
   useEffect(() => {
-    console.log(isConnected);
-    if (isConnected) {
+    if (isConnected === "true") {
       navigate("/");
+      dispatch(fetchUserFavoritesConstellations());
+      dispatch(getProfileUser());
     }
-  }, [isConnected, navigate]);
+  }, [isConnected, navigate, dispatch]);
 
   useEffect(() => {
     errMssg && setErrorMessage(errMssg);
@@ -29,7 +32,6 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("dispatch:");
     dispatch(loginUser({ email: email, password: password }));
   };
 

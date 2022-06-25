@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { filterName } from "../../../utils/filterName";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchConstellations } from "../../../API/constellationService";
-import { fetchUserFavoritesConstellations } from "../../../API/userService";
 import LiElement from "../../molecules/LiElement/LiElement";
 
 export default function SearchBar({
@@ -18,9 +17,6 @@ export default function SearchBar({
   const isConnected = localStorage.getItem("userConnected");
   useEffect(() => {
     dispatch(fetchConstellations({}));
-    if (isConnected) {
-      dispatch(fetchUserFavoritesConstellations({}));
-    }
     setSearchValue("");
   }, [dispatch, isConnected]);
 
@@ -34,6 +30,7 @@ export default function SearchBar({
   const stopDefault = (event) => {
     event.preventDefault();
   };
+
   return (
     <form onSubmit={stopDefault}>
       <label className="Header-Search" htmlFor="header-search">

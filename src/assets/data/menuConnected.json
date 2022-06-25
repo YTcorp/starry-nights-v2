@@ -2,11 +2,17 @@
     {
         "id": 4,
         "liclass": "Header-Menu-Item",
-        "url": "unknown",
-        "name": "Mes constellations"
+        "url": "profile",
+        "name": "Mon profil"
     },
     {
         "id": 5,
+        "liclass": "Header-Menu-Item",
+        "url": "",
+        "name": "Mes constellations"
+    },
+    {
+        "id": 6,
         "liclass": "Header-Menu-Item",
         "name": "Se déconnecter"
     }

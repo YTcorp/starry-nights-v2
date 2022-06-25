@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
-import { authHeader, response401 } from "./authHeader";
+import { logout, authHeader, response401 } from "./authHeader";
 
 export const logoutUser = createAsyncThunk(
   "user/logoutUser",
@@ -10,9 +10,7 @@ export const logoutUser = createAsyncThunk(
         .get("/user/logout", { headers: authHeader() })
         .then((res) => {
           if (res.status === 200) {
-            localStorage.removeItem("token_user");
-            localStorage.getItem("userConnected") &&
-              localStorage.removeItem("userConnected");
+            logout();
           }
           return res.data;
         });
@@ -20,22 +18,7 @@ export const logoutUser = createAsyncThunk(
       response401(error);
       rejectWithValue(error.response.data);
     }
-  }
-);
-
-export const getProfileUser = createAsyncThunk(
-  "user/getProfileUser",
-  async (_, { rejectWithValue }) => {
-    try {
-      return await axios
-        .get("/user/", { headers: authHeader() })
-        .then((res) => {
-          return res.data;
-        });
-    } catch (error) {
-      response401(error);
-      rejectWithValue(error.response.data);
-    }
+    logout();
   }
 );
 
@@ -84,6 +67,23 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
     } catch (error) {
       response401(error);
       return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getProfileUser = createAsyncThunk(
+  "user/getProfileUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await axios
+        .get("/user/", { headers: authHeader() })
+        .then((res) => {
+          return res.data;
+        });
+    } catch (error) {
+      response401(error);
+      console.log(error);
+      rejectWithValue(error.response.data);
     }
   }
 );
