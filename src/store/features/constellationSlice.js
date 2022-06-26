@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchConstellations,
-  fetchConstellationsNames,
-} from "../../API/constellationService";
+import { fetchConstellations } from "../../API/constellationService";
 
 const constellationSlice = createSlice({
   name: "constellation",
@@ -24,19 +21,6 @@ const constellationSlice = createSlice({
       state.constellations = payload.data;
     },
     [fetchConstellations.rejected]: (state, { payload }) => {
-      state.loading = false;
-      state.isLoaded = false;
-      state.errMssg = payload;
-    },
-    [fetchConstellationsNames.pending]: (state) => {
-      state.loading = true;
-    },
-    [fetchConstellationsNames.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.isLoaded = true;
-      state.constellationsNames = payload.data;
-    },
-    [fetchConstellationsNames.rejected]: (state, { payload }) => {
       state.loading = false;
       state.isLoaded = false;
       state.errMssg = payload;
