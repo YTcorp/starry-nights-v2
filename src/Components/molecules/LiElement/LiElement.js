@@ -9,9 +9,9 @@ export default function LiElement(props) {
   const favConstellations = loadStorage("favs_consts");
 
   let handleData;
-  if (props.data.img_url) {
+  if (props.data.img_url !== undefined) {
     handleData = (constellation) => {
-      const isFav = favConstellations.find(
+      const isFav = favConstellations?.find(
         (favorite) => favorite.id === constellation.id
       )
         ? true
@@ -20,7 +20,6 @@ export default function LiElement(props) {
       dispatch(setModalContent(foundConstellation));
     };
   }
-
   return (
     <li
       className={

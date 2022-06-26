@@ -2,7 +2,6 @@ import React from "react";
 import HomeHero from "../organisms/HomeHero/HomeHero";
 import HomeRandomMyth from "../organisms/HomeRandomMyth/HomeRandomMyth";
 import HomeMapCelestial from "../organisms/HomeMapCelestial/HomeMapCelestial";
-import Modal from "../organisms/Modal/Modal";
 
 export default function Hompage() {
   return (
@@ -10,7 +9,6 @@ export default function Hompage() {
       <HomeHero />
       <HomeRandomMyth />
       <HomeMapCelestial />
-      <Modal />
     </main>
   );
 }

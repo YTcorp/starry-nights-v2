@@ -23,7 +23,7 @@
     }
 
     &-Name {
-      color: var(--color-lilac);
+      color: $lilac-2;
       margin: 0.5rem;
       text-align: center;
     }
