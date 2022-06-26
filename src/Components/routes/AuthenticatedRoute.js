@@ -2,9 +2,9 @@ import { Outlet, Navigate } from "react-router-dom";
 
 import { loadStorage } from "../../helpers/localStorage";
 
-const UnauthenticatedRoute = ({ redirectPath = "/", children }) => {
+const UnauthenticatedRoute = ({ redirectPath = "/login", children }) => {
   const isConnected = loadStorage("user_connected");
-  if (!isConnected) {
+  if (isConnected !== "true") {
     return <Navigate to={redirectPath} />;
   }
 

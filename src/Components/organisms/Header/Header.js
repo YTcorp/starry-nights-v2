@@ -22,6 +22,7 @@ export default function Header() {
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log(isConnected);
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
@@ -115,14 +116,14 @@ export default function Header() {
               />
             )}
 
-            {!isConnected &&
+            {isConnected !== "true" &&
               menuNotConnected.map((menu) => {
                 return (
                   <LiElement key={menu.id} data={menu} funcMenu={closeMenu} />
                 );
               })}
 
-            {isConnected &&
+            {isConnected === "true" &&
               menuConnected.map((menu) => {
                 return (
                   <LiElement

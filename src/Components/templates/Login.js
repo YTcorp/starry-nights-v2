@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../API/authService";
 import { fetchUserFavoritesConstellations } from "../../API/userService";
-import { getProfileUser } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Login() {
@@ -20,9 +19,10 @@ export default function Login() {
 
   useEffect(() => {
     if (isConnected === "true") {
-      navigate("/");
       dispatch(fetchUserFavoritesConstellations());
-      dispatch(getProfileUser());
+      navigate("/");
+    } else {
+      navigate("/login");
     }
   }, [isConnected, navigate, dispatch]);
 
