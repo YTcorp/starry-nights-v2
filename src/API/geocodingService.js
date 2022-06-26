@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axios";
+import { api } from "../utils/axios";
 
 export const fetchLocation = createAsyncThunk(
   "address/getOneAddressLocation",
   async (address, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/geocoding/forward/", {
+      const { data } = await api.get("/geocoding/forward/", {
         params: { address: address.address },
       });
       const result = {

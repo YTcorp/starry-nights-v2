@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axios";
-import { login } from "../helpers/login";
+import { api, api_restricted } from "../utils/axios";
 
 export const registerUser = createAsyncThunk(
   "signup/postWithFirstName-LastName-Email-Pass",
   async ({ firstname, lastname, email, password }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/user/", {
+      const { data } = await api.post("/user/", {
         firstname,
         lastname,
         email,
@@ -23,15 +22,12 @@ export const loginUser = createAsyncThunk(
   "auth/postByEmail-Pass",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      return await axios
+      return await api_restricted
         .post("/user/login", {
           email,
           password,
         })
         .then((res) => {
-          if (res.status === 200) {
-            login(res);
-          }
           return res.data;
         });
     } catch (error) {

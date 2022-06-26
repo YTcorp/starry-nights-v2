@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axios";
+import { api } from "../utils/axios";
 
 export const fetchRandomMyth = createAsyncThunk(
   "myth/getOneRandomMyth",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/myth/random");
+      const { data } = await api.get("/myth/random");
       return { data: data };
     } catch (error) {
       return rejectWithValue(error.response.data.message);

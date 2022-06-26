@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axios";
-import { authHeader } from "../helpers/authHeader";
-import { response401 } from "../helpers/response401";
+import { api_restricted } from "../utils/axios";
 import { logout } from "../helpers/logout";
 import { saveState } from "../helpers/localStorage";
 
@@ -9,16 +7,12 @@ export const logoutUser = createAsyncThunk(
   "user/logoutUser",
   async (_, { rejectWithValue }) => {
     try {
-      return await axios
-        .get("/user/logout", { headers: authHeader() })
-        .then((res) => {
-          if (res.status === 200) {
-            logout();
-          }
-          return res.data;
-        });
+      return await api_restricted.get("/user/logout").then((res) => {
+        logout();
+        return res.data;
+      });
     } catch (error) {
-      response401(error);
+      console.log("logout error:", error);
       rejectWithValue(error.response.data);
     }
   }
@@ -29,16 +23,11 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     console.log("on FetchFavsConsts");
     try {
-      return await axios
-        .get("/constellation/favorite", {
-          headers: authHeader(),
-        })
-        .then((res) => {
-          saveState("favs_consts", res.data);
-          return res.data;
-        });
+      return await api_restricted.get("/constellation/favorite").then((res) => {
+        saveState("favs_consts", res.data);
+        return res.data;
+      });
     } catch (error) {
-      response401(error);
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -48,16 +37,14 @@ export const postUserFavoriteConstellation = createAsyncThunk(
   "user/postNewFavoriteUserConstellation",
   async ({ constellation_id }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
-        "/constellation/favorite",
-        { constellation_id },
-        {
-          headers: authHeader(),
-        }
-      );
-      return { data: data };
+      const { data } = await api_restricted
+        .post("/constellation/favorite", {
+          constellation_id,
+        })
+        .then((res) => {
+          return { data: data };
+        });
     } catch (error) {
-      response401(error);
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -67,12 +54,11 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
   "user/deleteOneFavoriteUserConstellation",
   async ({ id }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/constellation/favorite/${id}`, {
-        headers: authHeader(),
-      });
+      const { data } = await api_restricted.delete(
+        `/constellation/favorite/${id}`
+      );
       return { data: data };
     } catch (error) {
-      response401(error);
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -82,15 +68,12 @@ export const getProfileUser = createAsyncThunk(
   "user/getProfileUser",
   async (_, { rejectWithValue }) => {
     try {
-      return await axios
-        .get("/user/", { headers: authHeader() })
-        .then((res) => {
-          saveState("user_details", res.data);
-          return res.data;
-        });
+      return await api_restricted.get("/user/").then((res) => {
+        console.log("on getUser");
+        saveState("user_details", res.data);
+        return res.data;
+      });
     } catch (error) {
-      response401(error);
-      console.log(error);
       rejectWithValue(error.response.data);
     }
   }
