@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useWindowSize } from "react-use";
 import classnames from "classnames";
@@ -11,7 +11,6 @@ import {
 import menuConnected from "../../../assets/data/menuConnected.json";
 import menuNotConnected from "../../../assets/data/menuNotConnected.json";
 import menuHeaderNav from "../../../assets/data/menuHeaderNav.json";
-import Anchor from "../../atoms/Anchor/Anchor";
 import HeaderLogo from "../../atoms/LogoHeader/LogoHeader";
 import SearchBar from "../../organisms/SearchBar/SearchBar";
 import LiElement from "../../molecules/LiElement/LiElement";
@@ -22,7 +21,6 @@ export default function Header() {
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(isConnected);
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
@@ -66,7 +64,9 @@ export default function Header() {
           "Container-strech": mediumLarge || miniLarge,
         })}
       >
-        <Anchor url="/" content={<HeaderLogo />} />
+        <NavLink to="/">
+          <HeaderLogo />
+        </NavLink>
 
         {miniLarge ? (
           <SearchBar

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes as RoutesContainer,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import UnauthenticatedRoute from "./UnauthenticatedRoute";
 import AuthenticatedRoute from "./AuthenticatedRoute";
@@ -17,12 +12,12 @@ import ConstellationsPage from "../templates/ConstellationsPage";
 import Footer from "../organisms/Footer/Footer";
 import NotFound from "../templates/NotFound";
 
-const Routes = () => {
+const Router = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Header />
 
-      <RoutesContainer>
+      <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/constellations" element={<ConstellationsPage />} />
 
@@ -40,11 +35,11 @@ const Routes = () => {
         <Route path="/notfound" element={<NotFound />} />
 
         <Route path="*" element={<Navigate to="/notfound" />} />
-      </RoutesContainer>
+      </Routes>
 
       <Footer />
-    </Router>
+    </BrowserRouter>
   );
 };
 
-export default Routes;
+export default Router;

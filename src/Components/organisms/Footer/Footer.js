@@ -1,6 +1,5 @@
 import React from "react";
 import Section from "../../molecules/Section/Section";
-import Anchor from "../../atoms/Anchor/Anchor";
 import sectionFooterDescription from "../../../assets/data/sectionFooterDescription.json";
 import sectionFooterPlan from "../../../assets/data/sectionFooterPlan.json";
 
@@ -21,17 +20,21 @@ export default function Footer() {
           />
           <p className="Footer-Bottom">
             Cette application a été dévéloppée grâce à la librairie
-            <Anchor
+            <a
               target="_blank"
-              url="https://github.com/ofrohn/d3-celestial"
-              content=" D3-Celestial "
-            />
+              rel="noreferrer"
+              href="https://github.com/ofrohn/d3-celestial"
+            >
+              D3-Celestial
+            </a>
             d'
-            <Anchor
+            <a
               target="_blank"
-              url="https://twitter.com/olaffrohn"
-              content="Olaf Frohn"
-            />
+              rel="noreferrer"
+              href="https://twitter.com/olaffrohn"
+            >
+              Olaf Frohn
+            </a>
           </p>
         </div>
       </main>

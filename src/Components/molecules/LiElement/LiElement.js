@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { setModalContent } from "../../../store/features/modalSlice";
-import Anchor from "../..//atoms/Anchor/Anchor";
 import { loadStorage } from "../../../helpers/localStorage";
 
 export default function LiElement(props) {
@@ -31,12 +31,13 @@ export default function LiElement(props) {
       }}
     >
       {typeof props.data.url !== "undefined" ? (
-        <Anchor
-          url={`/${
+        <NavLink
+          to={`/${
             props.data.url ? props.data.url : props.data.name.toLowerCase()
           }`}
-          content={props.data.name}
-        />
+        >
+          {props.data.name}
+        </NavLink>
       ) : props.children ? (
         props.children.length > 1 ? (
           props.children.map((element) => element)
