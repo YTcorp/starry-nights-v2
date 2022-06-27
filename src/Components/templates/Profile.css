@@ -20,6 +20,7 @@
         @media screen and (max-width: 780px) {
           font-size: 0.8em;
         }
+
         @media screen and (max-width: 670px) {
           grid-template-rows: 1fr 1fr;
           grid-template-columns: 1fr;
