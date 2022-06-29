@@ -1,38 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { loadStorage } from "../../helpers/localStorage";
+import { getProfileUser } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const { detailsLoading } = useSelector((state) => state.userData);
-  const userDetails = loadStorage("user_details");
-
-  const { firstname, lastname, email, notification } = userDetails || undefined;
-
-  useEffect(() => {
-    if (firstname === undefined) {
-      navigate("/");
-      // setFirstname(firstname);
-      // setLastname(lastname);
-      // setEmail(email);
-      // setNotification(notification);
-    }
-  }, [firstname, navigate, userDetails]);
-
+  const { isConnected } = useSelector((state) => state.login);
+  const { detailsLoading, userDetails } = useSelector(
+    (state) => state.userData
+  );
   const [editionMode, setEditionMode] = useState(false);
-  // const [firstname, setFirstname] = useState("");
-  // const [lastname, setLastname] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [notification, setNotification] = useState(false);
   const [inputFirstname, setInputFirstname] = useState("");
   const [inputLastname, setInputLastname] = useState("");
   const [inputEmail, setInputEmail] = useState("");
-  const [inputNotification, setInputNotification] = useState(notification);
+  const [inputNotification, setInputNotification] = useState(false);
+  const dispatch = useDispatch();
 
-  console.log(inputNotification);
+  useEffect(() => {
+    console.log("on profile", isConnected);
+    if (isConnected) {
+      dispatch(getProfileUser());
+    } else {
+      navigate("/login");
+    }
+  }, [isConnected, navigate, dispatch]);
+
+  useEffect(() => {
+    console.log(userDetails);
+    if (userDetails !== undefined) {
+      const { firstname, lastname, email, notification } = userDetails;
+      setInputFirstname(firstname);
+      setInputLastname(lastname);
+      setInputEmail(email);
+      setInputNotification(notification);
+    }
+  }, [navigate, userDetails]);
 
   const toggleEditionMode = (e) => {
     e.preventDefault();
@@ -64,13 +67,13 @@ export default function Profile() {
                   autoComplete="off"
                   className="Input profile-details profile-details__data"
                   id="firstname"
-                  value={firstname}
+                  value={inputFirstname}
                   onChange={({ target }) => setInputFirstname(target.value)}
-                  placeholder={firstname}
+                  placeholder={inputFirstname}
                 />
               ) : (
                 <p className="profile-details profile-details__text">
-                  {firstname}
+                  {inputFirstname}
                 </p>
               )}
             </fieldset>
@@ -83,13 +86,13 @@ export default function Profile() {
                   className="Input profile-details profile-details__data"
                   id="lastname"
                   autoComplete="off"
-                  value={lastname}
+                  value={inputLastname}
                   onChange={({ target }) => setInputLastname(target.value)}
-                  placeholder={lastname}
+                  placeholder={inputLastname}
                 />
               ) : (
                 <p className="profile-details profile-details__text">
-                  {lastname}
+                  {inputLastname}
                 </p>
               )}
             </fieldset>
@@ -102,12 +105,14 @@ export default function Profile() {
                   className="Input profile-details profile-details__data"
                   id="email"
                   autoComplete="off"
-                  value={email}
+                  value={inputEmail}
                   onChange={({ target }) => setInputEmail(target.value)}
-                  placeholder={email}
+                  placeholder={inputEmail}
                 />
               ) : (
-                <p className="profile-details profile-details__text">{email}</p>
+                <p className="profile-details profile-details__text">
+                  {inputEmail}
+                </p>
               )}
             </fieldset>
             <fieldset className="Fieldset profile-fields">
@@ -125,7 +130,7 @@ export default function Profile() {
                 />
               ) : (
                 <p className="profile-details profile-details__text">
-                  {notification && notification.toString()}
+                  {inputNotification && inputNotification.toString()}
                 </p>
               )}
             </fieldset>

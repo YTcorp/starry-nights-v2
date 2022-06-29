@@ -1,10 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
-
-import { loadStorage } from "../../helpers/localStorage";
+import { useSelector } from "react-redux";
 
 const UnauthenticatedRoute = ({ redirectPath = "/login", children }) => {
-  const isConnected = loadStorage("user_connected");
-  if (isConnected !== "true") {
+  const { isConnected } = useSelector((state) => state.login);
+  if (!isConnected) {
     return <Navigate to={redirectPath} />;
   }
 

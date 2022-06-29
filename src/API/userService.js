@@ -4,7 +4,6 @@ import { api } from "../utils/axios";
 export const logoutUser = createAsyncThunk(
   "user/logoutUser",
   async (_, { rejectWithValue, getState }) => {
-    console.log("on logout");
     const token = getState().login.token;
     try {
       return await api
@@ -15,7 +14,6 @@ export const logoutUser = createAsyncThunk(
           return res.data;
         });
     } catch (error) {
-      console.log("logout error:", error);
       rejectWithValue(error.response.data);
     }
   }
@@ -25,7 +23,6 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
   "user/getAllFavoritesUserConstellations",
   async (_, { rejectWithValue, getState }) => {
     const token = getState().login.token;
-    console.log("on favConstellations", token);
     try {
       return await api
         .get("/constellation/favorite", {
@@ -44,7 +41,6 @@ export const postUserFavoriteConstellation = createAsyncThunk(
   "user/postNewFavoriteUserConstellation",
   async ({ constellation_id }, { rejectWithValue, getState }) => {
     const token = getState().login.token;
-    console.log("on postfav", token, constellation_id);
     try {
       const { data } = await api.post(
         "/constellation/favorite",
@@ -55,10 +51,8 @@ export const postUserFavoriteConstellation = createAsyncThunk(
           headers: { authorization: token },
         }
       );
-      console.log(data);
       return { data: data };
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -67,7 +61,6 @@ export const postUserFavoriteConstellation = createAsyncThunk(
 export const deleteUserFavoriteConstellation = createAsyncThunk(
   "user/deleteOneFavoriteUserConstellation",
   async ({ id }, { rejectWithValue, getState }) => {
-    console.log("on deletefav");
     const token = getState().login.token;
     try {
       const { data } = await api.delete(`/constellation/favorite/${id}`, {
@@ -83,7 +76,6 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
 export const getProfileUser = createAsyncThunk(
   "user/getProfileUser",
   async (_, { rejectWithValue, getState }) => {
-    console.log("on getProfile");
     const token = getState().login.token;
     try {
       return await api

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useWindowSize } from "react-use";
 import classnames from "classnames";
 import {
@@ -17,7 +17,8 @@ import LiElement from "../../molecules/LiElement/LiElement";
 import { logoutUser } from "../../../API/userService";
 
 export default function Header() {
-  const isConnected = localStorage.getItem("user_connected");
+  const { isConnected } = useSelector((state) => state.login);
+  console.log("on Header", isConnected);
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -116,23 +117,27 @@ export default function Header() {
               />
             )}
 
-            {isConnected !== "true" &&
+            {!isConnected &&
               menuNotConnected.map((menu) => {
                 return (
                   <LiElement key={menu.id} data={menu} funcMenu={closeMenu} />
                 );
               })}
 
-            {isConnected === "true" &&
+            {isConnected &&
               menuConnected.map((menu) => {
                 return (
                   <LiElement
                     key={menu.id}
                     data={menu}
-                    funcMenu={() => {
-                      closeMenu();
-                      disconnectUser();
-                    }}
+                    funcMenu={
+                      menu.code === "logout"
+                        ? () => {
+                            closeMenu();
+                            disconnectUser();
+                          }
+                        : closeMenu
+                    }
                   />
                 );
               })}
