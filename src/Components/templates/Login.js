@@ -1,29 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../API/authService";
-import { fetchUserFavoritesConstellations } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Login() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const { loading, errMssg, isConnected } = useSelector((state) => state.login);
-
-  useEffect(() => {
-    if (isConnected) {
-      dispatch(fetchUserFavoritesConstellations());
-      navigate("/");
-    } else {
-      navigate("/login");
-    }
-  }, [isConnected, navigate, dispatch]);
+  const { loading, errMssg } = useSelector((state) => state.login);
 
   useEffect(() => {
     errMssg && setErrorMessage(errMssg);

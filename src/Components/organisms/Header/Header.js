@@ -18,7 +18,6 @@ import { logoutUser } from "../../../API/userService";
 
 export default function Header() {
   const { isConnected } = useSelector((state) => state.login);
-  console.log("on Header", isConnected);
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
