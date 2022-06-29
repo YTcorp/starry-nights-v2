@@ -24,8 +24,8 @@ export const logoutUser = createAsyncThunk(
 export const fetchUserFavoritesConstellations = createAsyncThunk(
   "user/getAllFavoritesUserConstellations",
   async (_, { rejectWithValue, getState }) => {
-    console.log("on FetchFavsConsts");
     const token = getState().login.token;
+    console.log("on favConstellations", token);
     try {
       return await api
         .get("/constellation/favorite", {
@@ -43,20 +43,22 @@ export const fetchUserFavoritesConstellations = createAsyncThunk(
 export const postUserFavoriteConstellation = createAsyncThunk(
   "user/postNewFavoriteUserConstellation",
   async ({ constellation_id }, { rejectWithValue, getState }) => {
-    console.log("on postfav");
     const token = getState().login.token;
+    console.log("on postfav", token, constellation_id);
     try {
       const { data } = await api.post(
         "/constellation/favorite",
         {
-          constellation_id,
+          constellation_id: constellation_id,
         },
         {
           headers: { authorization: token },
         }
       );
+      console.log(data);
       return { data: data };
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.response.data.message);
     }
   }

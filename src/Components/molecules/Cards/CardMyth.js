@@ -4,7 +4,6 @@ import { AiOutlineCloseCircle as CloseIcon } from "react-icons/ai";
 import { baseURL } from "../../../utils/axios";
 import Title from "../../atoms/Title/Title";
 import Paragraph from "../../atoms/Paragraph/Paragraph";
-import FavHeart from "../../atoms/FavHeart/FavHeart";
 
 export default function CardMyth({ modal, data, funcClose }) {
   // const { loading } = useSelector((state) => state.myth);
@@ -35,7 +34,6 @@ export default function CardMyth({ modal, data, funcClose }) {
             cData={`Selon le mythe d'origine ${data.origin}, ${data.legend}`}
           />
         </div>
-        <FavHeart data={data} />
       </div>
     </div>
   );
