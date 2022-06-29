@@ -14,11 +14,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { loading, errMssg } = useSelector((state) => state.login);
-  const isConnected = localStorage.getItem("user_connected");
+  const { loading, errMssg, isConnected } = useSelector((state) => state.login);
 
   useEffect(() => {
-    if (isConnected === "true") {
+    if (isConnected) {
       dispatch(fetchUserFavoritesConstellations());
       navigate("/");
     } else {
