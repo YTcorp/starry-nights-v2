@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api, api_restricted } from "../utils/axios";
+import { api } from "../utils/axios";
 
 export const registerUser = createAsyncThunk(
   "signup/postWithFirstName-LastName-Email-Pass",
@@ -22,13 +22,17 @@ export const loginUser = createAsyncThunk(
   "auth/postByEmail-Pass",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      return await api_restricted
+      return await api
         .post("/user/login", {
           email,
           password,
         })
         .then((res) => {
-          return res.data;
+          console.log("on login");
+          if (res.status === 200) {
+            const token = res.headers.authorization.match(/Bearer\s(.*)/)[1];
+            return { token };
+          }
         });
     } catch (error) {
       return rejectWithValue(error.response.data.message);

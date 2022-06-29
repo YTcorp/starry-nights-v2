@@ -7,7 +7,7 @@ const loginSlice = createSlice({
   initialState: {
     loading: false,
     isConnected: false,
-    token: {},
+    token: "",
     errMssg: "",
   },
   reducers: {},
@@ -19,7 +19,7 @@ const loginSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.isConnected = true;
-      state.token = payload;
+      state.token = payload.token;
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
