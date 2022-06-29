@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "../../API/authService";
-import { logoutUser } from "../../API/userService";
 
 const loginSlice = createSlice({
   name: "login",
@@ -21,13 +20,10 @@ const loginSlice = createSlice({
       state.isConnected = true;
       state.token = payload.token;
     },
-    [loginUser.rejected]: (state, { payload }) => {
+    [loginUser.rejected]: (state) => {
       state.loading = false;
       state.isConnected = false;
       state.errMssg = {};
-    },
-    [logoutUser.fulfilled]: (state, initialState) => {
-      state = initialState;
     },
   },
 });

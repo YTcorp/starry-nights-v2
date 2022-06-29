@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchUserFavoritesConstellations,
   getProfileUser,
+  logoutUser,
 } from "../../API/userService";
 
 const userDataSlice = createSlice({
