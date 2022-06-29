@@ -1,8 +1,9 @@
 // import { logout } from "./logout";
 
 const onRequest = (config) => {
-  const token = JSON.parse(localStorage.getItem("user_auth"));
-  console.log("on interceptors request, token: ", token);
+  console.log("on interceptors request: ", config);
+  let storageData = localStorage.getItem("user_auth");
+  const token = JSON.parse(storageData);
   if (token) {
     config.headers["Authorization"] = `Bearer ${token.token_user}`;
   }
@@ -15,14 +16,14 @@ const onRequestError = (error) => {
 };
 
 const onResponse = (response) => {
+  console.log("on interceptors response:", response);
   let token = response.headers.authorization;
   if (token) {
-    token = JSON.stringify({
-      token_user: response.headers.authorization.match(/Bearer\s(.*)/)[1],
+    const stringToken = JSON.stringify({
+      token_user: token.match(/Bearer\s(.*)/)[1],
     });
+    localStorage.setItem("user_auth", stringToken);
   }
-  console.log("on interceptors response, token: ", token);
-  localStorage.setItem("user_auth", token);
   return response;
 };
 

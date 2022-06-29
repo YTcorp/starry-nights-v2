@@ -24,3 +24,4 @@ yarn-error.log*
 
 # other
 *.txt
+headers.js

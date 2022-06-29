@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchUserFavoritesConstellations,
   getProfileUser,
+  patchProfileUser,
+  logoutUser,
 } from "../../API/userService";
 
 const userDataSlice = createSlice({
@@ -25,6 +27,7 @@ const userDataSlice = createSlice({
       state.favLoading = true;
     },
     [fetchUserFavoritesConstellations.fulfilled]: (state, { payload }) => {
+      console.log("on slice", payload);
       state.favLoading = false;
       state.favConstellations = payload;
     },
@@ -44,6 +47,18 @@ const userDataSlice = createSlice({
       state.detailsLoading = false;
       state.detailsSuccess = false;
       state.errMssg = payload;
+    },
+    [patchProfileUser.pending]: (state) => {
+      state.detailsLoading = true;
+    },
+    [patchProfileUser.rejected]: (state, { payload }) => {
+      console.log(payload);
+      state.detailsLoading = false;
+      state.detailsSuccess = false;
+      state.errMssg = payload;
+    },
+    [logoutUser.fulfilled]: (state, initialState) => {
+      state = initialState;
     },
   },
 });

@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+// import { throttle } from "lodash";
 
-import authMiddleware from "./features/authMiddleware";
+// import { loadState, saveState } from "../helpers/localStorage";
+// import authMiddleware from "./features/authMiddleware";
 import loginSlice from "./features/loginSlice";
 import signupSlice from "./features/signupSlice";
 import constellationSlice from "./features/constellationSlice";
@@ -9,6 +11,7 @@ import userDataSlice from "./features/userDataSlice";
 import modalSlice from "./features/modalSlice";
 import addressSlice from "./features/addressSlice";
 
+// const persistedState = loadState();
 const store = configureStore({
   reducer: {
     login: loginSlice.reducer,
@@ -19,8 +22,17 @@ const store = configureStore({
     modal: modalSlice,
     address: addressSlice,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(authMiddleware),
+  // persistedState,
 });
+
+// store.subscribe(
+//   throttle(() => {
+//     saveState({
+//       newFavConst: store.getState().userData.favConstellations,
+//     });
+//   }, 1000)
+// );
 
 export default store;

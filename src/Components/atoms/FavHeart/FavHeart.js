@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cloneDeep } from "lodash";
 import {
   AiFillHeart as FullHeart,
@@ -10,14 +10,16 @@ import {
   deleteUserFavoriteConstellation,
 } from "../../../API/userService";
 import { setFavoritesConstellations } from "../../../store/features/userDataSlice";
-import { loadStorage } from "../../../helpers/localStorage";
 
 export default function FavHeart({ data }) {
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
-  const isConnected = localStorage.getItem("user_connected");
-  const favConstellations = loadStorage("favs_consts");
+  const { isConnected } = useSelector((state) => state.login);
+  // const isConnected = token.login;
+
+  const { favConstellations } = useSelector((state) => state.userData);
   useEffect(() => {
+    console.log("on favheart", data.favorite, data);
     setIsFavorite(data.favorite);
   }, [data]);
 

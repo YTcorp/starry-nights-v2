@@ -7,7 +7,7 @@ const loginSlice = createSlice({
   initialState: {
     loading: false,
     isConnected: false,
-    okMssg: "",
+    token: {},
     errMssg: "",
   },
   reducers: {},
@@ -15,21 +15,22 @@ const loginSlice = createSlice({
     // we can change our state cause reduxjs already uses Immer to handle immutable states
     [loginUser.pending]: (state) => {
       state.loading = true;
+      state.isConnected = false;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.isConnected = true;
-      state.okMssg = payload.login;
+      state.token = payload;
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
       state.isConnected = false;
       state.errMssg = payload;
     },
-    [logoutUser.fulfilled]: (state, { payload }) => {
+    [logoutUser.fulfilled]: (state) => {
       state.loading = false;
       state.isConnected = false;
-      state.data = payload;
+      state.token = {};
     },
   },
 });

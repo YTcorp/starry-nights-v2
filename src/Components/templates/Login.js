@@ -15,16 +15,17 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { loading, errMssg } = useSelector((state) => state.login);
-  const isConnected = localStorage.getItem("user_connected");
+  const { isConnected } = useSelector((state) => state.login);
 
   useEffect(() => {
-    if (isConnected === "true") {
+    if (isConnected) {
+      console.log("connected on login");
       dispatch(fetchUserFavoritesConstellations());
       navigate("/");
     } else {
       navigate("/login");
     }
-  }, [isConnected, navigate, dispatch]);
+  }, [isConnected, dispatch, navigate]);
 
   useEffect(() => {
     errMssg && setErrorMessage(errMssg);

@@ -12,7 +12,7 @@
         "name": "Mes constellations"
     },
     {
-        "id": 6,
+        "id": "logout",
         "liclass": "Header-Menu-Item",
         "name": "Se déconnecter"
     }

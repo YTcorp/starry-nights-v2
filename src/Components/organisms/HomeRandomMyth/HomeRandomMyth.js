@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { isEmpty } from "lodash";
 
 import ArrowDown from "../../atoms/ArrowDown/ArrowDown";
 import CardMyth from "../../molecules/Cards/CardMyth";
@@ -15,9 +16,7 @@ export default function HomeRandomMyth() {
   return (
     <section id="Myth" className="Section Myth">
       <h2 className="Section-Title">Retrouvez les mythes</h2>
-      {Object.keys(randomMyth).length > 0 && (
-        <CardMyth modal={false} data={randomMyth} />
-      )}
+      {!isEmpty(randomMyth) && <CardMyth modal={false} data={randomMyth} />}
       <ArrowDown href="#Map" />
     </section>
   );

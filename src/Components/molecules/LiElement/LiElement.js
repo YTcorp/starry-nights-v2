@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setModalContent } from "../../../store/features/modalSlice";
-import { loadStorage } from "../../../helpers/localStorage";
 
 export default function LiElement(props) {
   const dispatch = useDispatch();
-  const favConstellations = loadStorage("favs_consts");
+  const { favConstellations } = useSelector((state) => state.userData);
 
   let handleData;
   if (props.data.img_url !== undefined) {
