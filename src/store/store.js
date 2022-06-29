@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import authMiddleware from "./features/authMiddleware";
+// import authMiddleware from "./features/authMiddleware";
 import loginSlice from "./features/loginSlice";
 import signupSlice from "./features/signupSlice";
 import constellationSlice from "./features/constellationSlice";
@@ -19,8 +19,8 @@ const store = configureStore({
     modal: modalSlice,
     address: addressSlice,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(authMiddleware),
 });
 
 export default store;

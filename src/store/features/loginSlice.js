@@ -7,7 +7,7 @@ const loginSlice = createSlice({
   initialState: {
     loading: false,
     isConnected: false,
-    okMssg: "",
+    token: {},
     errMssg: "",
   },
   reducers: {},
@@ -19,17 +19,15 @@ const loginSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.isConnected = true;
-      state.okMssg = payload.login;
+      state.token = payload;
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
       state.isConnected = false;
-      state.errMssg = payload;
+      state.errMssg = {};
     },
-    [logoutUser.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.isConnected = false;
-      state.data = payload;
+    [logoutUser.fulfilled]: (state, initialState) => {
+      state = initialState;
     },
   },
 });
