@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfileUser } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
+import { getProfileUser, patchProfileUser } from "../../API/userService";
+import EyeIcon from "../atoms/EyeIcon/EyeIcon";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export default function Profile() {
   const [inputLastname, setInputLastname] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputNotification, setInputNotification] = useState(false);
+  const [inputPassword, setInputPassword] = useState("");
+  const [showType, setShowType] = useState(false);
 
   useEffect(() => {
     dispatch(getProfileUser());
@@ -33,13 +36,33 @@ export default function Profile() {
     setEditionMode(!editionMode);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e);
-  };
-
   const toggleNotificaton = () => {
     setInputNotification(!inputNotification);
+  };
+
+  const toggleShowType = () => {
+    console.log(showType);
+    setShowType(!showType);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(
+      inputFirstname,
+      inputLastname,
+      inputEmail,
+      inputPassword,
+      inputNotification
+    );
+    dispatch(
+      patchProfileUser({
+        inputFirstname,
+        inputLastname,
+        inputEmail,
+        inputPassword,
+        inputNotification,
+      })
+    );
   };
 
   return (
@@ -125,6 +148,22 @@ export default function Profile() {
                 </p>
               )}
             </fieldset>
+            {editionMode && (
+              <fieldset className="Fieldset profile-fields">
+                <label htmlFor="password" className="Label profile-details">
+                  Password :
+                </label>
+                <input
+                  className="Input profile-details profile-details__data"
+                  id="password"
+                  type={!showType ? "password" : "text"}
+                  autoComplete="off"
+                  onChange={({ target }) => setInputPassword(target.value)}
+                  placeholder="*******"
+                />
+                <EyeIcon funcClic={toggleShowType} showState={showType} />
+              </fieldset>
+            )}
           </div>
           <div className="Form-Buttons">
             {editionMode ? (
