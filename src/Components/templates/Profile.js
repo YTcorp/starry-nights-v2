@@ -1,41 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { getProfileUser } from "../../API/userService";
 import Spinner from "../atoms/Spinner/Spinner";
 
 export default function Profile() {
-  const navigate = useNavigate();
-  const { isConnected } = useSelector((state) => state.login);
+  const dispatch = useDispatch();
   const { detailsLoading, userDetails } = useSelector(
     (state) => state.userData
   );
+  const { firstname, lastname, email, notification } = userDetails;
   const [editionMode, setEditionMode] = useState(false);
   const [inputFirstname, setInputFirstname] = useState("");
   const [inputLastname, setInputLastname] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputNotification, setInputNotification] = useState(false);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("on profile", isConnected);
-    if (isConnected) {
-      dispatch(getProfileUser());
-    } else {
-      navigate("/login");
-    }
-  }, [isConnected, navigate, dispatch]);
+    dispatch(getProfileUser());
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log(userDetails);
-    if (userDetails !== undefined) {
-      const { firstname, lastname, email, notification } = userDetails;
+    if (userDetails) {
       setInputFirstname(firstname);
       setInputLastname(lastname);
       setInputEmail(email);
       setInputNotification(notification);
     }
-  }, [navigate, userDetails]);
+  }, [email, firstname, lastname, notification, userDetails]);
 
   const toggleEditionMode = (e) => {
     e.preventDefault();
@@ -130,7 +121,7 @@ export default function Profile() {
                 />
               ) : (
                 <p className="profile-details profile-details__text">
-                  {inputNotification && inputNotification.toString()}
+                  {inputNotification ? inputNotification.toString() : "false"}
                 </p>
               )}
             </fieldset>

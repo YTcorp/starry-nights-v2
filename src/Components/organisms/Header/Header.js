@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useWindowSize } from "react-use";
 import classnames from "classnames";
@@ -20,7 +20,6 @@ export default function Header() {
   const { isConnected } = useSelector((state) => state.login);
   const { width } = useWindowSize();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
@@ -44,8 +43,7 @@ export default function Header() {
   const closeMenu = () => {
     setMenuOpened(false);
   };
-  const disconnectUser = () => {
-    navigate("/");
+  const disconnectUser = async () => {
     dispatch(logoutUser());
   };
 

@@ -28,9 +28,7 @@ export const loginUser = createAsyncThunk(
           password,
         })
         .then((res) => {
-          console.log("on login");
           if (res.status === 200) {
-            // const token = res.headers.authorization.match(/Bearer\s(.*)/)[1];
             const token = res.headers.authorization;
             return { token };
           }
