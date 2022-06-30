@@ -90,3 +90,37 @@ export const getProfileUser = createAsyncThunk(
     }
   }
 );
+
+export const patchProfileUser = createAsyncThunk(
+  "user/modifyProfileUser",
+  async (
+    { firstname, lastname, email, password, notification },
+    { rejectWithValue, getState }
+  ) => {
+    console.log("on patchUser");
+    const token = getState().login.token;
+    try {
+      return await api
+        .patch(
+          "/user/",
+          {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            oldPassword: password,
+            notification: notification,
+          },
+          {
+            headers: { authorization: token },
+          }
+        )
+        .then((res) => {
+          console.log("on patchUser", res);
+          return res.data;
+        });
+    } catch (error) {
+      console.log(error);
+      rejectWithValue(error.response.data);
+    }
+  }
+);
