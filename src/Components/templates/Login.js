@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import InputPwd from "../molecules/Input/InputPwd";
 import { loginUser } from "../../API/authService";
 import Spinner from "../atoms/Spinner/Spinner";
 
@@ -39,7 +39,7 @@ export default function Login() {
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             type="email"
-            placeholder="spaceman@universe.com"
+            placeholder="user@email.com"
             required
           />
         </fieldset>
@@ -48,16 +48,7 @@ export default function Login() {
           <label className="Label" htmlFor="password">
             Mot de passe
           </label>
-          <input
-            autoComplete="off"
-            className="Input"
-            id="password"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-            type="password"
-            placeholder="********"
-            required
-          />
+          <InputPwd onChange={setPassword} />
         </fieldset>
 
         <button type="submit" className="Button" disabled={loading}>
