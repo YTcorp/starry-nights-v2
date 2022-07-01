@@ -6,6 +6,7 @@ import EyeIcon from "../atoms/EyeIcon/EyeIcon";
 
 export default function Profile() {
   const dispatch = useDispatch();
+
   const { detailsLoading, userDetails } = useSelector(
     (state) => state.userData
   );
@@ -41,7 +42,7 @@ export default function Profile() {
   };
 
   const toggleShowType = () => {
-    console.log(showType);
+    console.log("showType", showType);
     setShowType(!showType);
   };
 
@@ -149,19 +150,21 @@ export default function Profile() {
               )}
             </fieldset>
             {editionMode && (
-              <fieldset className="Fieldset profile-fields">
+              <fieldset className="Fieldset profile-fields profile-fields__pwd">
                 <label htmlFor="password" className="Label profile-details">
                   Password :
                 </label>
-                <input
-                  className="Input profile-details profile-details__data"
-                  id="password"
-                  type={!showType ? "password" : "text"}
-                  autoComplete="off"
-                  onChange={({ target }) => setInputPassword(target.value)}
-                  placeholder="*******"
-                />
-                <EyeIcon funcClic={toggleShowType} showState={showType} />
+                <div className="input-icon-wrapper">
+                  <input
+                    className="Input profile-details profile-details__data profile-details__data-pwd"
+                    id="password"
+                    type={!showType ? "password" : "text"}
+                    autoComplete="off"
+                    onChange={({ target }) => setInputPassword(target.value)}
+                    placeholder="*******"
+                  />
+                  <EyeIcon onClick={toggleShowType} showType={showType} />
+                </div>
               </fieldset>
             )}
           </div>

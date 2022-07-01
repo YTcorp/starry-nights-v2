@@ -16,8 +16,8 @@ export default function FavHeart({ data }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { isConnected } = useSelector((state) => state.login);
   const { favConstellations } = useSelector((state) => state.userData);
+
   useEffect(() => {
-    console.log("on favheart", data.favorite, data);
     setIsFavorite(data.favorite);
   }, [data]);
 

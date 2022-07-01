@@ -1,7 +1,5 @@
 .Profile {
   .Block {
-    /* height: 471px; */
-
     @media screen and (max-width: 500px) {
       .Form-Buttons {
         flex-wrap: wrap;
@@ -16,10 +14,7 @@
         grid-template-columns: 30% 1fr;
         align-items: center;
         height: 43px;
-
-        @media screen and (max-width: 780px) {
-          font-size: 0.8em;
-        }
+        font-size: 1.2rem;
 
         @media screen and (max-width: 670px) {
           grid-template-rows: 1fr 1fr;
@@ -73,6 +68,9 @@
           color: $lilac-li;
           font-size: 0.8rem;
         }
+      }
+      &-details {
+        white-space: nowrap;
       }
     }
 

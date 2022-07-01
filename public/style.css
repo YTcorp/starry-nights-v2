@@ -264,7 +264,6 @@ body {
     font-size: 2rem;
   }
 }
-/* height: 471px; */
 @media screen and (max-width: 500px) {
       .Profile .Block .Form-Buttons {
         flex-wrap: wrap;
@@ -278,12 +277,8 @@ body {
         grid-template-columns: 30% 1fr;
         align-items: center;
         height: 43px;
+        font-size: 1.2rem;
       }
-@media screen and (max-width: 780px) {
-.Profile .Block .profile-fields {
-          font-size: 0.8em
-      }
-        }
 @media screen and (max-width: 670px) {
 .Profile .Block .profile-fields {
           grid-template-rows: 1fr 1fr;
@@ -332,6 +327,9 @@ body {
           color: #e5dff8;
           font-size: 0.8rem;
         }
+.Profile .Block .profile-details {
+        white-space: nowrap;
+      }
 .Profile .Block .Form-Buttons {
       max-width: 70%;
       display: flex;
@@ -1208,3 +1206,12 @@ circle {
 .Detail-Favorite--favorited {
       color: #9f98ca;
     }
+.input-icon-wrapper {
+  position: relative;
+}
+.input-icon-wrapper .Icon-pwd {
+    color: #2f1e61;
+    position: absolute;
+    top: 30%;
+    right: 10px;
+  }

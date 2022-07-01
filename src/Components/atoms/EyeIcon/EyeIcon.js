@@ -1,13 +1,13 @@
 import React from "react";
 import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 
-export default function EyeIcon({ funcClic, showState }) {
+export default function EyeIcon({ showType, onClick }) {
   return (
     <>
-      {!showState ? (
-        <RiEyeCloseLine onClick={funcClic} />
+      {!showType ? (
+        <RiEyeCloseLine className="Icon-pwd" onClick={onClick} />
       ) : (
-        <RiEyeLine onClick={funcClic} />
+        <RiEyeLine className="Icon-pwd" onClick={onClick} />
       )}
     </>
   );
