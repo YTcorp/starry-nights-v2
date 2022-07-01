@@ -19,6 +19,7 @@
 /* molecules */
 @import "./molecules/Section/Section.css";
 @import "./molecules/Cards";
+@import "./molecules/Input";
 @import "./molecules/ConstellationsList/ConstellationsList.css";
 
 /* atoms */

@@ -966,6 +966,10 @@ body {
     }
   }
 }
+.input-icon-wrapper {
+    position: relative;
+    width: 100%;
+}
 .Constellations-List {
   max-width: 100%;
   display: grid;
@@ -1206,12 +1210,9 @@ circle {
 .Detail-Favorite--favorited {
       color: #9f98ca;
     }
-.input-icon-wrapper {
-  position: relative;
+.Icon-pwd {
+  color: #2f1e61;
+  position: absolute;
+  top: 30%;
+  right: 10px;
 }
-.input-icon-wrapper .Icon-pwd {
-    color: #2f1e61;
-    position: absolute;
-    top: 30%;
-    right: 10px;
-  }
