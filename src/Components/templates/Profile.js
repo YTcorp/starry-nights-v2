@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../atoms/Spinner/Spinner";
 import { getProfileUser, patchProfileUser } from "../../API/userService";
-import EyeIcon from "../atoms/EyeIcon/EyeIcon";
+import InputPwd from "../molecules/Input/InputPwd";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ export default function Profile() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputNotification, setInputNotification] = useState(false);
   const [inputPassword, setInputPassword] = useState("");
-  const [showType, setShowType] = useState(false);
 
   useEffect(() => {
     dispatch(getProfileUser());
@@ -39,11 +38,6 @@ export default function Profile() {
 
   const toggleNotificaton = () => {
     setInputNotification(!inputNotification);
-  };
-
-  const toggleShowType = () => {
-    console.log("showType", showType);
-    setShowType(!showType);
   };
 
   const handleSubmit = (e) => {
@@ -154,17 +148,10 @@ export default function Profile() {
                 <label htmlFor="password" className="Label profile-details">
                   Password :
                 </label>
-                <div className="input-icon-wrapper">
-                  <input
-                    className="Input profile-details profile-details__data profile-details__data-pwd"
-                    id="password"
-                    type={!showType ? "password" : "text"}
-                    autoComplete="off"
-                    onChange={({ target }) => setInputPassword(target.value)}
-                    placeholder="*******"
-                  />
-                  <EyeIcon onClick={toggleShowType} showType={showType} />
-                </div>
+                <InputPwd
+                  onChange={setInputPassword}
+                  className="profile-details profile-details__data profile-details__data-pwd"
+                />
               </fieldset>
             )}
           </div>
