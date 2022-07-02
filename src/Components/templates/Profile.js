@@ -42,22 +42,16 @@ export default function Profile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      inputFirstname,
-      inputLastname,
-      inputEmail,
-      inputPassword,
-      inputNotification
-    );
     dispatch(
       patchProfileUser({
-        inputFirstname,
-        inputLastname,
-        inputEmail,
-        inputPassword,
-        inputNotification,
+        firstname: inputFirstname,
+        lastname: inputLastname,
+        email: inputEmail,
+        password: inputPassword,
+        notification: inputNotification,
       })
     );
+    setEditionMode(false);
   };
 
   return (

@@ -35,6 +35,7 @@ const userDataSlice = createSlice({
     },
     [getProfileUser.pending]: (state) => {
       state.detailsLoading = true;
+      state.detailsSuccess = false;
     },
     [getProfileUser.fulfilled]: (state, { payload }) => {
       state.detailsLoading = false;

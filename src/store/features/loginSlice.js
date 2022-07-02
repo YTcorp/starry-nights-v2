@@ -20,10 +20,10 @@ const loginSlice = createSlice({
       state.isConnected = true;
       state.token = payload.token;
     },
-    [loginUser.rejected]: (state) => {
+    [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
       state.isConnected = false;
-      state.errMssg = {};
+      state.errMssg = payload;
     },
   },
 });

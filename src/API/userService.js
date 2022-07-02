@@ -97,27 +97,22 @@ export const patchProfileUser = createAsyncThunk(
     { firstname, lastname, email, password, notification },
     { rejectWithValue, getState }
   ) => {
-    console.log("on patchUser");
     const token = getState().login.token;
     try {
-      return await api
-        .patch(
-          "/user/",
-          {
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            oldPassword: password,
-            notification: notification,
-          },
-          {
-            headers: { authorization: token },
-          }
-        )
-        .then((res) => {
-          console.log("on patchUser", res);
-          return res.data;
-        });
+      const { data } = await api.patch(
+        "/user/",
+        {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          oldPassword: password,
+          notification: notification,
+        },
+        {
+          headers: { authorization: token },
+        }
+      );
+      return { data: data };
     } catch (error) {
       console.log(error);
       rejectWithValue(error.response.data);
