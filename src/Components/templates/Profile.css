@@ -50,15 +50,15 @@
 
             &::before {
               content: "";
-              width: 0.64em;
-              height: 0.64em;
+              width: 0.6em;
+              height: 0.6em;
               transform: scale(0);
               transition: 120ms transform ease-in-out;
               box-shadow: inset 1em 1em $grey-blue;
             }
 
             &:checked::before {
-              transform: scale(1.5);
+              transform: scale(1.3);
             }
           }
         }

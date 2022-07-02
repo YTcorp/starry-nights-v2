@@ -313,14 +313,14 @@ body {
           }
 .Profile .Block .profile-fields .Input[type="checkbox"]::before {
               content: "";
-              width: 0.64em;
-              height: 0.64em;
+              width: 0.6em;
+              height: 0.6em;
               transform: scale(0);
               transition: 120ms transform ease-in-out;
               box-shadow: inset 1em 1em rgb(52, 53, 94);
             }
 .Profile .Block .profile-fields .Input[type="checkbox"]:checked::before {
-              transform: scale(1.5);
+              transform: scale(1.3);
             }
 .Profile .Block .profile-fields p {
           padding: 12px;
@@ -1182,6 +1182,7 @@ body {
   }
 }
 [data-testid] {
+  z-index: 1;
   height: 100px;
   width: 100px;
   position: absolute;

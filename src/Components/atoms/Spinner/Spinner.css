@@ -1,6 +1,7 @@
 @import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 [data-testid] {
+  z-index: 1;
   height: 100px;
   width: 100px;
   position: absolute;
