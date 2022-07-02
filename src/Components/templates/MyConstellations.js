@@ -1,13 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BiTrash } from "react-icons/bi";
+
 import LiElement from "../molecules/LiElement/LiElement";
 import Spinner from "../atoms/Spinner/Spinner";
+import {
+  deleteUserFavoriteConstellation,
+  fetchUserFavoritesConstellations,
+} from "../../API/userService";
 
 export default function MyConstellations() {
+  const dispatch = useDispatch();
   const { favConstellations, favLoading } = useSelector(
     (state) => state.userData
   );
+
+  function deleteFavConstellation(id) {
+    dispatch(deleteUserFavoriteConstellation({ id: id }));
+    dispatch(fetchUserFavoritesConstellations());
+  }
 
   return (
     <main className="Main MyConstellations">
@@ -31,6 +42,7 @@ export default function MyConstellations() {
                 <BiTrash
                   key={`myconstellation-icon-${favConstellation.id}`}
                   className="myconstellation-icon"
+                  onClick={() => deleteFavConstellation(favConstellation.id)}
                 />
               </div>
             );
