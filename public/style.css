@@ -244,6 +244,71 @@ body {
 .card404 strong {
     font-size: 4rem;
   }
+.myconstellation {
+  color: #c0b6dc;
+}
+.myconstellation-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 0 25%;
+  }
+.myconstellation-title {
+    padding: 0.7rem 0;
+    color: #9f98ca;
+    font-weight: 500;
+    grid-column: span 2;
+  }
+@media screen and (max-width: 630px) {
+.myconstellation-title {
+      font-size: 1rem
+  }
+    }
+@media screen and (max-width: 480px) {
+.myconstellation-title {
+      color: transparent
+  }
+    }
+.myconstellation-inner-container {
+    grid-column: span 4;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+@media screen and (max-width: 480px) {
+.myconstellation-inner-container {
+      flex-direction: column;
+      padding-bottom: 1.2rem
+  }
+
+      .myconstellation-inner-container .myconstellation-element {
+        padding-bottom: 0.4rem;
+      }
+    }
+.myconstellation-element {
+    transition: text-shadow 0.6s ease;
+    cursor: pointer;
+  }
+.myconstellation-element:hover {
+    color: #c0b6dc;
+    text-shadow: #c0b6dc 1px 0.5px 4px;
+  }
+.myconstellation-element {
+    padding: 0.5rem 0;
+    width: 50%;
+    text-align: center;
+}
+.myconstellation-icon {
+    transition: filter 0.5s ease;
+  }
+.myconstellation-icon:hover {
+    filter: drop-shadow(0 0 0.2rem #c0b6dc);
+  }
+.myconstellation-icon {
+    width: 50%;
+}
 .Login .Form,
 .Signup .Form {
   position: relative;

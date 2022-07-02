@@ -1,6 +1,7 @@
 /* templates */
 @import "./templates/Homepage.css";
 @import "./templates/NotFound.css";
+@import "./templates/MyConstellations.css";
 @import "./templates/LoginSignup.css";
 @import "./templates/Pages.css";
 @import "./templates/Profile.css";
