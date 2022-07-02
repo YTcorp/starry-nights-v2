@@ -6,7 +6,7 @@ import signupSlice from "./features/signupSlice";
 import constellationSlice from "./features/constellationSlice";
 import mythSlice from "./features/mythSlice";
 import userDataSlice from "./features/userDataSlice";
-import modalSlice from "./features/modalSlice";
+import showSlice from "./features/showSlice";
 import addressSlice from "./features/addressSlice";
 
 const combineReducer = combineReducers({
@@ -15,7 +15,7 @@ const combineReducer = combineReducers({
   constellation: constellationSlice.reducer,
   myth: mythSlice.reducer,
   userData: userDataSlice,
-  modal: modalSlice,
+  show: showSlice,
   address: addressSlice,
 });
 

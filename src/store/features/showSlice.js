@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const modalSlice = createSlice({
-  name: "modal",
+const showSlice = createSlice({
+  name: "show",
   initialState: {
     isOpenModal: false,
     dataModal: [],
+    isOpenMenu: false,
   },
   reducers: {
     setModalContent(state, action) {
@@ -16,7 +17,14 @@ const modalSlice = createSlice({
     closeModal(state) {
       state.isOpenModal = false;
     },
+    openMenu(state) {
+      state.isOpenMenu = true;
+    },
+    closeMenu(state) {
+      state.isOpenMenu = false;
+    },
   },
 });
-export const { setModalContent, openModal, closeModal } = modalSlice.actions;
-export default modalSlice.reducer;
+export const { setModalContent, openModal, closeModal, openMenu, closeMenu } =
+  showSlice.actions;
+export default showSlice.reducer;

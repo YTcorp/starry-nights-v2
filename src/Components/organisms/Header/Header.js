@@ -15,11 +15,13 @@ import HeaderLogo from "../../atoms/LogoHeader/LogoHeader";
 import SearchBar from "../../organisms/SearchBar/SearchBar";
 import LiElement from "../../molecules/LiElement/LiElement";
 import { logoutUser } from "../../../API/userService";
+import { openMenu, closeMenu } from "../../../store/features/showSlice";
 
 export default function Header() {
-  const { isConnected } = useSelector((state) => state.login);
-  const { width } = useWindowSize();
   const dispatch = useDispatch();
+  const { isConnected } = useSelector((state) => state.login);
+  const { isOpenMenu } = useSelector((state) => state.show);
+  const { width } = useWindowSize();
 
   const [mediumLarge, setMediumLarge] = useState(false);
   const [miniLarge, setMiniLarge] = useState(false);
@@ -36,12 +38,12 @@ export default function Header() {
     }
   }, [width]);
 
-  const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
-    setMenuOpened(!menuOpened);
+    isOpenMenu ? dispatch(closeMenu()) : dispatch(openMenu());
   };
-  const closeMenu = () => {
-    setMenuOpened(false);
+
+  const dispatchCloseMenu = () => {
+    dispatch(closeMenu());
   };
   const disconnectUser = async () => {
     dispatch(logoutUser());
@@ -90,7 +92,7 @@ export default function Header() {
             <ul>{<LiElement data={menuHeaderNav[0]} />}</ul>
           </nav>
         )}
-        <nav onClick={toggleMenu} onBlur={closeMenu} className="Header-Menu">
+        <nav onClick={toggleMenu} className="Header-Menu">
           {mediumLarge || miniLarge ? (
             <IconHamburger className="Header-Menu-Toggle" />
           ) : (
@@ -100,10 +102,9 @@ export default function Header() {
               })}
             />
           )}
-
           <ul
             className={classnames("Header-Menu-Container", {
-              "Header-Menu-Container--opened": menuOpened,
+              "Header-Menu-Container--opened": isOpenMenu,
             })}
           >
             {(mediumLarge || miniLarge) && (
@@ -117,7 +118,11 @@ export default function Header() {
             {!isConnected &&
               menuNotConnected.map((menu) => {
                 return (
-                  <LiElement key={menu.id} data={menu} funcMenu={closeMenu} />
+                  <LiElement
+                    key={menu.id}
+                    data={menu}
+                    funcMenu={dispatchCloseMenu}
+                  />
                 );
               })}
 
@@ -130,10 +135,10 @@ export default function Header() {
                     funcMenu={
                       menu.code === "logout"
                         ? () => {
-                            closeMenu();
+                            dispatchCloseMenu();
                             disconnectUser();
                           }
-                        : closeMenu
+                        : dispatchCloseMenu
                     }
                   />
                 );
