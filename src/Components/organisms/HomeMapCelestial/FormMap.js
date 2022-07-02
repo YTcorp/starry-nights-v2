@@ -10,7 +10,7 @@ import {
 } from "../../../store/features/addressSlice";
 
 export default function FormMap() {
-  const isConnected = localStorage.getItem("user_connected");
+  const { isConnected } = useSelector((state) => state.login);
   const { address, location, date } = useSelector((state) => state.address);
   const dispatch = useDispatch();
   const getUserLocation = () => {
