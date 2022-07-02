@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { isEmpty } from "lodash";
 
 import { registerUser } from "../../API/authService";
 import Spinner from "../atoms/Spinner/Spinner";
@@ -57,7 +58,7 @@ const Signup = () => {
       <h1 className="Title Page-Title">Inscription</h1>
 
       <form onSubmit={handleSubmit} className="Form Block Block--small">
-        {errorMessage.length > 0 && <p className="Error">{errorMessage}</p>}
+        {!isEmpty(errorMessage) && <p className="Error">{errorMessage}</p>}
         {loading && <Spinner />}
         <fieldset className="Fieldset">
           <label className="Label" htmlFor="lastname">

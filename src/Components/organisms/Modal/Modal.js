@@ -5,6 +5,7 @@ import { isEmpty } from "lodash";
 
 import { setModalContent } from "../../../store/features/showSlice";
 import CardConstellation from "../../molecules/Cards/CardConstellation";
+import CardForm from "../../molecules/Cards/CardForm";
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function Modal() {
     }
   }, [dataModal]);
 
-  if (dataModal === undefined || dataModal === null || dataModal.length === 0) {
+  if (dataModal === undefined || dataModal === null || isEmpty(dataModal)) {
     document.querySelector("html").classList.remove("no-scroll");
     return null;
   }
@@ -30,7 +31,7 @@ export default function Modal() {
       dispatch(setModalContent(null));
     }, 200);
   };
-
+  console.log(dataModal);
   return (
     <div
       className={classNames("Modal", {
@@ -42,11 +43,15 @@ export default function Modal() {
         }
       }}
     >
-      <CardConstellation
-        modal={true}
-        funcClose={handleClose}
-        data={dataModal}
-      />
+      {dataModal.favorite !== undefined && (
+        <CardConstellation
+          modal={true}
+          funcClose={handleClose}
+          data={dataModal}
+        />
+      )}
+
+      {dataModal.address !== undefined && <CardForm />}
     </div>
   );
 }

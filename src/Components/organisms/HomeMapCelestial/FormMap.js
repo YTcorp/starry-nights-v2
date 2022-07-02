@@ -8,9 +8,11 @@ import {
   setDate,
   setLocationError,
 } from "../../../store/features/addressSlice";
+import { setModalContent } from "../../../store/features/showSlice";
 
 export default function FormMap() {
-  const { isConnected } = useSelector((state) => state.login);
+  // const { isConnected } = useSelector((state) => state.login);
+  const isConnected = true;
   const { address, location, date } = useSelector((state) => state.address);
   const dispatch = useDispatch();
   const getUserLocation = () => {
@@ -44,6 +46,11 @@ export default function FormMap() {
         longitude: result.longitude,
       })
     );
+  };
+
+  const setPlace = () => {
+    console.log("on Set Place", address, location);
+    dispatch(setModalContent({ address: address, location: location }));
   };
 
   return (
@@ -89,7 +96,7 @@ export default function FormMap() {
         </button>
         {isConnected && (
           <>
-            <button className="Map-Form-Favorite Button">
+            <button className="Map-Form-Favorite Button" onClick={setPlace}>
               Enregistrer un lieu
             </button>
             <button className="Map-Form-Event Button">
