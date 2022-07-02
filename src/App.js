@@ -19,9 +19,16 @@ function App() {
     }
   };
 
+  const chechMobileNavBlur = (e) => {
+    if (e.type === "touchmove") {
+      dispatch(closeMenu());
+    }
+  };
+
   return (
     <div
       onClick={isOpenMenu ? (e) => checkNavBlur(e) : undefined}
+      onTouchMove={isOpenMenu ? (e) => chechMobileNavBlur(e) : undefined}
       className="App"
     >
       <Router />
