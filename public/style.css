@@ -192,57 +192,58 @@ body {
   margin-right: auto;
   padding: 0 1rem;
 }
-#tsparticles {
-  /* //   overflow: hidden;
-  //   position: absolute;
-  //   top: 0px;
-  //   bottom: 0px;
-  //   left: 0px;
-  //   right: 0px;
-  //   z-index: 0; */
-  height: 100vh;
-}
 .NotFound {
-  margin: 0 5rem;
   display: flex;
   align-items: center;
 }
-.card404 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 4.7rem;
-  font-weight: 500;
-  color: #9f98ca;
-  letter-spacing: 0.12rem;
-  text-shadow: #9f98ca 1px 0.5px 4px;
-  text-align: center;
-  width: calc(100% - 1rem);
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  -webkit-backdrop-filter: blur(12px);
-          backdrop-filter: blur(12px);
-  border: 1px solid rgba(107, 85, 185, 0.299);
-  border-bottom: 1px solid rgb(144 134 181 / 18%);
-  box-shadow: 2px 8px 25px 0 rgba(17, 2, 42, 0.843);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 60rem;
-  background: linear-gradient(
+.NotFound .card404 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 4.7rem;
+    font-weight: 500;
+    color: #9f98ca;
+    letter-spacing: 0.12rem;
+    text-shadow: #9f98ca 1px 0.5px 4px;
+    text-align: center;
+    width: calc(100% - 1rem);
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+    border: 1px solid rgba(107, 85, 185, 0.299);
+    border-bottom: 1px solid rgb(144 134 181 / 18%);
+    box-shadow: 2px 8px 25px 0 rgba(17, 2, 42, 0.843);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 60rem;
+    background: linear-gradient(
   180deg,
   rgba(255, 255, 255, 0.1),
   rgba(255, 255, 255, 0)
 );
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
-  font-size: 3rem;
-  padding: 5rem;
-  z-index: 1;
-}
-.card404 strong {
-    font-size: 4rem;
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(9px);
+            backdrop-filter: blur(9px);
+    font-size: 3rem;
+    padding: 5rem;
+    z-index: 1;
+  }
+.NotFound .card404 strong {
+      font-size: 4rem;
+    }
+@media screen and (max-width: 370px) {
+.NotFound .card404 {
+      font-size: 2rem
+  }
+
+      .NotFound .card404 strong {
+        font-size: 3rem;
+      }
+    }
+.NotFound ~ .Footer {
+    background-color: #05092f;
   }
 .myconstellation {
   color: #c0b6dc;
@@ -867,6 +868,11 @@ body {
 }
 .Footer-Sections .Plan * {
         text-align: left;
+      }
+@media screen and (max-width: 360px) {
+.Footer-Sections .Plan {
+        margin-bottom: 2rem
+    }
       }
 .Footer-Bottom {
     background-color: rgba(255, 255, 255, 0.1);

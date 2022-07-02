@@ -36,6 +36,10 @@
       & * {
         text-align: left;
       }
+
+      @media screen and (max-width: 360px) {
+        margin-bottom: 2rem;
+      }
     }
   }
 
