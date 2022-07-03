@@ -3,7 +3,6 @@ import Input from "./Input";
 import EyeIcon from "../../atoms/EyeIcon/EyeIcon";
 
 export default function InputIcon(props) {
-  //   console.log(props);
   const [showTypePassword, setShowTypePassword] = useState(false);
 
   const toggleShowType = () => {

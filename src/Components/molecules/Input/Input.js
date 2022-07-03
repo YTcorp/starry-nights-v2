@@ -4,15 +4,6 @@ import classNames from "classnames";
 export default function Input(props) {
   const { className, id, onChange, type, placeholder, required, defaultValue } =
     props;
-  //   console.log(
-  //     className,
-  //     id,
-  //     onChange,
-  //     type,
-  //     placeholder,
-  //     required,
-  //     defaultValue
-  //   );
   return (
     <input
       autoComplete="off"

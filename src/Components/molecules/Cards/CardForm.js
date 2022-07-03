@@ -32,7 +32,6 @@ export default function CardForm({ modal, data, funcClose }) {
 
   useEffect(() => {
     if (dataReady) {
-      console.log("ready to flyyyyyy", inputName, inputAddress);
       dispatch(saveFavoritePlace({ name: inputName, address: inputAddress }));
       dispatch(setModalContent(null));
       setDataReady(false);
@@ -60,7 +59,6 @@ export default function CardForm({ modal, data, funcClose }) {
     }
   };
 
-  console.log(data);
   return (
     <>
       {modal && (
