@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import EyeIcon from "../../atoms/EyeIcon/EyeIcon";
-import classNames from "classnames";
+import Input from "./Input";
 
-export default function InputPwd({ onChange, className }) {
+export default function InputPwd(props) {
   const [showType, setShowType] = useState(false);
 
   const toggleShowType = () => {
-    console.log("showType", showType);
     setShowType(!showType);
   };
 
   return (
     <div className="input-icon-wrapper">
-      <input
-        autoComplete="off"
-        className={classNames("Input", className)}
+      <Input
+        {...props}
         id="password"
-        onChange={({ target }) => onChange(target.value)}
         type={!showType ? "password" : "text"}
-        placeholder="*******"
-        required
+        required={true}
       />
       <EyeIcon onClick={toggleShowType} showType={showType} />
     </div>
