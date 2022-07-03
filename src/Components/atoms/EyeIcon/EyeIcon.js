@@ -5,9 +5,9 @@ export default function EyeIcon({ showType, onClick }) {
   return (
     <>
       {!showType ? (
-        <RiEyeCloseLine className="Icon-pwd" onClick={onClick} />
+        <RiEyeCloseLine className="Icon-input" onClick={onClick} />
       ) : (
-        <RiEyeLine className="Icon-pwd" onClick={onClick} />
+        <RiEyeLine className="Icon-input" onClick={onClick} />
       )}
     </>
   );

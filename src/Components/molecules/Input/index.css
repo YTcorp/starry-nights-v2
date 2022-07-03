@@ -1,4 +1,21 @@
 .input-icon-wrapper {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
+
+  .Input {
+    padding-right: 2.2rem;
+  }
+
+  .Icon-input {
+    @mixin svg;
+    @mixin link;
+    color: $violet;
+    position: absolute;
+    top: 30%;
+    right: 10px;
+
+    &:hover {
+      color: $violet-li;
+    }
+  }
 }
