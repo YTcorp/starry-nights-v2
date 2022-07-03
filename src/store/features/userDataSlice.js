@@ -18,6 +18,7 @@ const userDataSlice = createSlice({
     errMssg: "",
     favPlaceLoading: false,
     favPlaces: [],
+    errPlace: "",
   },
   reducers: {
     setFavoritesConstellations(state, action) {
@@ -53,12 +54,12 @@ const userDataSlice = createSlice({
     [saveFavoritePlace.pending]: (state) => {
       state.favPlaceLoading = true;
     },
-    [saveFavoritePlace.fulfilled]: (state, { payload }) => {
+    [saveFavoritePlace.fulfilled]: (state) => {
       state.favPlaceLoading = false;
     },
     [saveFavoritePlace.rejected]: (state, { payload }) => {
       state.favPlaceLoading = false;
-      state.errMssg = payload;
+      state.errPlace = payload;
     },
     [getAllFavPlaces.pending]: (state) => {
       state.favPlaceLoading = true;

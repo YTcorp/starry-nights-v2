@@ -14,7 +14,7 @@ export const logoutUser = createAsyncThunk(
           return res.data;
         });
     } catch (error) {
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -86,7 +86,7 @@ export const getProfileUser = createAsyncThunk(
           return res.data;
         });
     } catch (error) {
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -114,7 +114,7 @@ export const patchProfileUser = createAsyncThunk(
       );
       return { data: data };
     } catch (error) {
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -129,7 +129,7 @@ export const getAllFavPlaces = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      rejectWithValue(error.reponse.data);
+      return rejectWithValue(error.reponse.data.message);
     }
   }
 );
@@ -146,7 +146,7 @@ export const saveFavoritePlace = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      rejectWithValue(error.reponse.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -161,7 +161,7 @@ export const deleteFavoritePlace = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      rejectWithValue(error.reponse.data);
+      return rejectWithValue(error.reponse.data.message);
     }
   }
 );

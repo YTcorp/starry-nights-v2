@@ -18,6 +18,7 @@ export default function FormMap() {
   const { address, location, loadingLocation, date } = useSelector(
     (state) => state.address
   );
+  const { errPlace } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const getUserLocation = () => {
     dispatch(resetLocation());
@@ -41,7 +42,6 @@ export default function FormMap() {
       );
     }
   };
-
   const apiLocation = async (e) => {
     e.preventDefault();
     const result = dispatch(fetchLocation({ address }));
@@ -64,6 +64,7 @@ export default function FormMap() {
   return (
     <div className="Map-Form-Container">
       <div className="Block Map-Form">
+        {!isEmpty(errPlace) && <p className="Error">{errPlace}</p>}
         <form className="Map-Form-LookAddress">
           <input
             autoComplete="off"

@@ -1,3 +1,10 @@
+# 0.1.4 (2022-07-03)
+
+- added My Profile and My Places (WIP)
+- handled global state logout
+- fix on mobile bug for header menu
+- removed localStorage for redux states
+
 # 0.1.3 (2022-06-20)
 
 - added Constellations Page

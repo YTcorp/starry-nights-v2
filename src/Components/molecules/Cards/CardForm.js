@@ -16,7 +16,7 @@ export default function CardForm({ modal, data, funcClose }) {
 
   const [inputName, setInputName] = useState("");
   const [inputAddress, setInputAddress] = useState("");
-  const [dataReady, setDataReady] = useState("");
+  const [dataReady, setDataReady] = useState(false);
 
   useEffect(() => {
     if (isEmpty(data.address) && data.location) {
@@ -55,8 +55,8 @@ export default function CardForm({ modal, data, funcClose }) {
     e.preventDefault();
     if (isEmpty(inputAddress)) {
       setInputAddress(setDefaultValue());
-      setDataReady(true);
     }
+    setDataReady(true);
   };
 
   return (
