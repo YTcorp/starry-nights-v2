@@ -9,6 +9,7 @@ import Login from "../templates/Login";
 import Signup from "../templates/Signup";
 import Profile from "../templates/Profile";
 import MyConstellations from "../templates/MyConstellations";
+import MyPlaces from "../templates/MyPlaces";
 import ConstellationsPage from "../templates/ConstellationsPage";
 import Footer from "../organisms/Footer/Footer";
 import NotFound from "../templates/NotFound";
@@ -26,6 +27,7 @@ const Router = () => {
         <Route element={<AuthenticatedRoute redirectPath="/login" />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/mes-constellations" element={<MyConstellations />} />
+          <Route path="/mes-lieux-preferes" element={<MyPlaces />} />
         </Route>
 
         {/* Only non connected Routes */}

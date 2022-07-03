@@ -114,8 +114,22 @@ export const patchProfileUser = createAsyncThunk(
       );
       return { data: data };
     } catch (error) {
-      console.log(error);
       rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getAllFavPlaces = createAsyncThunk(
+  "user/getAllFavoritesPlaces",
+  async (_, { rejectWithValue, getState }) => {
+    const token = getState().login.token;
+    try {
+      const { data } = await api.get("/place/", {
+        headers: { authorization: token },
+      });
+      return data;
+    } catch (error) {
+      rejectWithValue(error.reponse.data);
     }
   }
 );
@@ -124,14 +138,27 @@ export const saveFavoritePlace = createAsyncThunk(
   "user/savePlace",
   async ({ name, address }, { rejectWithValue, getState }) => {
     const token = getState().login.token;
-    console.log("on saveFavPlace", name, address);
     try {
       const { data } = await api.post(
         "/place/",
         { name: name, address: address },
         { headers: { authorization: token } }
       );
-      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.reponse.data);
+    }
+  }
+);
+
+export const deleteFavoritePlace = createAsyncThunk(
+  "user/deletePlace",
+  async ({ id }, { rejectWithValue, getState }) => {
+    const token = getState().login.token;
+    try {
+      const { data } = await api.delete(`/place/${id}`, {
+        headers: { authorization: token },
+      });
       return data;
     } catch (error) {
       rejectWithValue(error.reponse.data);

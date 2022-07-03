@@ -14,6 +14,12 @@
     {
         "id": 6,
         "liclass": "Header-Menu-Item",
+        "url": "mes-lieux-preferes",
+        "name": "Mes lieux préférés"
+    },
+    {
+        "id": "logout",
+        "liclass": "Header-Menu-Item",
         "name": "Se déconnecter",
         "code": "logout"
     }
