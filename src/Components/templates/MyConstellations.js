@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiTrash } from "react-icons/bi";
 import { isEmpty } from "lodash";
@@ -15,10 +15,19 @@ export default function MyConstellations() {
   const { favConstellations, favLoading } = useSelector(
     (state) => state.userData
   );
+  const [flush, setFlush] = useState(false);
+
+  useEffect(() => {
+    if (flush) {
+      dispatch(fetchUserFavoritesConstellations());
+      setFlush(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flush]);
 
   function deleteFavConstellation(id) {
     dispatch(deleteUserFavoriteConstellation({ id: id }));
-    dispatch(fetchUserFavoritesConstellations());
+    setFlush(true);
   }
 
   return (
