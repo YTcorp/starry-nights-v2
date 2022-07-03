@@ -19,7 +19,22 @@ export const fetchLocation = createAsyncThunk(
   }
 );
 
+export const fetchAddress = createAsyncThunk(
+  "address/getOneLocationAddress",
+  async ({ latitude, longitude }, { rejectWithValue }) => {
+    try {
+      const { data } = await api.get(
+        `/geocoding/reverse/?gps=${latitude},${longitude}`
+      );
+      return data[0].label;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const geocodingService = {
   fetchLocation,
+  fetchAddress,
 };
 export default geocodingService;

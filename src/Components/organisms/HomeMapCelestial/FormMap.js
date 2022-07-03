@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocation } from "../../../API/geocodingService";
 import Celestial from "./Celestial";
+import { isEmpty } from "lodash";
 import {
   setAddress,
   setLocation,
@@ -49,8 +50,18 @@ export default function FormMap() {
   };
 
   const setPlace = () => {
-    console.log("on Set Place", address, location);
-    dispatch(setModalContent({ address: address, location: location }));
+    // console.log(
+    //   "on Form map, address et location",
+    //   isEmpty(address),
+    //   address,
+    //   isEmpty(location),
+    //   location
+    // );
+    const addressToSave = isEmpty(address) ? "" : address;
+    const locationToSave = isEmpty(location) ? "" : location;
+    dispatch(
+      setModalContent({ address: addressToSave, location: locationToSave })
+    );
   };
 
   return (
@@ -64,7 +75,7 @@ export default function FormMap() {
             name="address"
             type="text"
             placeholder="1 rue Dupont, 75000 Paris, FRANCE"
-            value={address}
+            defaultValue={address}
             onChange={({ currentTarget }) =>
               dispatch(setAddress(currentTarget.value))
             }

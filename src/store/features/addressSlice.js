@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchLocation } from "../../API/geocodingService";
+import { fetchLocation, fetchAddress } from "../../API/geocodingService";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
@@ -36,6 +36,17 @@ const addressSlice = createSlice({
     [fetchLocation.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.location = payload;
+    },
+    [fetchLocation.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.errMssg = payload;
+    },
+    [fetchLocation.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchAddress.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.address = payload;
     },
     [fetchLocation.rejected]: (state, { payload }) => {
       state.loading = false;
