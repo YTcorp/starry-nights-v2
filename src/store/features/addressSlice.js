@@ -12,6 +12,7 @@ const addressSlice = createSlice({
     loading: false,
     address: [],
     location: [],
+    loadingLocation: false,
     date: now,
     errMssg: false,
   },
@@ -19,8 +20,12 @@ const addressSlice = createSlice({
     setAddress(state, action) {
       state.address = action.payload;
     },
+    resetLocation(state) {
+      state.loadingLocation = true;
+    },
     setLocation(state, action) {
       state.location = action.payload;
+      state.loadingLocation = false;
     },
     setDate(state, action) {
       state.date = action.payload;
@@ -54,6 +59,11 @@ const addressSlice = createSlice({
     },
   },
 });
-export const { setAddress, setLocation, setDate, setLocationError } =
-  addressSlice.actions;
+export const {
+  setAddress,
+  setLocation,
+  resetLocation,
+  setDate,
+  setLocationError,
+} = addressSlice.actions;
 export default addressSlice.reducer;

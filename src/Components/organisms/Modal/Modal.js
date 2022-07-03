@@ -31,7 +31,6 @@ export default function Modal() {
   } else if (dataModal.address !== undefined) {
     cardType = "address";
   }
-  console.log(cardType);
 
   const handleClose = () => {
     setIsOpened(false);
@@ -39,7 +38,6 @@ export default function Modal() {
       dispatch(setModalContent(null));
     }, 200);
   };
-  // console.log("on Modal, data:", dataModal);
   return (
     <div
       className={classNames("Modal", {

@@ -2,23 +2,24 @@ import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineCloseCircle as CloseIcon } from "react-icons/ai";
-import { MdOutlineChangeCircle } from "react-icons/md";
-import InputIcon from "../Input/InputIcon";
 import Input from "../Input/Input";
 import Spinner from "../../atoms/Spinner/Spinner";
 import { fetchAddress } from "../../../API/geocodingService";
-import { setAddress } from "../../../store/features/addressSlice";
+import { saveFavoritePlace } from "../../../API/userService";
+import { setModalContent } from "../../../store/features/showSlice";
 
 export default function CardForm({ modal, data, funcClose }) {
   const dispatch = useDispatch();
-  const { address, loading } = useSelector((state) => state.address);
+  const { address, loading, loadingLocation } = useSelector(
+    (state) => state.address
+  );
+
+  const [inputName, setInputName] = useState("");
   const [inputAddress, setInputAddress] = useState("");
+  const [dataReady, setDataReady] = useState("");
 
   useEffect(() => {
-    console.log("on cardForm, data:", data);
-    console.log("on cardForm, state.address", address);
-    console.log("on cardForm, inputAddress", inputAddress);
-    if (data.location) {
+    if (isEmpty(data.address) && data.location) {
       dispatch(
         fetchAddress({
           latitude: data.location.latitude,
@@ -28,6 +29,16 @@ export default function CardForm({ modal, data, funcClose }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (dataReady) {
+      console.log("ready to flyyyyyy", inputName, inputAddress);
+      dispatch(saveFavoritePlace({ name: inputName, address: inputAddress }));
+      dispatch(setModalContent(null));
+      setDataReady(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataReady]);
 
   const setDefaultValue = () => {
     let defaultValue = "";
@@ -43,9 +54,13 @@ export default function CardForm({ modal, data, funcClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(setAddress({}));
+    if (isEmpty(inputAddress)) {
+      setInputAddress(setDefaultValue());
+      setDataReady(true);
+    }
   };
 
+  console.log(data);
   return (
     <>
       {modal && (
@@ -55,25 +70,23 @@ export default function CardForm({ modal, data, funcClose }) {
         />
       )}
       <form onSubmit={handleSubmit} className="Form Block Block--small">
-        {loading && <Spinner />}
+        {(loading || loadingLocation) && <Spinner />}
         <fieldset className="Fieldset">
           <label htmlFor="name" className="Label">
             Nom de l'endroit :
           </label>
-          <Input id="name" placeholder="Lac de Tikou" />
+          <Input id="name" placeholder="Lac de Tikou" onChange={setInputName} />
         </fieldset>
         <fieldset className="Fieldset">
           <label htmlFor="address" className="Label">
             Addresse :
           </label>
-          <InputIcon
+          <Input
             id="address"
             placeholder="26b rue du Bosquet, 6600, Perpignan, France"
             defaultValue={setDefaultValue()}
             onChange={setInputAddress}
-          >
-            <MdOutlineChangeCircle className="Icon-input Icon-input__change" />
-          </InputIcon>
+          />
         </fieldset>
         <button type="submit" className="Button">
           Enregistrer

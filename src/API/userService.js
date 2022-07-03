@@ -119,3 +119,22 @@ export const patchProfileUser = createAsyncThunk(
     }
   }
 );
+
+export const saveFavoritePlace = createAsyncThunk(
+  "user/savePlace",
+  async ({ name, address }, { rejectWithValue, getState }) => {
+    const token = getState().login.token;
+    console.log("on saveFavPlace", name, address);
+    try {
+      const { data } = await api.post(
+        "/place/",
+        { name: name, address: address },
+        { headers: { authorization: token } }
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.reponse.data);
+    }
+  }
+);

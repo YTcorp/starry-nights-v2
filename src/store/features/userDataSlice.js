@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchUserFavoritesConstellations,
   getProfileUser,
+  saveFavoritePlace,
 } from "../../API/userService";
 
 const userDataSlice = createSlice({
@@ -14,6 +15,8 @@ const userDataSlice = createSlice({
     detailsSuccess: false,
     userDetails: [],
     errMssg: "",
+    favPlaceLoading: false,
+    favPlaces: [],
   },
   reducers: {
     setFavoritesConstellations(state, action) {
@@ -46,7 +49,21 @@ const userDataSlice = createSlice({
       state.detailsSuccess = false;
       state.errMssg = payload;
     },
+    [saveFavoritePlace.pending]: (state) => {
+      state.favPlaceLoading = true;
+    },
+    [saveFavoritePlace.fulfilled]: (state, { payload }) => {
+      state.favPlaceLoading = false;
+    },
+    [saveFavoritePlace.rejected]: (state, { payload }) => {
+      state.favPlaceLoading = false;
+      state.errMssg = payload;
+    },
   },
 });
-export const { setFavoritesConstellations } = userDataSlice.actions;
+export const {
+  setFavoritesConstellations,
+  setLocalFavPlaceName,
+  setLocalFavPlaceAddress,
+} = userDataSlice.actions;
 export default userDataSlice.reducer;

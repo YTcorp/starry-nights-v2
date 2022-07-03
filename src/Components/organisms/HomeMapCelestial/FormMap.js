@@ -6,17 +6,21 @@ import { isEmpty } from "lodash";
 import {
   setAddress,
   setLocation,
+  resetLocation,
   setDate,
   setLocationError,
 } from "../../../store/features/addressSlice";
 import { setModalContent } from "../../../store/features/showSlice";
+import Spinner from "../../atoms/Spinner/Spinner";
 
 export default function FormMap() {
-  // const { isConnected } = useSelector((state) => state.login);
-  const isConnected = true;
-  const { address, location, date } = useSelector((state) => state.address);
+  const { isConnected } = useSelector((state) => state.login);
+  const { address, location, loadingLocation, date } = useSelector(
+    (state) => state.address
+  );
   const dispatch = useDispatch();
   const getUserLocation = () => {
+    dispatch(resetLocation());
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (userPosition) => {
@@ -50,13 +54,6 @@ export default function FormMap() {
   };
 
   const setPlace = () => {
-    // console.log(
-    //   "on Form map, address et location",
-    //   isEmpty(address),
-    //   address,
-    //   isEmpty(location),
-    //   location
-    // );
     const addressToSave = isEmpty(address) ? "" : address;
     const locationToSave = isEmpty(location) ? "" : location;
     dispatch(
@@ -103,6 +100,7 @@ export default function FormMap() {
           className="Map-Form-Geolocation Button"
           onClick={getUserLocation}
         >
+          {loadingLocation && <Spinner />}
           Position actuelle
         </button>
         {isConnected && (
