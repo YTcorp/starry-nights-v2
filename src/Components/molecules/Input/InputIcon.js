@@ -3,13 +3,14 @@ import Input from "./Input";
 import EyeIcon from "../../atoms/EyeIcon/EyeIcon";
 
 export default function InputIcon(props) {
+  //   console.log(props);
   const [showTypePassword, setShowTypePassword] = useState(false);
 
   const toggleShowType = () => {
     setShowTypePassword(!showTypePassword);
   };
 
-  const setTypePlaceholder = () => {
+  const setPwdProps = () => {
     let typePwd = {};
     if (props.id === "password") {
       typePwd.placeholder = "******";
@@ -17,12 +18,6 @@ export default function InputIcon(props) {
         typePwd.type = "password";
       } else {
         typePwd.type = "text";
-      }
-    } else {
-      if (props.type) {
-        typePwd.type = props.type;
-      } else {
-        typePwd.type = undefined;
       }
     }
     return typePwd;
@@ -32,8 +27,8 @@ export default function InputIcon(props) {
     <div className="input-icon-wrapper">
       <Input
         {...props}
-        type={setTypePlaceholder().type}
-        placeholder={setTypePlaceholder().placeholder}
+        type={setPwdProps().type || props.type}
+        placeholder={setPwdProps().placeholder || props.placeholder}
       />
       {props.id === "password" ? (
         <EyeIcon onClick={toggleShowType} showType={showTypePassword} />

@@ -1,9 +1,11 @@
 import { isEmpty } from "lodash";
 import React from "react";
 import { AiOutlineCloseCircle as CloseIcon } from "react-icons/ai";
+import { MdOutlineChangeCircle } from "react-icons/md";
+import InputIcon from "../Input/InputIcon";
 
-export default function CardForm(modal, data, funcClose) {
-  console.log("on cardForm", data);
+export default function CardForm({ modal, data, funcClose }) {
+  // console.log("on cardForm", data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,18 +36,22 @@ export default function CardForm(modal, data, funcClose) {
           <label htmlFor="address" className="Label">
             Addresse :
           </label>
-          <input
-            autoComplete="off"
-            className="Input"
+          <InputIcon
             id="address"
-            value={data.address}
             type="text"
             placeholder={
-              isEmpty(data.address) &&
-              "26b rue du Bosquet, 6600, Perpignan, France"
+              isEmpty(data.address)
+                ? "26b rue du Bosquet, 6600, Perpignan, France"
+                : data.address
             }
-          />
+            defaultValue={data.address}
+          >
+            <MdOutlineChangeCircle className="Icon-input" />
+          </InputIcon>
         </fieldset>
+        <button type="submit" className="Button">
+          Enregistrer
+        </button>
       </form>
     </div>
   );
