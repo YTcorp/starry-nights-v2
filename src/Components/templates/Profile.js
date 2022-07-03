@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../atoms/Spinner/Spinner";
 import { getProfileUser, patchProfileUser } from "../../API/userService";
-import InputPwd from "../molecules/Input/InputPwd";
+import InputIcon from "../molecules/Input/InputIcon";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -142,8 +142,10 @@ export default function Profile() {
                 <label htmlFor="password" className="Label profile-details">
                   Password :
                 </label>
-                <InputPwd
+                <InputIcon
+                  id="password"
                   onChange={setInputPassword}
+                  required={true}
                   className="profile-details profile-details__data profile-details__data-pwd"
                 />
               </fieldset>

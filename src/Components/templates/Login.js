@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import InputPwd from "../molecules/Input/InputPwd";
 import { loginUser } from "../../API/authService";
 import Spinner from "../atoms/Spinner/Spinner";
+import InputIcon from "../molecules/Input/InputIcon";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ export default function Login() {
           <label className="Label" htmlFor="password">
             Mot de passe
           </label>
-          <InputPwd onChange={setPassword} />
+          <InputIcon id="password" onChange={setPassword} required={true} />
         </fieldset>
 
         <button type="submit" className="Button" disabled={loading}>
