@@ -25,13 +25,21 @@ export default function Modal() {
   }
   document.querySelector("html").classList.add("no-scroll");
 
+  let cardType = "";
+  if (dataModal.favorite !== undefined) {
+    cardType = "constellation";
+  } else if (dataModal.address !== undefined) {
+    cardType = "address";
+  }
+  console.log(cardType);
+
   const handleClose = () => {
     setIsOpened(false);
     setTimeout(() => {
       dispatch(setModalContent(null));
     }, 200);
   };
-  console.log(dataModal);
+  // console.log("on Modal, data:", dataModal);
   return (
     <div
       className={classNames("Modal", {
@@ -43,15 +51,24 @@ export default function Modal() {
         }
       }}
     >
-      {dataModal.favorite !== undefined && (
-        <CardConstellation
-          modal={true}
-          funcClose={handleClose}
-          data={dataModal}
-        />
-      )}
+      <div
+        className={classNames(
+          "Block Detail-Block",
+          `Detail-Block__${cardType}`
+        )}
+      >
+        {dataModal.favorite !== undefined && (
+          <CardConstellation
+            modal={true}
+            funcClose={handleClose}
+            data={dataModal}
+          />
+        )}
 
-      {dataModal.address !== undefined && <CardForm />}
+        {dataModal.address !== undefined && (
+          <CardForm modal={true} funcClose={handleClose} data={dataModal} />
+        )}
+      </div>
     </div>
   );
 }

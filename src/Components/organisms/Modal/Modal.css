@@ -37,6 +37,10 @@
         cursor: pointer;
         z-index: 1;
       }
+
+      &__address {
+        height: min-content;
+      }
     }
 
     &-Picture {

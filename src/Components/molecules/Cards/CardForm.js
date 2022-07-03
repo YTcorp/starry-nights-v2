@@ -47,7 +47,7 @@ export default function CardForm({ modal, data, funcClose }) {
   };
 
   return (
-    <div className="Block Detail-Block">
+    <>
       {modal && (
         <CloseIcon
           className="Detail-Block-Modal-Close"
@@ -79,6 +79,6 @@ export default function CardForm({ modal, data, funcClose }) {
           Enregistrer
         </button>
       </form>
-    </div>
+    </>
   );
 }

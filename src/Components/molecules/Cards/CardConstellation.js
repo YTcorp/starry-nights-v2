@@ -7,7 +7,7 @@ import FavHeart from "../../atoms/FavHeart/FavHeart";
 
 export default function cardConstellation({ modal, data, funcClose }) {
   return (
-    <div className="Block Detail-Block">
+    <>
       {modal && (
         <CloseIcon
           className="Detail-Block-Modal-Close"
@@ -73,6 +73,6 @@ export default function cardConstellation({ modal, data, funcClose }) {
         </div>
         <FavHeart data={data} />
       </div>
-    </div>
+    </>
   );
 }
