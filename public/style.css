@@ -245,71 +245,101 @@ body {
 .NotFound ~ .Footer {
     background-color: #05092f;
   }
-.myconstellation {
+.myconstellations,
+.myplaces {
   color: #c0b6dc;
 }
-.myconstellation-container {
+.myconstellations-container, .myplaces-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     align-items: center;
     padding: 0 25%;
   }
-.myconstellation-title {
+@media screen and (max-width: 480px) {
+.myconstellations-container, .myplaces-container {
+      display: block
+  }
+    }
+.myconstellations-title, .myplaces-title {
     padding: 0.7rem 0;
     color: #9f98ca;
     font-weight: 500;
-    grid-column: span 2;
   }
 @media screen and (max-width: 630px) {
-.myconstellation-title {
+.myconstellations-title, .myplaces-title {
       font-size: 1rem
   }
     }
 @media screen and (max-width: 480px) {
-.myconstellation-title {
-      color: transparent
+.myconstellations-title, .myplaces-title {
+      display: none
   }
     }
-.myconstellation-inner-container {
-    grid-column: span 4;
+.myconstellations-inner-container, .myplaces-inner-container {
     display: flex;
     width: 100%;
     justify-content: space-around;
     align-items: center;
   }
 @media screen and (max-width: 480px) {
-.myconstellation-inner-container {
+.myconstellations-inner-container, .myplaces-inner-container {
       flex-direction: column;
       padding-bottom: 1.2rem
   }
-
-      .myconstellation-inner-container .myconstellation-element {
-        padding-bottom: 0.4rem;
-      }
     }
-.myconstellation-element {
+.myconstellations-element, .myplaces-element {
     transition: text-shadow 0.6s ease;
     cursor: pointer;
   }
-.myconstellation-element:hover {
+.myconstellations-element:hover, .myplaces-element:hover {
     color: #c0b6dc;
     text-shadow: #c0b6dc 1px 0.5px 4px;
   }
-.myconstellation-element {
+.myconstellations-element, .myplaces-element {
     padding: 0.5rem 0;
     width: 50%;
     text-align: center;
 }
-.myconstellation-icon {
+.myconstellations-icon, .myplaces-icon {
     transition: filter 0.5s ease;
   }
-.myconstellation-icon:hover {
+.myconstellations-icon:hover, .myplaces-icon:hover {
     filter: drop-shadow(0 0 0.2rem #c0b6dc);
   }
-.myconstellation-icon {
+.myconstellations-icon, .myplaces-icon {
     width: 50%;
 }
+.myplaces-container {
+    padding: 0 15%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+.myplaces-title {
+    grid-column: span 1;
+    text-align: center;
+  }
+.myplaces-inner-container {
+    grid-column: span 3;
+  }
+@media screen and (max-width: 480px) {
+  .myplaces-icon {
+    margin-bottom: 0.3rem;
+  }
+}
+.myconstellations-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+.myconstellations-title {
+    grid-column: span 2;
+  }
+.myconstellations-inner-container {
+    grid-column: span 4;
+  }
+@media screen and (max-width: 480px) {
+      .myconstellations-inner-container .myconstellations-element {
+        padding-bottom: 0.4rem;
+        width: 100%;
+      }
+    }
 .Login .Form,
 .Signup .Form {
   position: relative;
@@ -415,14 +445,12 @@ body {
   opacity: 0.95;
   filter: drop-shadow(0 3px 8px #05092f);
 }
-.Header * {
-    color: #c0b6dc;
-  }
 .Header .Container {
     width: calc(100% - 1rem);
     max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
     height: 100%;
     padding: 0.3% 0;
     display: grid;
@@ -433,7 +461,6 @@ body {
       grid-template-columns: 80px 1fr 30px;
     }
 .Header > .Container a,
-  .Header-Menu,
   .Header-Search {
     display: flex;
   }
@@ -469,6 +496,7 @@ body {
       display: block;
       font-size: 2rem;
       cursor: pointer;
+      color: #c0b6dc;
 }
 .Header-Menu-Toggle__Connected {
         transform: filter 0.5s ease;
@@ -478,26 +506,28 @@ body {
           filter: drop-shadow(0 0 0 #c0b6dc);
         }
 .Header-Menu-Container {
-      display: none;
-      position: fixed;
+      position: absolute;
       flex-direction: column;
-      right: 0;
+      right: -8px;
       top: 70px;
       background-color: rgba(0, 0, 23, 0.35);
       padding: 1rem;
       min-width: 160px;
-      border-radius: 0 0 0 1rem;
+      border-radius: 0 0 1rem 1rem;
       opacity: 0;
-      transform: translateX(100%);
+      transform: translateY(-100%);
       pointer-events: none;
-      transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
-        0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform;
+      transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
+        0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform,
+        0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) color;
+      color: #05092f;
     }
 .Header-Menu-Container--opened {
-        display: flex;
+        display: block;
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
         pointer-events: all;
+        color: #c0b6dc;
       }
 .Header-Menu-Item {
       transition: text-shadow 0.6s ease;

@@ -9,12 +9,9 @@
   opacity: 0.95;
   filter: drop-shadow(0 3px 8px $violet-deep);
 
-  & * {
-    color: $lilac;
-  }
-
   .Container {
     @mixin container;
+    position: relative;
     height: 100%;
     padding: 0.3% 0;
     display: grid;
@@ -25,8 +22,8 @@
       grid-template-columns: 80px 1fr 30px;
     }
   }
+
   & > .Container a,
-  &-Menu,
   &-Search {
     display: flex;
   }
@@ -57,6 +54,7 @@
       display: block;
       font-size: 2rem;
       cursor: pointer;
+      color: $lilac;
 
       &__Connected {
         transform: filter 0.5s ease;
@@ -69,26 +67,28 @@
     }
 
     &-Container {
-      display: none;
-      position: fixed;
+      position: absolute;
       flex-direction: column;
-      right: 0;
+      right: -8px;
       top: 70px;
       background-color: $background-3;
       padding: 1rem;
       min-width: 160px;
-      border-radius: 0 0 0 1rem;
+      border-radius: 0 0 1rem 1rem;
       opacity: 0;
-      transform: translateX(100%);
+      transform: translateY(-100%);
       pointer-events: none;
-      transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
-        0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform;
+      transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) opacity,
+        0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) transform,
+        0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) color;
+      color: $violet-deep;
 
       &--opened {
-        display: flex;
+        display: block;
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
         pointer-events: all;
+        color: $lilac;
       }
     }
 
