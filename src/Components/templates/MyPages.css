@@ -1,0 +1,50 @@
+.myconstellations,
+.myplaces {
+  color: $lilac;
+
+  &-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 0 25%;
+
+    @media screen and (max-width: 480px) {
+      display: block;
+    }
+  }
+
+  &-title {
+    padding: 0.7rem 0;
+    color: $lilac-2;
+    font-weight: 500;
+
+    @media screen and (max-width: 630px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  &-inner-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    @media screen and (max-width: 480px) {
+      flex-direction: column;
+      padding-bottom: 1.2rem;
+    }
+  }
+  &-element {
+    @mixin link;
+    padding: 0.5rem 0;
+    width: 50%;
+    text-align: center;
+  }
+  &-icon {
+    @mixin svg;
+    width: 50%;
+  }
+}

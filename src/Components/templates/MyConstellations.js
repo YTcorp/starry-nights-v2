@@ -31,31 +31,31 @@ export default function MyConstellations() {
   }
 
   return (
-    <main className="Main MyConstellations">
+    <main className="Main">
       <h1 className="Title Page-Title">Mes Constellations</h1>
-      <div className="Block myconstellation">
+      <div className="Block myconstellations">
         {isEmpty(favConstellations) ? (
           <h2 className="Subtitle">Pas de constellations encore !</h2>
         ) : (
           <>
-            <div className="myconstellation-container">
-              <h2 className="myconstellation-title">Ouvrir</h2>
-              <h2 className="myconstellation-title">Effacer</h2>
+            <div className="myconstellations-container">
+              <h2 className="myconstellations-title">Ouvrir</h2>
+              <h2 className="myconstellations-title">Effacer</h2>
               {favLoading && <Spinner />}
               {favConstellations.map((favConstellation) => {
                 return (
                   <div
-                    className="myconstellation-inner-container"
+                    className="myconstellations-inner-container"
                     key={`key-${favConstellation.id}`}
                   >
                     <LiElement
-                      key={`myconstellation-${favConstellation.id}`}
-                      customClass="myconstellation-element"
+                      key={`myconstellations-${favConstellation.id}`}
+                      customClass="myconstellations-element"
                       data={favConstellation}
                     />
                     <BiTrash
-                      key={`myconstellation-icon-${favConstellation.id}`}
-                      className="myconstellation-icon"
+                      key={`myconstellations-icon-${favConstellation.id}`}
+                      className="myconstellations-icon"
                       onClick={() =>
                         deleteFavConstellation(favConstellation.id)
                       }

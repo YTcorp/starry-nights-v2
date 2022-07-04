@@ -1,0 +1,21 @@
+.myplaces {
+  &-container {
+    padding: 0 15%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &-title {
+    grid-column: span 1;
+    text-align: center;
+  }
+
+  &-inner-container {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .myplaces-icon {
+    margin-bottom: 0.3rem;
+  }
+}

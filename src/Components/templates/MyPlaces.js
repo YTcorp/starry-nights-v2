@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BiTrash } from "react-icons/bi";
+import { BiTrash, BiEditAlt } from "react-icons/bi";
 import { isEmpty } from "lodash";
 
 import LiElement from "../molecules/LiElement/LiElement";
@@ -31,31 +31,36 @@ export default function MyPlaces() {
   }
 
   return (
-    <main className="Main MyConstellations">
+    <main className="Main">
       <h1 className="Title Page-Title">Mes Lieux Préférés</h1>
-      <div className="Block myconstellation">
+      <div className="Block myplaces">
         {isEmpty(favPlaces) ? (
           <h2 className="Subtitle">Pas de constellations encore !</h2>
         ) : (
           <>
-            <div className="myconstellation-container">
-              <h2 className="myconstellation-title">Ouvrir</h2>
-              <h2 className="myconstellation-title">Effacer</h2>
+            <div className="myplaces-container">
+              <h2 className="myplaces-title">Ouvrir sur la carte</h2>
+              <h2 className="myplaces-title">Éditer</h2>
+              <h2 className="myplaces-title">Effacer</h2>
               {favPlaceLoading && <Spinner />}
               {favPlaces.map((favPlace) => {
                 return (
                   <div
-                    className="myconstellation-inner-container"
+                    className="myplaces-inner-container"
                     key={`key-${favPlace.id}`}
                   >
                     <LiElement
-                      key={`myconstellation-${favPlace.id}`}
-                      customClass="myconstellation-element"
+                      key={`myplaces-${favPlace.id}`}
+                      customClass="myplaces-element"
                       data={favPlace}
                     />
+                    <BiEditAlt
+                      key={`myplaces-edit-icon-${favPlace.id}`}
+                      className="myplaces-icon"
+                    />
                     <BiTrash
-                      key={`myconstellation-icon-${favPlace.id}`}
-                      className="myconstellation-icon"
+                      key={`myplaces-trash-icon-${favPlace.id}`}
+                      className="myplaces-icon"
                       onClick={() => deleteFavPlace(favPlace.id)}
                     />
                   </div>

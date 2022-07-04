@@ -1,52 +1,18 @@
-.myconstellation {
-  color: $lilac;
-
+.myconstellations {
   &-container {
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    align-items: center;
-    padding: 0 25%;
   }
-
   &-title {
-    padding: 0.7rem 0;
-    color: $lilac-2;
-    font-weight: 500;
     grid-column: span 2;
-
-    @media screen and (max-width: 630px) {
-      font-size: 1rem;
-    }
-    @media screen and (max-width: 480px) {
-      color: transparent;
-    }
   }
-
   &-inner-container {
     grid-column: span 4;
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
 
     @media screen and (max-width: 480px) {
-      flex-direction: column;
-      padding-bottom: 1.2rem;
-
-      .myconstellation-element {
+      .myconstellations-element {
         padding-bottom: 0.4rem;
+        width: 100%;
       }
     }
-  }
-  &-element {
-    @mixin link;
-    padding: 0.5rem 0;
-    width: 50%;
-    text-align: center;
-  }
-  &-icon {
-    @mixin svg;
-    width: 50%;
   }
 }
