@@ -16,12 +16,12 @@ export default function HomeRandomMyth() {
 
   return (
     <section id="Myth" className="Section Myth">
+      <h2 className="Section-Title">Retrouvez les mythes</h2>
       <div className="Block Detail-Block">
         {loading && <Spinner />}
-        <h2 className="Section-Title">Retrouvez les mythes</h2>
         {!isEmpty(randomMyth) && <CardMyth modal={false} data={randomMyth} />}
-        <ArrowDown href="#Map" />
       </div>
+      <ArrowDown href="#Map" />
     </section>
   );
 }
