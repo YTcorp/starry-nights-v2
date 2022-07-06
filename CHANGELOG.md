@@ -1,3 +1,7 @@
+# 0.1.5 (2022-07-03)
+
+- added My Places
+
 # 0.1.4 (2022-07-03)
 
 - added My Profile and My Places (WIP)

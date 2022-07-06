@@ -9,7 +9,7 @@ import Spinner from "../../atoms/Spinner/Spinner";
 export default function CardMyth({ modal, data, funcClose }) {
   if (data.legend) {
     return (
-      <div className="Block Detail-Block">
+      <>
         {modal && (
           <CloseIcon
             className="Detail-Modal-Close"
@@ -43,7 +43,7 @@ export default function CardMyth({ modal, data, funcClose }) {
             />
           </div>
         </div>
-      </div>
+      </>
     );
   } else {
     return <Spinner />;

@@ -5,7 +5,7 @@
   &-container {
     display: grid;
     justify-items: center;
-    align-items: center;
+    align-items: baseline;
     padding: 0 25%;
 
     @media screen and (max-width: 480px) {

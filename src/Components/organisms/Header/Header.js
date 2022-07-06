@@ -94,7 +94,11 @@ export default function Header() {
         )}
         <nav onClick={toggleMenu} className="Header-Menu">
           {mediumLarge || miniLarge ? (
-            <IconHamburger className="Header-Menu-Toggle" />
+            <IconHamburger
+              className={classnames("Header-Menu-Toggle", {
+                "Header-Menu-Toggle__Connected": isConnected,
+              })}
+            />
           ) : (
             <IconLogoUser
               className={classnames("Header-Menu-Toggle", {

@@ -37,6 +37,10 @@ export default function LiElement(props) {
         >
           {props.data.name}
         </NavLink>
+      ) : typeof props.anchor !== "undefined" ? (
+        <a href={props.anchor} onClick={props.onClick}>
+          {props.data.name}
+        </a>
       ) : props.children ? (
         props.children.length > 1 ? (
           props.children.map((element) => element)

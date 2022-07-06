@@ -1,13 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useWindowSize } from "react-use";
 import celestial from "d3-celestial";
 import { defaultConfig, dynamicConfig } from "../../../assets/celestial/config";
 
-export default function Celestial({ latitude, longitude, datetime }) {
+export default function Celestial() {
   let Celestial = celestial.Celestial();
   const { width } = useWindowSize();
   const [celestialConfig, setCelestialConfig] = useState(defaultConfig);
+  const { location, date } = useSelector((state) => state.address);
 
   useEffect(() => {
     Celestial.display(celestialConfig);
@@ -23,10 +25,10 @@ export default function Celestial({ latitude, longitude, datetime }) {
 
   useEffect(() => {
     Celestial.skyview({
-      date: new Date(datetime),
-      location: [latitude, longitude],
+      date: new Date(date),
+      location: [location.latitude, location.longitude],
     });
-  }, [latitude, longitude, datetime, Celestial]);
+  }, [location, date, Celestial]);
 
   return (
     <div className="Map-Interactive Container">

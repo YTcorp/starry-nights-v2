@@ -63,9 +63,12 @@ export const deleteUserFavoriteConstellation = createAsyncThunk(
   async ({ id }, { rejectWithValue, getState }) => {
     const token = getState().login.token;
     try {
-      const { data } = await api.delete(`/constellation/favorite/${id}`, {
-        headers: { authorization: token },
-      });
+      const { data } = await api.delete(
+        `/constellation/favorite/${Number(id)}`,
+        {
+          headers: { authorization: token },
+        }
+      );
       return { data: data };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -129,7 +132,7 @@ export const getAllFavPlaces = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      return rejectWithValue(error.reponse.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -151,17 +154,34 @@ export const saveFavoritePlace = createAsyncThunk(
   }
 );
 
+export const patchFavoritePlace = createAsyncThunk(
+  "user/patchPlace",
+  async ({ id, name, address }, { rejectWithValue, getState }) => {
+    const token = getState().login.token;
+    try {
+      const { data } = await api.patch(
+        `/place/${Number(id)}`,
+        { name: name, address: address },
+        { headers: { authorization: token } }
+      );
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const deleteFavoritePlace = createAsyncThunk(
   "user/deletePlace",
   async ({ id }, { rejectWithValue, getState }) => {
     const token = getState().login.token;
     try {
-      const { data } = await api.delete(`/place/${id}`, {
+      const { data } = await api.delete(`/place/${Number(id)}`, {
         headers: { authorization: token },
       });
       return data;
     } catch (error) {
-      return rejectWithValue(error.reponse.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

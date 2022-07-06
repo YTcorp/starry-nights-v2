@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocation } from "../../../API/geocodingService";
 import Celestial from "./Celestial";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 import {
   setAddress,
   setLocation,
@@ -10,16 +10,27 @@ import {
   setDate,
   setLocationError,
 } from "../../../store/features/addressSlice";
+import { getAllFavPlaces } from "../../../API/userService";
 import { setModalContent } from "../../../store/features/showSlice";
 import Spinner from "../../atoms/Spinner/Spinner";
 
 export default function FormMap() {
+  const dispatch = useDispatch();
   const { isConnected } = useSelector((state) => state.login);
+  // const isConnected = true;
   const { address, location, loadingLocation, date } = useSelector(
     (state) => state.address
   );
+  const { favPlaces, favPlaceLoading } = useSelector((state) => state.userData);
   const { errPlace } = useSelector((state) => state.userData);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isEmpty(favPlaces)) {
+      dispatch(setModalContent({ favPlaces }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favPlaces, dispatch]);
+
   const getUserLocation = () => {
     dispatch(resetLocation());
     if (navigator.geolocation) {
@@ -53,7 +64,7 @@ export default function FormMap() {
     );
   };
 
-  const setPlace = () => {
+  const modalAddPlace = () => {
     const addressToSave = isEmpty(address) ? "" : address;
     const locationToSave = isEmpty(location) ? "" : location;
     dispatch(
@@ -61,10 +72,15 @@ export default function FormMap() {
     );
   };
 
+  const modalMyPlaces = () => {
+    dispatch(getAllFavPlaces());
+  };
+
   return (
     <div className="Map-Form-Container">
       <div className="Block Map-Form">
         {!isEmpty(errPlace) && <p className="Error">{errPlace}</p>}
+        {favPlaceLoading && <Spinner />}
         <form className="Map-Form-LookAddress">
           <input
             autoComplete="off"
@@ -106,19 +122,22 @@ export default function FormMap() {
         </button>
         {isConnected && (
           <>
-            <button className="Map-Form-Favorite Button" onClick={setPlace}>
+            <button
+              className="Map-Form-Favorite Button"
+              onClick={modalAddPlace}
+            >
               Enregistrer un lieu
             </button>
-            <button className="Map-Form-Event Button">
-              Enregistrer un événement
+            <button className="Map-Form-Event Button" onClick={modalMyPlaces}>
+              Consulter mes lieux
             </button>
           </>
         )}
       </div>
       <Celestial
-        latitude={location.latitude}
-        longitude={location.longitude}
-        datetime={date}
+      // latitude={location.latitude}
+      // longitude={location.longitude}
+      // datetime={date}
       />
     </div>
   );

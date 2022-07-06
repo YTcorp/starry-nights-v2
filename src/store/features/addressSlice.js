@@ -17,21 +17,21 @@ const addressSlice = createSlice({
     errMssg: false,
   },
   reducers: {
-    setAddress(state, action) {
-      state.address = action.payload;
+    setAddress(state, { payload }) {
+      state.address = payload;
     },
     resetLocation(state) {
       state.loadingLocation = true;
     },
-    setLocation(state, action) {
-      state.location = action.payload;
+    setLocation(state, { payload }) {
+      state.location = payload;
       state.loadingLocation = false;
     },
-    setDate(state, action) {
-      state.date = action.payload;
+    setDate(state, { payload }) {
+      state.date = payload;
     },
-    setLocationError(state, action) {
-      state.errMssg = action.payload;
+    setLocationError(state, { payload }) {
+      state.errMssg = payload;
     },
   },
   extraReducers: {

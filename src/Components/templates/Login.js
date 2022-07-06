@@ -1,3 +1,4 @@
+import isEmpty from "lodash/isEmpty";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../API/authService";
@@ -26,7 +27,7 @@ export default function Login() {
       <h1 className="Title Page-Title">Connexion</h1>
 
       <form onSubmit={handleSubmit} className="Form Block Block--small">
-        {errorMessage.length > 0 && <p className="Error">{errorMessage}</p>}
+        {!isEmpty(errorMessage) && <p className="Error">{errorMessage}</p>}
         {loading && <Spinner />}
         <fieldset className="Fieldset">
           <label className="Label" htmlFor="email">

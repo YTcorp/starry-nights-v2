@@ -4,6 +4,7 @@ import {
   getProfileUser,
   getAllFavPlaces,
   saveFavoritePlace,
+  patchFavoritePlace,
 } from "../../API/userService";
 
 const userDataSlice = createSlice({
@@ -58,6 +59,16 @@ const userDataSlice = createSlice({
       state.favPlaceLoading = false;
     },
     [saveFavoritePlace.rejected]: (state, { payload }) => {
+      state.favPlaceLoading = false;
+      state.errPlace = payload;
+    },
+    [patchFavoritePlace.pending]: (state) => {
+      state.favPlaceLoading = true;
+    },
+    [patchFavoritePlace.fulfilled]: (state) => {
+      state.favPlaceLoading = false;
+    },
+    [patchFavoritePlace.rejected]: (state, { payload }) => {
       state.favPlaceLoading = false;
       state.errPlace = payload;
     },

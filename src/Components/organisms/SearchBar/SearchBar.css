@@ -22,6 +22,7 @@
       margin: 0.125rem 0;
       background: transparent;
       transition: 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) background;
+      color: $lilac;
       cursor: pointer;
 
       &:hover {
@@ -30,7 +31,8 @@
     }
     .Input {
       margin: 0 1rem;
-      width: 240px;
+      width: 100%;
+      max-width: 240px;
       transition: 0.2s ease-in-out width;
 
       &.Strech-menu {

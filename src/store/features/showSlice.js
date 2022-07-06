@@ -8,8 +8,8 @@ const showSlice = createSlice({
     isOpenMenu: false,
   },
   reducers: {
-    setModalContent(state, action) {
-      state.dataModal = action.payload;
+    setModalContent(state, { payload }) {
+      state.dataModal = payload;
     },
     openModal(state) {
       state.isOpenModal = true;

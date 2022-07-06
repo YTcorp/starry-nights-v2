@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiTrash } from "react-icons/bi";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 
 import LiElement from "../molecules/LiElement/LiElement";
 import Spinner from "../atoms/Spinner/Spinner";

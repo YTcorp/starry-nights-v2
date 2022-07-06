@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 
 import { setModalContent } from "../../../store/features/showSlice";
 import CardConstellation from "../../molecules/Cards/CardConstellation";
 import CardForm from "../../molecules/Cards/CardForm";
+import CardMyPlaces from "../../molecules/Cards/CardMyPlaces";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const [isOpened, setIsOpened] = useState(false);
   const { dataModal } = useSelector((state) => state.show);
+
   useEffect(() => {
     if (!isEmpty(dataModal)) {
       setTimeout(() => {
@@ -65,6 +67,10 @@ export default function Modal() {
 
         {dataModal.address !== undefined && (
           <CardForm modal={true} funcClose={handleClose} data={dataModal} />
+        )}
+
+        {dataModal.favPlaces !== undefined && (
+          <CardMyPlaces modal={true} funcClose={handleClose} data={dataModal} />
         )}
       </div>
     </div>
