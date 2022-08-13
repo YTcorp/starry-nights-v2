@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const UnauthenticatedRoute = ({ redirectPath = "/", children }) => {
   const { isConnected } = useSelector((state) => state.login);
+
   if (isConnected) {
     return <Navigate to={redirectPath} />;
   }

@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const UnauthenticatedRoute = ({ redirectPath = "/login", children }) => {
+const AuthenticatedRoute = ({ redirectPath = "/login", children }) => {
   const { isConnected } = useSelector((state) => state.login);
+
   if (!isConnected) {
     return <Navigate to={redirectPath} />;
   }
@@ -10,4 +11,4 @@ const UnauthenticatedRoute = ({ redirectPath = "/login", children }) => {
   return children ? children : <Outlet />;
 };
 
-export default UnauthenticatedRoute;
+export default AuthenticatedRoute;
